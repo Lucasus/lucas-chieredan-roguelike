@@ -64,8 +64,8 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void MoneyPickupTest()
 		{
-			Money money = new Money() { Worth = 10 };
-			map[0, 1].place(money);
+			Money moneyPickup = new Money() { Worth = 10 };
+			map[0, 1].place(moneyPickup);
 			player.move(Player.Direction.Right);
 			Assert.AreEqual(10, player.Creature.Money);
 		}
@@ -73,8 +73,8 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void HealthPickupTest()
 		{
-			MedKit kit = new MedKit() { Health = 5 };
-			map[0, 1].place(kit);
+			MedKit medikitPickup = new MedKit() { Health = 5 };
+			map[0, 1].place(medikitPickup);
 			player.move(Player.Direction.Right);
 			Assert.AreEqual(15, player.Creature.Health);
 		}
@@ -82,10 +82,32 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void WeaponPickupTest()
 		{
-			Weapon wep = new Weapon() { Damage = 10, Range = 3};
-			map[0, 1].place(wep);
+			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3};
+			map[0, 1].place(weaponPickup);
 			player.move(Player.Direction.Right);
-			Assert.AreSame(wep, player.Creature.Weapon);
+			Assert.AreSame(weaponPickup, player.Creature.Weapon);
+		}
+
+		[TestMethod()]
+		public void MiltipleObjectPickupsTest()
+		{
+			Money moneyPickup = new Money() { Worth = 10 };
+			map[0, 1].place(moneyPickup);
+			Weapon weponPickup = new Weapon() { Damage = 10, Range = 3 };
+			map[0, 1].place(weponPickup);
+			player.move(Player.Direction.Right);
+			Assert.AreEqual(10, player.Creature.Money);
+			Assert.AreEqual(15, player.Creature.Health);
+		}
+
+		[TestMethod()]
+		public void MultipleWeaponsPickupTest()
+		{
+			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3 };
+			map[0, 1].place(weaponPickup);
+			Weapon newerWeapon = new Weapon() { Damage = 15, Range = 2 };
+			player.move(Player.Direction.Right);
+			Assert.AreSame(newerWeapon, player.Creature.Weapon);
 		}
 	}
 }
