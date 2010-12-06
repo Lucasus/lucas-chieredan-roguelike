@@ -50,10 +50,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creatures\AI.cs" />
+    <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
-    <Compile Include="GameObjects\GameObject.cs" />
+    <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\MedKit.cs" />
     <Compile Include="GameObjects\Money.cs" />
+    <Compile Include="IFieldVisitor.cs" />
     <Compile Include="Map\Field.cs" />
     <Compile Include="Map\Floor.cs" />
     <Compile Include="Game.cs" />

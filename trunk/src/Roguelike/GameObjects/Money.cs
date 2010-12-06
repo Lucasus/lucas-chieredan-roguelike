@@ -8,5 +8,10 @@ namespace Roguelike
 	public class Money : GameObject
 	{
 		public int Worth { get; set; }
+
+		public void objectPickedBy(Creature creature)
+		{
+			creature.Money += this.Worth;
+		}
 	}
 }

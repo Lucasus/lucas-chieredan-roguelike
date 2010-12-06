@@ -19,10 +19,10 @@ namespace Roguelike
                     switch (mapString[i, j])
                     {
                         case '.':
-                            fields[i, j] = new Floor();
+                            fields[i, j] = new Floor(i,j);
                             break;
                         case '#':
-                            fields[i, j] = new Wall();
+							fields[i, j] = new Wall(i, j);
                             break;
                     }
                 }
@@ -46,7 +46,9 @@ namespace Roguelike
         {
             get
             {
-                throw new NotImplementedException();
+				if(index1 < 0 || index1 >= fields.GetLength(0) || index2 < 0 || index2 >= fields.GetLength(1))
+					throw new MapOutOfBoundException();
+                return fields[index1,index2];
             }
         }
     }

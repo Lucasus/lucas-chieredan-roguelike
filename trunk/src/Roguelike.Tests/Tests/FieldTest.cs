@@ -47,10 +47,12 @@ namespace Roguelike.Tests
         public void PlaceCreatureTest()
         {
             Creature thing = new Creature();
-            Field target = new Wall();
-            Assert.IsFalse(target.put(thing));   
-            Field target2 = new Floor();
-            Assert.IsTrue(target2.put(thing));
+            Field target = new Wall(0, 0);
+            Assert.IsFalse(target.putCreature(thing));
+			Field target2 = new Floor(0, 0);
+            Assert.IsTrue(target2.putCreature(thing));
+			Assert.AreEqual(0,target2.X);
+			Assert.AreEqual(0, target2.Y);
         }
 
 		[TestMethod()]
@@ -58,31 +60,31 @@ namespace Roguelike.Tests
 		{
 			Creature thing = new Creature();
 			Creature thing2 = new Creature();
-			Field target = new Floor();
+			Field target = new Floor(0, 0);
 
-			Assert.IsTrue(target.put(thing));
-			Assert.IsFalse(target.put(thing2));
+			Assert.IsTrue(target.putCreature(thing));
+			Assert.IsFalse(target.putCreature(thing2));
 		}
 
 		[TestMethod()]
 		public void PlaceObjectTest()
 		{
-			GameObject obj = new GameObject();
-			Field target = new Floor();
-			Assert.IsTrue(target.place(obj));
-			Field targe2 = new Wall();
-			Assert.IsFalse(targe2.place(obj));
+			GameObject obj = new Money();
+			Field target = new Floor(0, 0);
+			Assert.IsTrue(target.placeObject(obj));
+			Field targe2 = new Wall(0, 0);
+			Assert.IsFalse(targe2.placeObject(obj));
 		}
 
 		[TestMethod()]
 		public void PlaceMultipleObjectsTest()
 		{
-			GameObject thing = new GameObject();
-			GameObject thing2 = new GameObject();
-			Field target = new Floor();
+			GameObject thing = new Money();
+			GameObject thing2 = new Money();
+			Field target = new Floor(0, 0);
 
-			Assert.IsTrue(target.place(thing));
-			Assert.IsTrue(target.place(thing2));
+			Assert.IsTrue(target.placeObject(thing));
+			Assert.IsTrue(target.placeObject(thing2));
 		}
     }
 }
