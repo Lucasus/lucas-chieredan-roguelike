@@ -5,16 +5,29 @@ using System.Text;
 
 namespace Roguelike
 {
-    public class Field
+    public abstract class Field
     {
-        public bool put(Creature thing)
-        {
-            throw new NotImplementedException();
-        }
+		private int x;
+		private int y;
 
-		public bool place(GameObject field)
+		public int X
 		{
-			throw new NotImplementedException();
+			get{ return x ;}
 		}
+		public int Y
+		{
+			get{ return y ;}
+		}
+
+		public Field(int x, int y)
+		{
+			this.x = x;
+			this.y = y;
+		}
+
+        public abstract bool putCreature(Creature thing);
+		public abstract void removeCreature();
+		public abstract bool placeObject(GameObject field);
+		public abstract void accept(IFieldVisitor visitor);
     }
 }

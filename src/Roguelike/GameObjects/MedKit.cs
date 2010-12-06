@@ -8,5 +8,10 @@ namespace Roguelike
 	public class MedKit : GameObject
 	{
 		public int Health { get; set; }
+		
+		public void objectPickedBy(Creature creature)
+		{
+			creature.Health += this.Health;
+		}
 	}
 }

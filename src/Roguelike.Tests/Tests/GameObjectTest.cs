@@ -54,8 +54,8 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-            player = new Player() { Creature = new Creature() { Health = 10, Weapon = new Weapon() { Damage = 0, Range = 1 } } };
-			map[0,0].put(player.Creature);
+			player = new Player(map) { Creature = new Creature() { Health = 10, Weapon = new Weapon() { Damage = 0, Range = 1 } } };
+			map[0,0].putCreature(player.Creature);
 		}
 
 		/// <summary>
@@ -65,7 +65,7 @@ namespace Roguelike.Tests
 		public void MoneyPickupTest()
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
-			map[0, 1].place(moneyPickup);
+			map[1, 0].placeObject(moneyPickup);
 			player.move(Player.Direction.Right);
 			Assert.AreEqual(10, player.Creature.Money);
 		}
@@ -74,7 +74,7 @@ namespace Roguelike.Tests
 		public void HealthPickupTest()
 		{
 			MedKit medikitPickup = new MedKit() { Health = 5 };
-			map[0, 1].place(medikitPickup);
+			map[1, 0].placeObject(medikitPickup);
 			player.move(Player.Direction.Right);
 			Assert.AreEqual(15, player.Creature.Health);
 		}
@@ -83,7 +83,7 @@ namespace Roguelike.Tests
 		public void WeaponPickupTest()
 		{
 			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3};
-			map[0, 1].place(weaponPickup);
+			map[1, 0].placeObject(weaponPickup);
 			player.move(Player.Direction.Right);
 			Assert.AreSame(weaponPickup, player.Creature.Weapon);
 		}
@@ -92,9 +92,9 @@ namespace Roguelike.Tests
 		public void MiltipleObjectPickupsTest()
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
-			map[0, 1].place(moneyPickup);
-			Weapon weponPickup = new Weapon() { Damage = 10, Range = 3 };
-			map[0, 1].place(weponPickup);
+			map[1, 0].placeObject(moneyPickup);
+			MedKit medikitPickup = new MedKit() { Health = 5 };
+			map[1, 0].placeObject(medikitPickup);
 			player.move(Player.Direction.Right);
 			Assert.AreEqual(10, player.Creature.Money);
 			Assert.AreEqual(15, player.Creature.Health);
@@ -104,8 +104,9 @@ namespace Roguelike.Tests
 		public void MultipleWeaponsPickupTest()
 		{
 			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3 };
-			map[0, 1].place(weaponPickup);
+			map[1, 0].placeObject(weaponPickup);
 			Weapon newerWeapon = new Weapon() { Damage = 15, Range = 2 };
+			map[1, 0].placeObject(newerWeapon);
 			player.move(Player.Direction.Right);
 			Assert.AreSame(newerWeapon, player.Creature.Weapon);
 		}

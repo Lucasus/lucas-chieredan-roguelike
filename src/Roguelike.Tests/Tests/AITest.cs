@@ -53,16 +53,16 @@ namespace Roguelike.Tests
 		{
             map = TestObjects.GetTestMap();
 			Creature playersCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5} };
-			map[0, 0].put(playersCreature);
-			player = new Player() { Creature = playersCreature };
+			map[0, 0].putCreature(playersCreature);
+			player = new Player(map) { Creature = playersCreature };
 		}
 
 		[TestMethod()]
 		public void MoveCreatureTest()
 		{
 			Creature aiControledCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
-			map[2,1].put(aiControledCreature);
-			AI artificialInteligence = new AI();
+			map[1,2].putCreature(aiControledCreature);
+			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
 			Assert.AreEqual(1,aiControledCreature.X);
 			Assert.AreEqual(0,aiControledCreature.Y);
@@ -72,8 +72,8 @@ namespace Roguelike.Tests
 		public void AttackPlayerTest()
 		{
 			Creature aiControledCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
-			map[1, 0].put(aiControledCreature);
-			AI artificialInteligence = new AI();
+			map[1, 0].putCreature(aiControledCreature);
+			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
 			Assert.AreEqual(5, player.Creature.Health);
 		}
@@ -83,7 +83,7 @@ namespace Roguelike.Tests
 		public void CreatureNotOnTheMapTest()
 		{
 			Creature aiControledCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
-			AI artificialInteligence = new AI();
+			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
 		}
 	}

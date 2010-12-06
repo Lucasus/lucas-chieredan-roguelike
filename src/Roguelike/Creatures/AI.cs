@@ -7,9 +7,26 @@ namespace Roguelike
 {
 	public class AI
 	{
+		Map map;
+		Player player;
+
+		public AI(Map map, Player player)
+		{
+			this.map = map;
+			this.player = player;
+		}
+
 		public void move(Creature creature)
 		{
-			throw new NotImplementedException();
+			if(creature.field != null)
+			{
+				if(creature.canAttack(player.Creature))
+				{
+					creature.attack(player.Creature);
+				}
+			}
+			else
+				throw new CreatureException();
 		}
 	}
 }
