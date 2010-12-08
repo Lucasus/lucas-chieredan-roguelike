@@ -44,24 +44,24 @@ namespace RoguelikeGUI
 
 		public void PlayerCommand(Key key)
 		{
-			Player.Direction playerDirection = new Player.Direction();
+			Player.Direction playerCommand = new Player.Direction();
 			switch(key)
 			{
 				case Key.Up:
-					playerDirection = Player.Direction.Up;
+					playerCommand = Player.Direction.Left;
 					break;
 				case Key.Down:
-					playerDirection = Player.Direction.Down;
+					playerCommand = Player.Direction.Right;
 					break;
 				case Key.Left:
-					playerDirection = Player.Direction.Left;
+					playerCommand = Player.Direction.Up;
 					break;
 				case Key.Right:
-					playerDirection = Player.Direction.Right;
+					playerCommand = Player.Direction.Down;
 					break;
 			}
 
-			gameService.Player.move(playerDirection);
+			gameService.PlayerCommand(playerCommand);
 			UpdateScreenMap();
 		}
 	}
