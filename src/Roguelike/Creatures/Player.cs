@@ -46,7 +46,14 @@ namespace Roguelike
 				else if(dir == Direction.LeftUp || dir == Direction.Up || dir == Direction.RightUp)
 					newY -= 1;
 
-				Creature.interactWithField(map[newX, newY]);
+				map[Creature.X, Creature.Y].Creature = null;
+				map[newX, newY].Creature = Creature;
+				Creature.X = newX;
+				Creature.Y = newY;
+				//VisitResult result = Creature.interactWithField(map[newX, newY]);
+				//if (result.moved == true)
+				//{
+				//}
 			}
 			else
 				throw new CreatureException();

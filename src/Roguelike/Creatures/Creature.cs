@@ -17,11 +17,13 @@ namespace Roguelike
 		public int X
 		{
 			get { return field.X; }
+			set { field.X = value; }
 		}
 
 		public int Y
 		{
 			get { return field.Y; }
+			set { field.Y = value; }
 		}
 
 		public Creature():this(0){}
@@ -42,10 +44,11 @@ namespace Roguelike
 				return true;
 		}
 
-		public void interactWithField(Field field)
+		public VisitResult interactWithField(Field field)
 		{
 			CreatureVisitor visitor = new CreatureVisitor(this);
 			field.accept(visitor);
+			return visitor.visitResult;
 		}
 
 		public bool canAttack(Creature creature)

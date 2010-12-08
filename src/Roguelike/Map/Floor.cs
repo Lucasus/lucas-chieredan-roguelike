@@ -33,7 +33,7 @@ namespace Roguelike
 
 		public override void removeCreature()
 		{
-			this.Creature.field = null;
+			//this.Creature.field = null;
 			this.Creature = null;
 		}
 
