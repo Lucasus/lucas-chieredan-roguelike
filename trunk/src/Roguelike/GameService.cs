@@ -7,9 +7,10 @@ namespace Roguelike
 {
     public class GameService
     {
+		private PlayerLocation PlayerLocation { get; set; }
+		private Player Player { get; set; }
+
 		public Map Map { get; set; }
-		public PlayerLocation PlayerLocation { get; set; }
-		public Player Player { get; set; }
 
 		public void InitializeGame(char[,] initialMap)
 		{

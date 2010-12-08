@@ -8,6 +8,7 @@ namespace Roguelike
 	public class CreatureVisitor : IFieldVisitor
 	{
 		Creature creature;
+		public VisitResult visitResult;
 
 		public CreatureVisitor(Creature creature)
 		{
@@ -16,7 +17,7 @@ namespace Roguelike
 
 		public void visit(Wall wall)
 		{
-			
+			visitResult = new VisitResult { moved = false };
 		}
 
 		public void visit(Floor floor)
@@ -24,10 +25,12 @@ namespace Roguelike
 			if(floor.Creature == null)
 			{
 				floor.putCreature(creature);
+				visitResult = new VisitResult { moved = true };
 			}
 			else
 			{
 				creature.attack(floor.Creature);
+				visitResult = new VisitResult { moved = false };
 			}
 		}
 	}

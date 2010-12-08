@@ -76,9 +76,6 @@
     <Compile Include="Utilities\TestObjects.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="AuthoringTests.txt" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Roguelike\Roguelike.csproj">
       <Project>{C948DF12-A555-4D7C-90DC-53DFE68DD777}</Project>
       <Name>Roguelike</Name>
