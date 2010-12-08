@@ -7,14 +7,7 @@ namespace Roguelike
 {
     public class Floor : Field
     {
-		private Creature creature;
 		private List<GameObject> objects;
-
-		public Creature Creature
-		{
-			get { return creature; }
-			set { creature = value; }
-		}
 
 		public Floor(int x, int y) : base(x, y)
 		{
@@ -29,7 +22,7 @@ namespace Roguelike
 				this.Creature.field = this;
 				foreach(GameObject gameObject in objects)
 				{
-					gameObject.objectPickedBy(creature);
+					gameObject.objectPickedBy(Creature);
 				}
 				objects.Clear();
 				return true;
