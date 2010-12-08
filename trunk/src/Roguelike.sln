@@ -1,6 +1,6 @@
 ﻿
-Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2010
+Microsoft Visual Studio Solution File, Format Version 10.00
+# Visual Studio 2008
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Roguelike", "Roguelike\Roguelike.csproj", "{C948DF12-A555-4D7C-90DC-53DFE68DD777}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RoguelikeGUI", "RoguelikeGUI\RoguelikeGUI.csproj", "{98BFC14A-D9C7-44FD-9DD0-7C5B2CCEE589}"

@@ -53,7 +53,9 @@
     <Compile Include="Creatures\PlayerCreature.cs" />
     <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
+    <Compile Include="GameObjects\CreatureMoneyMediator.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
+    <Compile Include="GameObjects\IObjectMediator.cs" />
     <Compile Include="GameObjects\MedKit.cs" />
     <Compile Include="GameObjects\Money.cs" />
     <Compile Include="IFieldVisitor.cs" />
