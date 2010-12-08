@@ -18,5 +18,15 @@ namespace Roguelike
 			Player = new Player(Map);
 			Map[PlayerLocation.X, PlayerLocation.Y].putCreature(Player.Creature);
 		}
+
+		public void NextTurn(Player.Direction playerCommand)
+		{
+			Player.move(playerCommand);
+		}
+
+		public void PlayerCommand(Player.Direction playerCommand)
+		{
+			NextTurn(playerCommand); // TODO: nie zawsze to będzie następna tura, czasem wiele komend w jednej turze
+		}
 	}
 }
