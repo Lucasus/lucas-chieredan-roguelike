@@ -1,7 +1,7 @@
 ﻿<Window x:Class="RoguelikeGUI.MapWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Lucas &amp; Chieredan Roguelike" Height="368" Width="676" >
+    Title="Lucas &amp; Chieredan Roguelike" Height="368" Width="676" KeyDown="Window_KeyDown">
     <Grid Name="GridMap" >
         <!--<Image Width="30" Height="30" Source="/RoguelikeGUI;component/Images/floor.png" />-->
     </Grid>

@@ -8,6 +8,7 @@ namespace Roguelike
     public class Player
     {
 		private Map map;
+		private int playerHealth = 20;
 
 		public enum Direction{
 			RightUp = 1,
@@ -25,6 +26,7 @@ namespace Roguelike
 		public Player(Map map)
 		{
 			this.map = map;
+			this.Creature = new Creature(20);
 		}
 
 		public void move(Direction dir)
