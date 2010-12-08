@@ -70,6 +70,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="GameManager.cs" />
     <Compile Include="Utilities\FieldToImageConverter.cs" />
     <Compile Include="Utilities\MapDrawer.cs" />
     <Compile Include="MapWindow.xaml.cs">
