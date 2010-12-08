@@ -37,7 +37,7 @@ namespace RoguelikeGUI
 		private void UpdateScreenMap()
 		{
 			Map map = gameService.Map;
-			Image[,] images = new FieldToImageConverter().ConvertFieldArray(map.GetSubmap(0, initialMap.GetLength(0) - 1, 0, initialMap.GetLength(1) - 1));
+			IList<Image>[,] images = new FieldToImageConverter().ConvertFieldArray(map.GetSubmap(0, initialMap.GetLength(0) - 1, 0, initialMap.GetLength(1) - 1));
 			MapDrawer mapDrawer = new MapDrawer(gridMap, images.GetLength(0), images.GetLength(1));
 			mapDrawer.Draw(images);
 		}

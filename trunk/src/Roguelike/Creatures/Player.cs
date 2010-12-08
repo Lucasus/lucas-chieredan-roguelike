@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using Roguelike.Creatures;
 
 namespace Roguelike
 {
@@ -26,7 +27,7 @@ namespace Roguelike
 		public Player(Map map)
 		{
 			this.map = map;
-			this.Creature = new Creature(20);
+			this.Creature = new PlayerCreature(20);
 		}
 
 		public void move(Direction dir)

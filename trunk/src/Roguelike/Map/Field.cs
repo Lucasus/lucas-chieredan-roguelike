@@ -29,5 +29,6 @@ namespace Roguelike
 		public abstract void removeCreature();
 		public abstract bool placeObject(GameObject field);
 		public abstract void accept(IFieldVisitor visitor);
+		public virtual Creature Creature { get; set; }
     }
 }

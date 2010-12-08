@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Media.Imaging;
 
 namespace RoguelikeGUI
 {
@@ -26,7 +27,7 @@ namespace RoguelikeGUI
                 Grid.ColumnDefinitions.Add(new ColumnDefinition() { Width = new GridLength(30) });
         }
 
-        public void Draw(Image[,] images)
+        public void Draw(IList<Image>[,] images)
         {
             if(images.GetLength(0) != RowCount || images.GetLength(1) != ColumnCount)
             {
@@ -37,10 +38,14 @@ namespace RoguelikeGUI
             {
                 for (int j = 0; j < images.GetLength(1); ++j)
                 {
-                    images[i,j].SetValue(Grid.RowProperty, i);
-                    images[i,j].SetValue(Grid.ColumnProperty, j);
-                    Grid.Children.Add(images[i,j]);
-                }
+					foreach (Image img in images[i, j])
+					{
+						img.SetValue(Grid.RowProperty, i);
+						img.SetValue(Grid.ColumnProperty, j);
+
+						Grid.Children.Add(img);
+					}
+				}
             }
         }
     }
