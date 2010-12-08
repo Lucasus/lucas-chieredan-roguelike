@@ -44,7 +44,25 @@ namespace RoguelikeGUI
 
 		public void PlayerCommand(Key key)
 		{
-			//throw new NotImplementedException();
+			Player.Direction playerDirection = new Player.Direction();
+			switch(key)
+			{
+				case Key.Up:
+					playerDirection = Player.Direction.Up;
+					break;
+				case Key.Down:
+					playerDirection = Player.Direction.Down;
+					break;
+				case Key.Left:
+					playerDirection = Player.Direction.Left;
+					break;
+				case Key.Right:
+					playerDirection = Player.Direction.Right;
+					break;
+			}
+
+			gameService.Player.move(playerDirection);
+			UpdateScreenMap();
 		}
 	}
 }
