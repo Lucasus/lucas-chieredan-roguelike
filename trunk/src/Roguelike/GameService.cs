@@ -7,17 +7,16 @@ namespace Roguelike
 {
     public class GameService
     {
-		private PlayerLocation PlayerLocation { get; set; }
 		private Player Player { get; set; }
 
 		public Map Map { get; set; }
 
 		public void InitializeGame(char[,] initialMap)
 		{
-			PlayerLocation = new PlayerLocation() { X = 2, Y = 2 };
 			Map = new Map(initialMap);
-			Player = new Player(Map);
-			Map[PlayerLocation.X, PlayerLocation.Y].putCreature(Player.Creature);
+			Creature playersCreature = new PlayerCreature(20);
+			Map[2, 2].putCreature(playersCreature);
+			Player = new Player(Map){Creature = playersCreature};
 		}
 
 		public void NextTurn(Player.Direction playerCommand)

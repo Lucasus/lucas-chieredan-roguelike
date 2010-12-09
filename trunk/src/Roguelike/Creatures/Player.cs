@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Roguelike.Creatures;
 
 namespace Roguelike
 {
@@ -32,7 +31,7 @@ namespace Roguelike
 
 		public void move(Direction dir)
 		{
-			if(Creature.field != null)
+			if(Creature.Field != null)
 			{
 				int newX = Creature.X;
 				int newY = Creature.Y;
@@ -46,14 +45,7 @@ namespace Roguelike
 				else if(dir == Direction.LeftUp || dir == Direction.Up || dir == Direction.RightUp)
 					newY -= 1;
 
-				map[Creature.X, Creature.Y].Creature = null;
-				map[newX, newY].Creature = Creature;
-				Creature.X = newX;
-				Creature.Y = newY;
-				//VisitResult result = Creature.interactWithField(map[newX, newY]);
-				//if (result.moved == true)
-				//{
-				//}
+				Creature.interactWithField(map[newX, newY]);
 			}
 			else
 				throw new CreatureException();

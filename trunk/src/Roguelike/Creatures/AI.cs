@@ -18,7 +18,7 @@ namespace Roguelike
 
 		public void move(Creature creature)
 		{
-			if(creature.field != null)
+			if(creature.Field != null)
 			{
 				if(creature.canAttack(player.Creature))
 				{

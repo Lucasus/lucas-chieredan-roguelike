@@ -19,7 +19,7 @@ namespace Roguelike
 			if(this.Creature == null)
 			{
 				this.Creature = thing;
-				this.Creature.field = this;
+				this.Creature.Field = this;
 				foreach(GameObject gameObject in objects)
 				{
 					gameObject.objectPickedBy(Creature);
