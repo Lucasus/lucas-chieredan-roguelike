@@ -31,7 +31,7 @@ namespace RoguelikeGUI.Utilities
 
 					if (fieldArray[i, j].Creature != null)
 					{
-						if (fieldArray[i, j].Creature.GetType() == typeof(PlayerCreature))
+						if (fieldArray[i, j].Creature.CreatureType == "Hero")
 						{
 							uriSource = new Uri(@"/RoguelikeGUI;component/Images/player.png", UriKind.Relative);
 							imageArray[i, j].Add(new Image() { Source = new BitmapImage(uriSource), Width = 30, Height = 30 });

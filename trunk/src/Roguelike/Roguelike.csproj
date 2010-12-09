@@ -65,7 +65,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creatures\AI.cs" />
-    <Compile Include="Creatures\PlayerCreature.cs" />
     <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
