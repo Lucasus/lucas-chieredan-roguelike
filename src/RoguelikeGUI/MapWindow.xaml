@@ -1,8 +1,24 @@
 ﻿<Window x:Class="RoguelikeGUI.MapWindow"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Title="Lucas &amp; Chieredan Roguelike" Height="368" Width="676" KeyDown="Window_KeyDown">
-    <Grid Name="GridMap" SnapsToDevicePixels="True">
-        
-    </Grid>
+    Title="Lucas &amp; Chieredan Roguelike" Height="510" Width="800" KeyDown="Window_KeyDown" ResizeMode="NoResize" Background="Black" SizeToContent="WidthAndHeight">
+    <Grid Name="GameGrid" SnapsToDevicePixels="True">
+		<Grid.RowDefinitions>
+			<RowDefinition Height="Auto" />
+			<RowDefinition Height="20" />
+		</Grid.RowDefinitions>
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition Width="Auto" />
+			<ColumnDefinition Width="Auto" />
+		</Grid.ColumnDefinitions>
+
+		<Grid Name="GridMap" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Width="600">
+		</Grid>
+		<Grid Name="GridStats" Grid.Column="1" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Background="#FFBE4242">
+			<Label Content="Label" Height="25" HorizontalAlignment="Left" Margin="6,6,0,0" VerticalAlignment="Top" Width="44" />
+			<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="56,6,0,0" Name="PlayerHp" VerticalAlignment="Top" Width="116" />
+		</Grid>
+		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White"></Grid>
+	</Grid>
+
 </Window>
