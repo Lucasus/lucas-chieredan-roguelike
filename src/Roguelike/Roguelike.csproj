@@ -16,6 +16,21 @@
     </FileUpgradeFlags>
     <OldToolsVersion>3.5</OldToolsVersion>
     <UpgradeBackupLocation />
+    <PublishUrl>publish\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>0</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -53,9 +68,7 @@
     <Compile Include="Creatures\PlayerCreature.cs" />
     <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
-    <Compile Include="GameObjects\CreatureMoneyMediator.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
-    <Compile Include="GameObjects\IObjectMediator.cs" />
     <Compile Include="GameObjects\MedKit.cs" />
     <Compile Include="GameObjects\Money.cs" />
     <Compile Include="IFieldVisitor.cs" />
@@ -65,12 +78,27 @@
     <Compile Include="Map\Map.cs" />
     <Compile Include="Exceptions\MapOutOfBoundException.cs" />
     <Compile Include="Creatures\Player.cs" />
-    <Compile Include="PlayerLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Map\Wall.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
-    <Compile Include="VisitResult.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

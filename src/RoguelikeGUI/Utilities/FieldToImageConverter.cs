@@ -5,7 +5,6 @@ using System.Text;
 using System.Windows.Controls;
 using Roguelike;
 using System.Windows.Media.Imaging;
-using Roguelike.Creatures;
 
 namespace RoguelikeGUI.Utilities
 {

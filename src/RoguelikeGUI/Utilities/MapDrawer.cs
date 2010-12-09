@@ -34,6 +34,7 @@ namespace RoguelikeGUI
                 throw new IndexOutOfRangeException("Ilości wierszy i kolumn talicy z obrazkami nie są takie same jak ilości wierszy i kolumn MapDrawer'a");
             }
 
+			Grid.Children.Clear();
             for(int i = 0 ; i < images.GetLength(0) ; ++i)
             {
                 for (int j = 0; j < images.GetLength(1); ++j)

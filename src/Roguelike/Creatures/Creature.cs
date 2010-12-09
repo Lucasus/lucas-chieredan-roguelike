@@ -7,12 +7,22 @@ namespace Roguelike
 {
     public class Creature
     {
-		public Field field;
+		private Field field;
 
 		private int health;
 		public int Health { get; set; }
 		public Weapon Weapon { get; set; }
 		public int Money { get; set; }
+
+		public Field Field
+		{
+			get {return field;}
+			set {
+				if(this.field != null)
+					this.field.Creature = null;
+				this.field = value;
+			}
+		}
 
 		public int X
 		{
@@ -44,11 +54,10 @@ namespace Roguelike
 				return true;
 		}
 
-		public VisitResult interactWithField(Field field)
+		public void interactWithField(Field field)
 		{
 			CreatureVisitor visitor = new CreatureVisitor(this);
 			field.accept(visitor);
-			return visitor.visitResult;
 		}
 
 		public bool canAttack(Creature creature)
