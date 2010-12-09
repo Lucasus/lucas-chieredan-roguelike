@@ -17,29 +17,49 @@ namespace RoguelikeGUI.Utilities
             {
                 for (int j = 0; j < fieldArray.GetLength(1); ++j)
                 {
-					imageArray[i, j] = new List<Image>();
-                    Uri uriSource = null;
-                    if (fieldArray[i, j] is Wall)
-                    {
-                        uriSource = new Uri(@"/RoguelikeGUI;component/Images/wall.png", UriKind.Relative);
-                    }
-                    else if (fieldArray[i, j] is Floor)
-                    {
-                        uriSource = new Uri(@"/RoguelikeGUI;component/Images/floor.png", UriKind.Relative);
-                    }
-					imageArray[i, j].Add(new Image() { Source = new BitmapImage(uriSource), Width = 30, Height = 30 });
-
-					if (fieldArray[i, j].Creature != null)
-					{
-						if (fieldArray[i, j].Creature.CreatureType == "Hero")
-						{
-							uriSource = new Uri(@"/RoguelikeGUI;component/Images/player.png", UriKind.Relative);
-							imageArray[i, j].Add(new Image() { Source = new BitmapImage(uriSource), Width = 30, Height = 30 });
-						}
-					}
+					imageArray[i, j] = CreateImageFromField(fieldArray[i, j]);
                 }
             }
             return imageArray;
         }
+
+		private List<Image> CreateImageFromField(Field field)
+		{
+			List<Image> returnValue = new List<Image>();
+            if (field is Wall)
+            {
+				returnValue.Add(LoadImage("wall.png"));
+            }
+            else if (field is Floor)
+            {
+				returnValue.Add(LoadImage("floor.png"));
+            }
+
+			if (field.Creature != null)
+			{
+				returnValue.Add(this.CreateCreatureImage(field.Creature));
+			}
+			return returnValue;
+		}
+
+		private Image CreateCreatureImage(Creature creature)
+		{
+			if (creature.CreatureType == "Hero")
+			{
+				return LoadImage("player.png");
+			}
+			else if (creature.CreatureType == "Enemy")
+			{
+				return LoadImage("enemy.png");
+			}
+			else
+				return null;
+		}
+
+		private Image LoadImage(string imageName)
+		{
+			Uri uriSource = new Uri(@"/RoguelikeGUI;component/Images/" + imageName, UriKind.Relative);
+			return new Image() { Source = new BitmapImage(uriSource), Width = 30, Height = 30 };
+		}
     }
 }

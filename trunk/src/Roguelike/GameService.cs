@@ -24,7 +24,7 @@ namespace Roguelike
 			Random randomNumberGenerator = new Random();
 			for(int i=0; i<10; i++)
 			{
-				Creature enemy = new Creature(10){CreatureType = "Hero"};
+				Creature enemy = new Creature(10){CreatureType = "Enemy"};
 				
 				bool success = Map[randomNumberGenerator.Next(10), randomNumberGenerator.Next(10)].putCreature(enemy);
 				if(success)
