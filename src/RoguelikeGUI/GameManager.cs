@@ -47,17 +47,29 @@ namespace RoguelikeGUI
 			Player.Direction playerCommand = new Player.Direction();
 			switch(key)
 			{
-				case Key.Up:
+				case Key.NumPad1:
+					playerCommand = Player.Direction.LeftDown;
+					break;
+				case Key.NumPad2:
+					playerCommand = Player.Direction.Down;
+					break;
+				case Key.NumPad3:
+					playerCommand = Player.Direction.RightDown;
+					break;
+				case Key.NumPad4:
 					playerCommand = Player.Direction.Left;
 					break;
-				case Key.Down:
+				case Key.NumPad6:
 					playerCommand = Player.Direction.Right;
 					break;
-				case Key.Left:
+				case Key.NumPad7:
+					playerCommand = Player.Direction.LeftUp;
+					break;
+				case Key.NumPad8:
 					playerCommand = Player.Direction.Up;
 					break;
-				case Key.Right:
-					playerCommand = Player.Direction.Down;
+				case Key.NumPad9:
+					playerCommand = Player.Direction.RightUp;
 					break;
 			}
 

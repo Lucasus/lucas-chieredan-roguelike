@@ -19,10 +19,10 @@ namespace Roguelike
                     switch (mapString[i, j])
                     {
                         case '.':
-                            fields[i, j] = new Floor(i,j);
+                            fields[i, j] = new Floor(j,i);
                             break;
                         case '#':
-							fields[i, j] = new Wall(i, j);
+							fields[i, j] = new Wall(j, i);
                             break;
                     }
                 }

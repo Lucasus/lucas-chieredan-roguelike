@@ -7,6 +7,13 @@ namespace Roguelike
 {
     public class Creature
     {
+		private string creatureType;
+		public string CreatureType{
+			get{ return creatureType; }
+			set{ creatureType = value; }
+		}
+
+
 		private Field field;
 
 		private int health;
@@ -36,13 +43,15 @@ namespace Roguelike
 			set { field.Y = value; }
 		}
 
-		public Creature():this(0){}
-
-		public Creature(int health)
+		public Creature(int health = 10)
 		{
 			if(health < 0)
 				throw new CreatureException();
-			else this.health = health;
+			else 
+				this.health = health;
+
+			this.Weapon = new Weapon(){ Damage = 1, Range = 1 };
+			this.creatureType = "Creature";
 		}
 
 		public bool canInteractWithField(Field field)

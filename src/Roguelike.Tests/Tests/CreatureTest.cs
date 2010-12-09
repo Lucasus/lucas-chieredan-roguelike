@@ -66,8 +66,8 @@ namespace Roguelike.Tests
 		public void EmptyColisionTest()
 		{
 			Creature target = new Creature();
-			map[0, 1].putCreature(target);
-			target.interactWithField(map[1, 0]);
+			map[1, 0].putCreature(target);
+			target.interactWithField(map[0, 1]);
 			Assert.AreEqual(1,target.X);
 			Assert.AreEqual(0,target.Y);
 		}
@@ -76,7 +76,7 @@ namespace Roguelike.Tests
 		public void WallColisionTest()
 		{
 			Creature target = new Creature();
-			map[0, 1].putCreature(target);
+			map[1, 0].putCreature(target);
 			target.interactWithField(map[1, 1]);
 			Assert.AreEqual(0, target.X);
 			Assert.AreEqual(1, target.Y);

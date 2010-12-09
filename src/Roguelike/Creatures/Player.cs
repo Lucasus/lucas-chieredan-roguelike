@@ -8,7 +8,6 @@ namespace Roguelike
     public class Player
     {
 		private Map map;
-		private int playerHealth = 20;
 
 		public enum Direction{
 			RightUp = 1,
@@ -26,7 +25,7 @@ namespace Roguelike
 		public Player(Map map)
 		{
 			this.map = map;
-			this.Creature = new PlayerCreature(20);
+			this.Creature = new Creature(20);
 		}
 
 		public void move(Direction dir)
@@ -45,7 +44,7 @@ namespace Roguelike
 				else if(dir == Direction.LeftUp || dir == Direction.Up || dir == Direction.RightUp)
 					newY -= 1;
 
-				Creature.interactWithField(map[newX, newY]);
+				Creature.interactWithField(map[newY, newX]);
 			}
 			else
 				throw new CreatureException();
