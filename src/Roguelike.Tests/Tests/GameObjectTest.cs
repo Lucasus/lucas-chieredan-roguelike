@@ -54,7 +54,7 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			player = new Player(map) { Creature = new Creature() { Health = 10, Weapon = new Weapon() { Damage = 0, Range = 1 } } };
+			player = new Player(map) { Creature = new Creature(10) { Weapon = new Weapon() { Damage = 0, Range = 1 } } };
 			map[0,0].putCreature(player.Creature);
 		}
 

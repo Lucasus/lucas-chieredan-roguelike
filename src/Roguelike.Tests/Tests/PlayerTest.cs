@@ -54,7 +54,7 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void MoveCreatureTest()
 		{
-			Creature playersCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
+			Creature playersCreature = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
 			map[0,0].putCreature(playersCreature);
 			Player player = new Player(map) { Creature = playersCreature };
 			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
@@ -66,7 +66,7 @@ namespace Roguelike.Tests
 		[ExpectedException(typeof(CreatureException))]
 		public void CreatureNotOnTheMapTest()
 		{
-			Creature playersCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
+			Creature playersCreature = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
 			Player player = new Player(map) { Creature = playersCreature };
 			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
 		}

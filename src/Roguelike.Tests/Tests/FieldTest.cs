@@ -46,7 +46,7 @@ namespace Roguelike.Tests
         [TestMethod()]
         public void PlaceCreatureTest()
         {
-            Creature thing = new Creature();
+            Creature thing = new Creature(10);
             Field target = new Wall(0, 0);
             Assert.IsFalse(target.putCreature(thing));
 			Field target2 = new Floor(0, 0);
@@ -58,8 +58,8 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void PlaceMultipleCreaturesTest()
 		{
-			Creature thing = new Creature();
-			Creature thing2 = new Creature();
+			Creature thing = new Creature(10);
+			Creature thing2 = new Creature(10);
 			Field target = new Floor(0, 0);
 
 			Assert.IsTrue(target.putCreature(thing));

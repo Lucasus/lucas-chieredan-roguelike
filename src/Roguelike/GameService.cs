@@ -34,14 +34,17 @@ namespace Roguelike
 
 		public void NextTurn(IPlayerCommand playerCommand)
 		{
-			Player.executeCommand(playerCommand);
-			//Player.move(playerCommand); 
-			Ai.act();
+			if(!gameEnded())
+			{
+				Player.executeCommand(playerCommand);
+				//Player.move(playerCommand); 
+				Ai.act();
+			}
 		}
 
-		/*public void PlayerCommand(Player.Direction playerCommand)
+		public bool gameEnded()
 		{
-			NextTurn(playerCommand); // TODO: nie zawsze to będzie następna tura, czasem wiele komend w jednej turze
-		}*/
+			return Player.Creature.isDead;
+		}
 	}
 }

@@ -34,8 +34,7 @@ namespace Roguelike
 				{
 					this.die();
 				}
-				else
-					health = value;
+				health = value;
 			}
 		}
 		public Weapon Weapon { get; set; }
@@ -63,7 +62,7 @@ namespace Roguelike
 			set { field.Y = value; }
 		}
 
-		public Creature(int health = 10)
+		public Creature(int health)
 		{
 			if(health < 0)
 				throw new CreatureException();
@@ -116,6 +115,7 @@ namespace Roguelike
 		{
 			LootGenerator lootGen = new LootGenerator();
 			lootGen.generateLoot(this);
+			this.health = -1;
 			this.field.removeCreature();
 		}
     }
