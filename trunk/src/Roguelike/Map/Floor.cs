@@ -7,11 +7,8 @@ namespace Roguelike
 {
     public class Floor : Field
     {
-		private List<GameObject> objects;
-
 		public Floor(int x, int y) : base(x, y)
 		{
-			objects = new List<GameObject>();
 		}
 
 		public override bool putCreature(Creature thing)
@@ -20,11 +17,6 @@ namespace Roguelike
 			{
 				this.Creature = thing;
 				this.Creature.Field = this;
-				foreach(GameObject gameObject in objects)
-				{
-					gameObject.objectPickedBy(Creature);
-				}
-				objects.Clear();
 				return true;
 			}
 			else
@@ -33,13 +25,13 @@ namespace Roguelike
 
 		public override void removeCreature()
 		{
-			//this.Creature.field = null;
+			this.Creature.Field = null;
 			this.Creature = null;
 		}
 
 		public override bool placeObject(GameObject gameObject)
 		{
-			objects.Add(gameObject);
+			Objects.Add(gameObject);
 			return true;
 		}
 

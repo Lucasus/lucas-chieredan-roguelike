@@ -7,6 +7,11 @@ namespace Roguelike
 {
     public class Creature
     {
+		public bool isDead 
+		{
+			get{return health<0;}
+		}
+
 		private string creatureType;
 		public string CreatureType{
 			get{ return creatureType; }
@@ -17,7 +22,22 @@ namespace Roguelike
 		private Field field;
 
 		private int health;
-		public int Health { get; set; }
+		public int Health 
+		{ 
+			get
+			{
+				return health;
+			}
+			set
+			{
+				if(value<0)
+				{
+					this.die();
+				}
+				else
+					health = value;
+			}
+		}
 		public Weapon Weapon { get; set; }
 		public int Money { get; set; }
 
@@ -78,9 +98,25 @@ namespace Roguelike
 				return true;
 		}
 
+		public void pickupItems()
+		{
+			foreach (GameObject gameObject in field.Objects)
+			{
+				gameObject.objectPickedBy(this);
+			}
+			field.Objects.Clear();
+		}
+
 		public void attack(Creature creature)
 		{
 			creature.Health -= this.Weapon.Damage;
+		}
+
+		public void die()
+		{
+			LootGenerator lootGen = new LootGenerator();
+			lootGen.generateLoot(this);
+			this.field.removeCreature();
 		}
     }
 }

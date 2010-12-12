@@ -66,7 +66,7 @@ namespace Roguelike.Tests
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
 			map[0, 1].placeObject(moneyPickup);
-			player.move(Player.Direction.Right);
+			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
 			Assert.AreEqual(10, player.Creature.Money);
 		}
 
@@ -75,7 +75,7 @@ namespace Roguelike.Tests
 		{
 			MedKit medikitPickup = new MedKit() { Health = 5 };
 			map[0, 1].placeObject(medikitPickup);
-			player.move(Player.Direction.Right);
+			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
 			Assert.AreEqual(15, player.Creature.Health);
 		}
 
@@ -84,7 +84,7 @@ namespace Roguelike.Tests
 		{
 			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3};
 			map[0, 1].placeObject(weaponPickup);
-			player.move(Player.Direction.Right);
+			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
 			Assert.AreSame(weaponPickup, player.Creature.Weapon);
 		}
 
@@ -95,7 +95,7 @@ namespace Roguelike.Tests
 			map[0, 1].placeObject(moneyPickup);
 			MedKit medikitPickup = new MedKit() { Health = 5 };
 			map[0, 1].placeObject(medikitPickup);
-			player.move(Player.Direction.Right);
+			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
 			Assert.AreEqual(10, player.Creature.Money);
 			Assert.AreEqual(15, player.Creature.Health);
 		}
@@ -107,7 +107,7 @@ namespace Roguelike.Tests
 			map[0, 1].placeObject(weaponPickup);
 			Weapon newerWeapon = new Weapon() { Damage = 15, Range = 2 };
 			map[0, 1].placeObject(newerWeapon);
-			player.move(Player.Direction.Right);
+			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
 			Assert.AreSame(newerWeapon, player.Creature.Weapon);
 		}
 	}

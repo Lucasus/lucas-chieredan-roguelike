@@ -65,6 +65,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Creatures\AI.cs" />
+    <Compile Include="Creatures\DoNothingCommand.cs" />
+    <Compile Include="Creatures\IPlayerCommand.cs" />
+    <Compile Include="Creatures\LootGenerator.cs" />
+    <Compile Include="Creatures\MoveCommand.cs" />
     <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />

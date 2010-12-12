@@ -26,7 +26,7 @@ namespace RoguelikeGUI
         public MapWindow()
         {
             InitializeComponent();
-			gameManager = new GameManager(GridMap);
+			gameManager = new GameManager(this);
         }
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)

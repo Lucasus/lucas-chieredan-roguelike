@@ -25,6 +25,8 @@ namespace Roguelike
 
 		public void act()
 		{
+			creatures.RemoveAll(x => x.isDead || x.Field == null);
+
 			foreach(Creature creature in creatures)
 			{
 				this.move(creature);

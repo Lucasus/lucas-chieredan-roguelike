@@ -11,7 +11,7 @@ namespace RoguelikeGUI
 {
 	public class GameManager
 	{
-		private Grid gridMap;
+		private MapWindow window;
 		private GameService gameService = new GameService();
 		private char[,] initialMap = {
                           {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
@@ -31,9 +31,9 @@ namespace RoguelikeGUI
                           {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
                        };
 
-		public GameManager(Grid gridMap)
+		public GameManager(MapWindow view)
 		{
-			this.gridMap = gridMap;
+			this.window = view;
 			gameService.InitializeGame(initialMap);
 			UpdateScreenMap();
 		}
@@ -42,42 +42,47 @@ namespace RoguelikeGUI
 		{
 			Map map = gameService.Map;
 			IList<Image>[,] images = new FieldToImageConverter().ConvertFieldArray(map.GetSubmap(0, initialMap.GetLength(0) - 1, 0, initialMap.GetLength(1) - 1));
-			MapDrawer mapDrawer = new MapDrawer(gridMap, images.GetLength(0), images.GetLength(1));
+			MapDrawer mapDrawer = new MapDrawer(window.GridMap, images.GetLength(0), images.GetLength(1));
 			mapDrawer.Draw(images);
+			window.PlayerHp.Content = gameService.Player.Creature.Health;
+			window.playerMoney.Content = gameService.Player.Creature.Money;
 		}
 
 		public void PlayerCommand(Key key)
 		{
-			Player.Direction playerCommand = new Player.Direction();
+			IPlayerCommand playerCommand = null;
 			switch(key)
 			{
 				case Key.NumPad1:
-					playerCommand = Player.Direction.LeftDown;
+					playerCommand = new MoveCommand(MoveCommand.Direction.LeftDown);
 					break;
 				case Key.NumPad2:
-					playerCommand = Player.Direction.Down;
+					playerCommand = new MoveCommand(MoveCommand.Direction.Down);
 					break;
 				case Key.NumPad3:
-					playerCommand = Player.Direction.RightDown;
+					playerCommand = new MoveCommand(MoveCommand.Direction.RightDown);
 					break;
 				case Key.NumPad4:
-					playerCommand = Player.Direction.Left;
+					playerCommand = new MoveCommand(MoveCommand.Direction.Left);
 					break;
 				case Key.NumPad6:
-					playerCommand = Player.Direction.Right;
+					playerCommand = new MoveCommand(MoveCommand.Direction.Right);
 					break;
 				case Key.NumPad7:
-					playerCommand = Player.Direction.LeftUp;
+					playerCommand = new MoveCommand(MoveCommand.Direction.LeftUp);
 					break;
 				case Key.NumPad8:
-					playerCommand = Player.Direction.Up;
+					playerCommand = new MoveCommand(MoveCommand.Direction.Up);
 					break;
 				case Key.NumPad9:
-					playerCommand = Player.Direction.RightUp;
+					playerCommand = new MoveCommand(MoveCommand.Direction.RightUp);
+					break;
+				default:
+					playerCommand = new DoNothingCommand();
 					break;
 			}
 
-			gameService.PlayerCommand(playerCommand);
+			gameService.NextTurn(playerCommand);
 			UpdateScreenMap();
 		}
 	}
