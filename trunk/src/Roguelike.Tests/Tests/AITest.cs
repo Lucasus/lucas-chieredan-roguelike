@@ -52,7 +52,7 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			Creature playersCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5} };
+			Creature playersCreature = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5} };
 			map[0, 0].putCreature(playersCreature);
 			player = new Player(map) { Creature = playersCreature };
 		}
@@ -60,7 +60,7 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void MoveCreatureTest()
 		{
-			Creature aiControledCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
+			Creature aiControledCreature = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
 			map[1,2].putCreature(aiControledCreature);
 			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
@@ -71,7 +71,7 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void AttackPlayerTest()
 		{
-			Creature aiControledCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
+			Creature aiControledCreature = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
 			map[1, 0].putCreature(aiControledCreature);
 			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
@@ -82,7 +82,7 @@ namespace Roguelike.Tests
 		[ExpectedException(typeof(CreatureException))]
 		public void CreatureNotOnTheMapTest()
 		{
-			Creature aiControledCreature = new Creature() { Health = 10, Weapon = new Weapon() { Range = 1, Damage = 5 } };
+			Creature aiControledCreature = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
 			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
 		}

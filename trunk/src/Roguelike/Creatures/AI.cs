@@ -35,31 +35,37 @@ namespace Roguelike
 
 		public void move(Creature creature)
 		{
-			if(creature.Field != null)
+			if(!creature.isDead)
 			{
-				if(creature.canAttack(player.Creature))
+				if(creature.Field != null)
 				{
-					creature.attack(player.Creature);
+					if(!player.Creature.isDead)
+					{
+						if(creature.canAttack(player.Creature))
+						{
+							creature.attack(player.Creature);
+						}
+						else
+						{
+							int newX = creature.X;
+							int newY = creature.Y;
+							if(player.Creature.X > creature.X)
+								newX += 1;
+							else if(player.Creature.X < creature.X)
+								newX -= 1;
+
+							if(player.Creature.Y > creature.Y)
+								newY += 1;
+							else if(player.Creature.Y < creature.Y)
+								newY -= 1;
+					
+							creature.interactWithField(this.map[newY, newX]);
+						}
+					}
 				}
 				else
-				{
-					int newX = creature.X;
-					int newY = creature.Y;
-					if(player.Creature.X > creature.X)
-						newX += 1;
-					else if(player.Creature.X < creature.X)
-						newX -= 1;
-
-					if(player.Creature.Y > creature.Y)
-						newY += 1;
-					else if(player.Creature.Y < creature.Y)
-						newY -= 1;
-					
-					creature.interactWithField(this.map[newY, newX]);
-				}
+					throw new CreatureException();
 			}
-			else
-				throw new CreatureException();
 		}
 	}
 }
