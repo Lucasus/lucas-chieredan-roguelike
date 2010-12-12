@@ -7,7 +7,7 @@ namespace Roguelike
 {
     public class GameService
     {
-		private Player Player { get; set; }
+		public Player Player { get; set; }
 		private AI Ai;
 
 		public Map Map { get; set; }
@@ -15,7 +15,7 @@ namespace Roguelike
 		public void InitializeGame(char[,] initialMap)
 		{
 			Map = new Map(initialMap);
-			Creature playersCreature = new Creature(20){CreatureType = "Hero"};
+			Creature playersCreature = new Creature(20){CreatureType = "Hero", Weapon = new Weapon(){Damage=5}};
 			Map[2, 2].putCreature(playersCreature);
 			Player = new Player(Map){Creature = playersCreature};
 
@@ -32,15 +32,16 @@ namespace Roguelike
 			}
 		}
 
-		public void NextTurn(Player.Direction playerCommand)
+		public void NextTurn(IPlayerCommand playerCommand)
 		{
-			Player.move(playerCommand); 
+			Player.executeCommand(playerCommand);
+			//Player.move(playerCommand); 
 			Ai.act();
 		}
 
-		public void PlayerCommand(Player.Direction playerCommand)
+		/*public void PlayerCommand(Player.Direction playerCommand)
 		{
 			NextTurn(playerCommand); // TODO: nie zawsze to będzie następna tura, czasem wiele komend w jednej turze
-		}
+		}*/
 	}
 }

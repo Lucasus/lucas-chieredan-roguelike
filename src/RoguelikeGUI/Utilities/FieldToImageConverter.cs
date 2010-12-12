@@ -39,6 +39,10 @@ namespace RoguelikeGUI.Utilities
 			{
 				returnValue.Add(this.CreateCreatureImage(field.Creature));
 			}
+			else if(field.Objects.Count > 0)
+			{
+				returnValue.Add(this.CreaObjectImage(field.Objects[field.Objects.Count-1]));
+			}
 			return returnValue;
 		}
 
@@ -54,6 +58,14 @@ namespace RoguelikeGUI.Utilities
 			}
 			else
 				return null;
+		}
+
+		private Image CreaObjectImage(GameObject gameObject)
+		{
+			if(gameObject is MedKit)
+				return LoadImage("health.png");
+			else
+				return LoadImage("money.png");
 		}
 
 		private Image LoadImage(string imageName)
