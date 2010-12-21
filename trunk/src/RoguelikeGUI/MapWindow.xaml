@@ -58,9 +58,9 @@
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="76,51,0,0" Name="PlayerHp" VerticalAlignment="Top" Width="99" />
 			<Label Content="Money:" Height="28" HorizontalAlignment="Left" Margin="9,82,0,0" VerticalAlignment="Top" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="76,82,0,0" Name="playerMoney" VerticalAlignment="Top" Width="99" />
-			<Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="6,150,0,0" VerticalAlignment="Top" />
+			<Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="9,150,0,0" VerticalAlignment="Top" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="73,150,0,0" Name="playerDamage" VerticalAlignment="Top" Width="99" />
-			<Label Content="Range:" HorizontalAlignment="Left" Margin="9,184,0,0" Height="28" VerticalAlignment="Top" />
+			<Label Content="Range:" HorizontalAlignment="Left" Margin="9,182,0,0" Height="28" VerticalAlignment="Top" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="73,184,0,0" Name="playerRange" VerticalAlignment="Top" Width="99" />
 			<Label Content="Weapon" Height="28" Margin="55,116,58,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Bold" FontSize="14" />
 			<Label Content="Player Statistics" Height="28" HorizontalAlignment="Left" Margin="34,17,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
