@@ -133,14 +133,5 @@ namespace Roguelike.Tests
 			target.attack(enemy);
 			Assert.IsTrue(enemy.isDead);
 		}
-
-		[TestMethod()]
-		public void SuicideTest()
-		{
-			map[0, 0].putCreature(target);
-			target.die();
-			Assert.IsTrue(target.isDead);
-			Assert.IsNull(target.Field);
-		}
 	}
 }

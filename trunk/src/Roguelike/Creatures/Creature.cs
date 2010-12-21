@@ -9,7 +9,7 @@ namespace Roguelike
     {
 		public bool isDead 
 		{
-			get{return health<0;}
+			get{return health<=0;}
 		}
 
 		private string creatureType;
@@ -24,18 +24,8 @@ namespace Roguelike
 		private int health;
 		public int Health 
 		{ 
-			get
-			{
-				return health;
-			}
-			set
-			{
-				if(value<0)
-				{
-					this.die();
-				}
-				health = value;
-			}
+			get	{ return health;}
+			set	{ health = value; }
 		}
 		public Weapon Weapon { get; set; }
 		public int Money { get; set; }
@@ -64,12 +54,12 @@ namespace Roguelike
 
 		public Creature(int health)
 		{
-			if(health < 0)
+			if(health <= 0)
 				throw new CreatureException();
 			else 
 				this.health = health;
 
-			this.Weapon = new Weapon(){ Damage = 1, Range = 1 };
+			this.Weapon = new Weapon();
 			this.creatureType = "Creature";
 		}
 
@@ -108,15 +98,8 @@ namespace Roguelike
 
 		public void attack(Creature creature)
 		{
-			creature.Health -= this.Weapon.Damage;
-		}
-
-		public void die()
-		{
-			LootGenerator lootGen = new LootGenerator();
-			lootGen.generateLoot(this);
-			this.health = -1;
-			this.field.removeCreature();
+			if(this.canAttack(creature))
+				new Fight().commenceInteraction(this, creature);
 		}
     }
 }

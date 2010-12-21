@@ -10,6 +10,10 @@ namespace Roguelike
 		private Map map;
 		private Player player;
 		private List<Creature> creatures;
+		public List<Creature> Creatures
+		{
+			get { return this.creatures; }
+		}
 
 		public AI(Map map, Player player)
 		{
@@ -58,8 +62,8 @@ namespace Roguelike
 								newY += 1;
 							else if(player.Creature.Y < creature.Y)
 								newY -= 1;
-					
-							creature.interactWithField(this.map[newY, newX]);
+							if (this.map[newY, newX].Creature == null)
+								creature.interactWithField(this.map[newY, newX]);
 						}
 					}
 				}

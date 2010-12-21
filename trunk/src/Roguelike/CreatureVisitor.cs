@@ -23,7 +23,7 @@ namespace Roguelike
 		{
 			if(floor.Creature == null)
 			{
-				creature.Field.removeCreature();
+				//creature.Field.removeCreature();
 				floor.putCreature(creature);
 			}
 			else

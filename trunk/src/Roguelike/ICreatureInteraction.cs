@@ -5,7 +5,8 @@ using System.Text;
 
 namespace Roguelike
 {
-    public class Game
-    {
-    }
+	interface ICreatureInteraction
+	{
+		void commenceInteraction(Creature initiator, Creature subject);
+	}
 }

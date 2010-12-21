@@ -8,14 +8,14 @@ namespace Roguelike
     public class GameService
     {
 		public Player Player { get; set; }
-		private AI Ai;
+		public AI Ai { get; set; }
 
 		public Map Map { get; set; }
 
 		public void InitializeGame(char[,] initialMap)
 		{
 			Map = new Map(initialMap);
-			Creature playersCreature = new Creature(20){CreatureType = "Hero", Weapon = new Weapon(){Damage=5}};
+			Creature playersCreature = new Creature(20){CreatureType = "Hero", Weapon = new Weapon(){Damage=3, Range=3}};
 			Map[2, 2].putCreature(playersCreature);
 			Player = new Player(Map){Creature = playersCreature};
 
@@ -37,7 +37,6 @@ namespace Roguelike
 			if(!gameEnded())
 			{
 				Player.executeCommand(playerCommand);
-				//Player.move(playerCommand); 
 				Ai.act();
 			}
 		}
