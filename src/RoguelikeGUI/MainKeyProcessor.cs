@@ -48,6 +48,9 @@ namespace RoguelikeGUI
 				case Key.H://NumPad5:
 					this.manager.PlayerCommand(new DoNothingCommand());
 					break;
+				case Key.P:
+					this.manager.PlayerCommand(new PickupCommand());
+					break;
 				case Key.A:
 					this.manager.KeyProcessor = new TargetSelectKeyProcessor(this.manager);
 					break;

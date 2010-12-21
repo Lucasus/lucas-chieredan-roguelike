@@ -70,6 +70,7 @@
     <Compile Include="Creatures\LootGenerator.cs" />
     <Compile Include="Creatures\MoveCommand.cs" />
     <Compile Include="Creatures\AttackCommand.cs" />
+    <Compile Include="Creatures\PickupCommand.cs" />
     <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
     <Compile Include="Fight.cs" />
