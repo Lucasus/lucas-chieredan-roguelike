@@ -43,7 +43,6 @@ namespace Roguelike
 					newY -= 1;
 
 				player.Creature.interactWithField(player.map[newY, newX]);
-				player.Creature.pickupItems();
 			}
 			else
 				throw new CreatureException();
