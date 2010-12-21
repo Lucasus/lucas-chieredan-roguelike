@@ -22,7 +22,7 @@ namespace Roguelike
 			Ai = new AI(Map, Player);
 
 			Random randomNumberGenerator = new Random();
-			for(int i=0; i<10;)
+			for(int i=0; i<1;)
 			{
 				Creature enemy = new Creature(10){CreatureType = "Enemy", Weapon = new Weapon(){Damage=1,Range=2}};
 

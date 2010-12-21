@@ -28,13 +28,18 @@ namespace RoguelikeGUI
 
 		Creature Target
 		{
-			get { return creatures[currentPosition];}
+			get { 
+				if(creatures.Count > 0)
+					return creatures[currentPosition];
+				else
+					return null;
+				}
 		}
 
 		public TargetSelectKeyProcessor(GameManager manager)
 		{
 			this.manager = manager;
-			this.creatures = this.manager.GameService.Ai.Creatures;
+			this.creatures = this.manager.GameService.Ai.Creatures.Where(x => this.manager.GameService.Player.Creature.canAttack(x)).ToList();
 			this.CurrentPosition = 0;
 		}
 
@@ -43,7 +48,8 @@ namespace RoguelikeGUI
 			switch (key)
 			{
 				case Key.Q:
-					manager.MapDrawer[this.Target.Field].RefreshField();
+					if(this.Target != null)
+						manager.MapDrawer[this.Target.Field].RefreshField();
 					this.manager.KeyProcessor = new MainKeyProcessor(this.manager);
 					break;
 				case Key.X://NumPad6:
@@ -69,7 +75,8 @@ namespace RoguelikeGUI
 
 		public void nextTarget()
 		{
-			CurrentPosition = (currentPosition + 1) % this.creatures.Count;
+			if(this.creatures.Count > 0)
+				CurrentPosition = (currentPosition + 1) % this.creatures.Count;
 		}
 	}
 }
