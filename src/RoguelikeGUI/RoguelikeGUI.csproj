@@ -89,6 +89,7 @@
     <Compile Include="GuiMapField.cs" />
     <Compile Include="IKeyProcessor.cs" />
     <Compile Include="MainKeyProcessor.cs" />
+    <Compile Include="MapLoader.cs" />
     <Compile Include="TargetSelectKeyProcessor.cs" />
     <Compile Include="Utilities\FieldToImageConverter.cs" />
     <Compile Include="Utilities\MapDrawer.cs" />
@@ -115,6 +116,9 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="Maps\TestMap.map">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

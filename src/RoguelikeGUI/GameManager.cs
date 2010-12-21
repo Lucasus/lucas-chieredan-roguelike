@@ -32,7 +32,7 @@ namespace RoguelikeGUI
 			set { keyProcessor = value; }
 		}
 
-		private char[,] initialMap = {
+		private char[,] initialMap;/* = {
                           {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
                           {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
                           {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
@@ -48,12 +48,14 @@ namespace RoguelikeGUI
 						  {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
                           {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
                           {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
-                       };
+                       };*/
 
 		public GameManager(MapWindow view)
 		{
 			this.window = view;
 			this.keyProcessor = new MainKeyProcessor(this);
+			MapLoader loader = new MapLoader();
+			this.initialMap = loader.loadMap("TestMap.map");
 			this.gameService.InitializeGame(initialMap);
 			this.mapDrawer = new MapDrawer(window.GridMap, 15, 20, this.gameService.Map);
 
