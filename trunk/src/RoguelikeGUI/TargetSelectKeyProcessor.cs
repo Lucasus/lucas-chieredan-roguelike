@@ -5,14 +5,27 @@ using System.Text;
 using System.Windows.Input;
 
 using Roguelike;
+using RoguelikeGUI.Utilities;
 
 namespace RoguelikeGUI
 {
 	public class TargetSelectKeyProcessor : IKeyProcessor
 	{
-		GameManager manager;
-		List<Creature> creatures;
-		int currentPosition;
+		private GameManager manager;
+		private List<Creature> creatures;
+		private int currentPosition;
+
+		private int CurrentPosition
+		{
+			set {
+				if(this.Target != null)
+					manager.MapDrawer[this.Target.Field].RefreshField();
+				currentPosition = value;
+				if(this.Target != null)
+					manager.MapDrawer[this.Target.Field].DrawOnField(FieldToImageConverter.LoadImage("selectBorder.png"));
+			}
+		}
+
 		Creature Target
 		{
 			get { return creatures[currentPosition];}
@@ -22,7 +35,7 @@ namespace RoguelikeGUI
 		{
 			this.manager = manager;
 			this.creatures = this.manager.GameService.Ai.Creatures;
-			this.currentPosition = 0;
+			this.CurrentPosition = 0;
 		}
 
 		public void processKey(Key key)
@@ -30,16 +43,17 @@ namespace RoguelikeGUI
 			switch (key)
 			{
 				case Key.Q:
+					manager.MapDrawer[this.Target.Field].RefreshField();
 					this.manager.KeyProcessor = new MainKeyProcessor(this.manager);
 					break;
 				case Key.NumPad6:
-					prevTarget();
-					break;
-				case Key.NumPad4:
 					nextTarget();
 					break;
+				case Key.NumPad4:
+					prevTarget();
+					break;
 				case Key.Enter:
-					if(this.Target != null)
+					if(this.Target != null && this.manager.GameService.Player.Creature.canAttack(this.Target))
 						this.manager.PlayerCommand(new AttackCommand(this.Target));
 					break;
 			}
@@ -47,14 +61,15 @@ namespace RoguelikeGUI
 
 		public void prevTarget()
 		{
-			currentPosition = (currentPosition - 1);
-			if(currentPosition < 0)
-				currentPosition = this.creatures.Count - 1;
+			if(currentPosition - 1 < 0)
+				CurrentPosition = this.creatures.Count - 1;
+			else
+				CurrentPosition = currentPosition - 1;
 		}
 
 		public void nextTarget()
 		{
-			currentPosition = (currentPosition + 1) % this.creatures.Count;
+			CurrentPosition = (currentPosition + 1) % this.creatures.Count;
 		}
 	}
 }
