@@ -31,7 +31,7 @@ namespace RoguelikeGUI
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
-			gameManager.PlayerCommand(e.Key);
+			gameManager.processKey(e.Key);
 		}
     }
 }

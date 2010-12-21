@@ -10,6 +10,12 @@ namespace Roguelike
 		public int Range { get; set; }
 		public int Damage { get; set; }
 
+		public Weapon()
+		{
+			Range = 1;
+			Damage = 1;
+		}
+
 		public void objectPickedBy(Creature creature)
 		{
 			creature.Weapon = this;

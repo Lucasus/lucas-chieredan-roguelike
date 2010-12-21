@@ -86,6 +86,9 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="GameManager.cs" />
+    <Compile Include="IKeyProcessor.cs" />
+    <Compile Include="MainKeyProcessor.cs" />
+    <Compile Include="TargetSelectKeyProcessor.cs" />
     <Compile Include="Utilities\FieldToImageConverter.cs" />
     <Compile Include="Utilities\MapDrawer.cs" />
     <Compile Include="MapWindow.xaml.cs">
@@ -157,6 +160,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\health.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\gun.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

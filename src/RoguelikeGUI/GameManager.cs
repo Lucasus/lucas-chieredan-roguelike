@@ -2,10 +2,11 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using Roguelike;
 using System.Windows.Controls;
-using RoguelikeGUI.Utilities;
 using System.Windows.Input;
+
+using Roguelike;
+using RoguelikeGUI.Utilities;
 
 namespace RoguelikeGUI
 {
@@ -13,6 +14,18 @@ namespace RoguelikeGUI
 	{
 		private MapWindow window;
 		private GameService gameService = new GameService();
+		private IKeyProcessor keyProcessor;
+
+		public GameService GameService
+		{
+			get { return gameService; }
+		}
+
+		public IKeyProcessor KeyProcessor
+		{
+			set { keyProcessor = value; }
+		}
+
 		private char[,] initialMap = {
                           {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
                           {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
@@ -34,8 +47,19 @@ namespace RoguelikeGUI
 		public GameManager(MapWindow view)
 		{
 			this.window = view;
+			this.keyProcessor = new MainKeyProcessor(this);
 			gameService.InitializeGame(initialMap);
 			UpdateScreenMap();
+			UpdateGui();
+		}
+
+		private void UpdateGui()
+		{
+			window.PlayerHp.Content = gameService.Player.Creature.Health;
+			window.playerMoney.Content = gameService.Player.Creature.Money;
+			window.playerDamage.Content = gameService.Player.Creature.Weapon.Damage;
+			window.playerRange.Content = gameService.Player.Creature.Weapon.Range;
+			window.CurrentInputProcessor.Content = this.keyProcessor.ToString();
 		}
 
 		private void UpdateScreenMap()
@@ -44,46 +68,19 @@ namespace RoguelikeGUI
 			IList<Image>[,] images = new FieldToImageConverter().ConvertFieldArray(map.GetSubmap(0, initialMap.GetLength(0) - 1, 0, initialMap.GetLength(1) - 1));
 			MapDrawer mapDrawer = new MapDrawer(window.GridMap, images.GetLength(0), images.GetLength(1));
 			mapDrawer.Draw(images);
-			window.PlayerHp.Content = gameService.Player.Creature.Health;
-			window.playerMoney.Content = gameService.Player.Creature.Money;
 		}
 
-		public void PlayerCommand(Key key)
+		public void processKey(Key key)
 		{
-			IPlayerCommand playerCommand = null;
-			switch(key)
-			{
-				case Key.NumPad1:
-					playerCommand = new MoveCommand(MoveCommand.Direction.LeftDown);
-					break;
-				case Key.NumPad2:
-					playerCommand = new MoveCommand(MoveCommand.Direction.Down);
-					break;
-				case Key.NumPad3:
-					playerCommand = new MoveCommand(MoveCommand.Direction.RightDown);
-					break;
-				case Key.NumPad4:
-					playerCommand = new MoveCommand(MoveCommand.Direction.Left);
-					break;
-				case Key.NumPad6:
-					playerCommand = new MoveCommand(MoveCommand.Direction.Right);
-					break;
-				case Key.NumPad7:
-					playerCommand = new MoveCommand(MoveCommand.Direction.LeftUp);
-					break;
-				case Key.NumPad8:
-					playerCommand = new MoveCommand(MoveCommand.Direction.Up);
-					break;
-				case Key.NumPad9:
-					playerCommand = new MoveCommand(MoveCommand.Direction.RightUp);
-					break;
-				default:
-					playerCommand = new DoNothingCommand();
-					break;
-			}
+			this.keyProcessor.processKey(key);
+			this.UpdateGui();
+		}
 
+		public void PlayerCommand(IPlayerCommand playerCommand)
+		{
 			gameService.NextTurn(playerCommand);
 			UpdateScreenMap();
+			this.KeyProcessor = new MainKeyProcessor(this);
 		}
 	}
 }

@@ -64,8 +64,10 @@ namespace RoguelikeGUI.Utilities
 		{
 			if(gameObject is MedKit)
 				return LoadImage("health.png");
-			else
+			else if(gameObject is Money)
 				return LoadImage("money.png");
+			else
+				return LoadImage("gun.png");
 		}
 
 		private Image LoadImage(string imageName)
