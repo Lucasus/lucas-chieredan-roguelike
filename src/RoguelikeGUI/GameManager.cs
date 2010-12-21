@@ -15,6 +15,12 @@ namespace RoguelikeGUI
 		private MapWindow window;
 		private GameService gameService = new GameService();
 		private IKeyProcessor keyProcessor;
+		private MapDrawer mapDrawer;
+
+		public MapDrawer MapDrawer
+		{
+			get { return mapDrawer; }
+		}
 
 		public GameService GameService
 		{
@@ -48,7 +54,9 @@ namespace RoguelikeGUI
 		{
 			this.window = view;
 			this.keyProcessor = new MainKeyProcessor(this);
-			gameService.InitializeGame(initialMap);
+			this.gameService.InitializeGame(initialMap);
+			this.mapDrawer = new MapDrawer(window.GridMap, 15, 20, this.gameService.Map);
+
 			UpdateScreenMap();
 			UpdateGui();
 		}
@@ -65,9 +73,7 @@ namespace RoguelikeGUI
 		private void UpdateScreenMap()
 		{
 			Map map = gameService.Map;
-			IList<Image>[,] images = new FieldToImageConverter().ConvertFieldArray(map.GetSubmap(0, initialMap.GetLength(0) - 1, 0, initialMap.GetLength(1) - 1));
-			MapDrawer mapDrawer = new MapDrawer(window.GridMap, images.GetLength(0), images.GetLength(1));
-			mapDrawer.Draw(images);
+			mapDrawer.Draw();
 		}
 
 		public void processKey(Key key)

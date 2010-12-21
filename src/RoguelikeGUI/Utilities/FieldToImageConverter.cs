@@ -10,7 +10,7 @@ namespace RoguelikeGUI.Utilities
 {
     public class FieldToImageConverter
     {
-		public IList<Image>[,] ConvertFieldArray(Field[,] fieldArray)
+		/*public IList<Image>[,] ConvertFieldArray(Field[,] fieldArray)
         {
 			IList<Image>[,] imageArray = new IList<Image>[fieldArray.GetLength(0), fieldArray.GetLength(1)];
             for (int i = 0; i < fieldArray.GetLength(0); ++i)
@@ -37,16 +37,16 @@ namespace RoguelikeGUI.Utilities
 
 			if (field.Creature != null)
 			{
-				returnValue.Add(this.CreateCreatureImage(field.Creature));
+				returnValue.Add(CreateCreatureImage(field.Creature));
 			}
 			else if(field.Objects.Count > 0)
 			{
-				returnValue.Add(this.CreaObjectImage(field.Objects[field.Objects.Count-1]));
+				returnValue.Add(CreaObjectImage(field.Objects[field.Objects.Count-1]));
 			}
 			return returnValue;
-		}
+		}*/
 
-		private Image CreateCreatureImage(Creature creature)
+		public static Image CreateCreatureImage(Creature creature)
 		{
 			if (creature.CreatureType == "Hero")
 			{
@@ -60,17 +60,17 @@ namespace RoguelikeGUI.Utilities
 				return null;
 		}
 
-		private Image CreaObjectImage(GameObject gameObject)
+		public static Image CreaObjectImage(GameObject gameObject)
 		{
 			if(gameObject is MedKit)
 				return LoadImage("health.png");
-			else if(gameObject is Money)
+			else if (gameObject is Money)
 				return LoadImage("money.png");
 			else
 				return LoadImage("gun.png");
 		}
 
-		private Image LoadImage(string imageName)
+		public static Image LoadImage(string imageName)
 		{
 			Uri uriSource = new Uri(@"/RoguelikeGUI;component/Images/" + imageName, UriKind.Relative);
 			return new Image() { Source = new BitmapImage(uriSource), Width = 30, Height = 30 };

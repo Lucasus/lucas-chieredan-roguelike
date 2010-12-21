@@ -9,6 +9,16 @@ namespace Roguelike
     {
         private Field[,] fields;
 
+		public int MapWidth
+		{
+			get {return fields.GetLength(0);}
+		}
+
+		public int MapHeight
+		{
+			get {return fields.GetLength(1);}
+		}
+
         public Map(char[,] mapString)
         {
             fields = new Field[mapString.GetLength(0), mapString.GetLength(1)];
