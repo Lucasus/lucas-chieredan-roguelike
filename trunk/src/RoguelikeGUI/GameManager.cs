@@ -78,8 +78,11 @@ namespace RoguelikeGUI
 
 		public void processKey(Key key)
 		{
-			this.keyProcessor.processKey(key);
-			this.UpdateGui();
+			if(!this.gameService.gameEnded())
+			{
+				this.keyProcessor.processKey(key);
+				this.UpdateGui();
+			}
 		}
 
 		public void PlayerCommand(IPlayerCommand playerCommand)
