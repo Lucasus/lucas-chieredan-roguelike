@@ -46,10 +46,10 @@ namespace RoguelikeGUI
 					manager.MapDrawer[this.Target.Field].RefreshField();
 					this.manager.KeyProcessor = new MainKeyProcessor(this.manager);
 					break;
-				case Key.NumPad6:
+				case Key.X://NumPad6:
 					nextTarget();
 					break;
-				case Key.NumPad4:
+				case Key.Z://NumPad4:
 					prevTarget();
 					break;
 				case Key.Enter:
