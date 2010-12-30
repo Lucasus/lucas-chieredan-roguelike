@@ -7,12 +7,13 @@ namespace Roguelike.Tests
     
     
     /// <summary>
-    ///This is a test class for FightTest and is intended
-    ///to contain all FightTest Unit Tests
+    ///This is a test class for ShootOutTest and is intended
+    ///to contain all ShootOutTest Unit Tests
     ///</summary>
 	[TestClass()]
-	public class FightTest
+	public class ShootOutTest
 	{
+
 		private Creature attacker;
 		private Creature deffender;
 
@@ -32,6 +33,11 @@ namespace Roguelike.Tests
 		//{
 		//}
 		//
+		//Use TestInitialize to run code before running each test
+		//[TestInitialize()]
+		//public void MyTestInitialize()
+		//{
+		//}
 		//
 		//Use TestCleanup to run code after each test has run
 		//[TestCleanup()]
@@ -44,16 +50,24 @@ namespace Roguelike.Tests
 		[TestInitialize()]
 		public void MyTestInitialize()
 		{
-			attacker = new Creature(10){MeleeWeapon = new Weapon(){Damage=1}};
+			attacker = new Creature(10) { RangedWeapon = new RangedWeapon() { Damage = 5, Range = 1, Chance = 0.5 } };
 			deffender = new Creature(10);
 		}
 
 		[TestMethod()]
-		public void CloseCombatHitTest()
+		public void ShootHitTest()
 		{
-			Fight fight = new Fight();
-			fight.commenceInteraction(attacker, deffender);
-			Assert.AreEqual(9, deffender.Health);
+			ShootOut target = new ShootOut(new TestRandom(0.1));			
+			target.commenceInteraction(attacker, deffender);
+			Assert.AreEqual(5, deffender.Health);
+		}
+
+		[TestMethod()]
+		public void ShootMissTest()
+		{
+			ShootOut target = new ShootOut(new TestRandom(0.9));
+			target.commenceInteraction(attacker, deffender);
+			Assert.AreEqual(10, deffender.Health);
 		}
 	}
 }

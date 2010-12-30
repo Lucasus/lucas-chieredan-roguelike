@@ -5,12 +5,6 @@ using Roguelike.Tests.Utilities;
 
 namespace Roguelike.Tests
 {
-    
-    
-    /// <summary>
-    ///This is a test class for CreatureTest and is intended
-    ///to contain all CreatureTest Unit Tests
-    ///</summary>
 	[TestClass()]
 	public class CreatureTest
 	{
@@ -54,7 +48,8 @@ namespace Roguelike.Tests
 		public void MyTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			target = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
+			target = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 }, RangedWeapon = new RangedWeapon() { Damage = 5, Range = 5, Chance = 0.5} };
+			map[0, 0].putCreature(target);
         }
 
 		[TestMethod()]
@@ -65,9 +60,14 @@ namespace Roguelike.Tests
 		}
 
 		[TestMethod()]
-		public void EmptyColisionTest()
+		public void FieldNotInRange()
 		{
-			map[1, 0].putCreature(target);
+			Assert.IsFalse(target.canInteractWithField(map[0, 2]));
+		}
+
+		[TestMethod()]
+		public void FloorColisionTest()
+		{
 			target.interactWithField(map[0, 1]);
 			Assert.AreEqual(1,target.X);
 			Assert.AreEqual(0,target.Y);
@@ -76,35 +76,23 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void WallColisionTest()
 		{
-			Creature target = new Creature(10);
-			map[1, 0].putCreature(target);
 			target.interactWithField(map[1, 1]);
 			Assert.AreEqual(0, target.X);
-			Assert.AreEqual(1, target.Y);
+			Assert.AreEqual(0, target.Y);
 		}
 
 		[TestMethod()]
 		public void CreatureColisionTest()
 		{
-			
-			map[0, 1].putCreature(target);
-			Creature opponent = new Creature(10) { Weapon = new Weapon() { Range = 1, Damage = 5 } };
-			map[0, 0].putCreature(opponent);
-			target.interactWithField(map[0, 0]);
+			Creature opponent = new Creature(10);
+			map[0, 1].putCreature(opponent);
+			target.interactWithField(map[0, 1]);
 			Assert.AreEqual(5, opponent.Health);
 		}
 
 		[TestMethod()]
-		public void FieldNotInRange()
+		public void MeeleAttackRangeTest()
 		{
-			map[0, 0].putCreature(target);
-			Assert.IsFalse(target.canInteractWithField(map[0,2]));
-		}
-
-		[TestMethod()]
-		public void AttackRangeTest()
-		{
-			map[0, 0].putCreature(target);
 			Creature enemy = new Creature(10);
 			map[1, 2].putCreature(enemy);
 			Creature enemy2 = new Creature(10);
@@ -114,20 +102,19 @@ namespace Roguelike.Tests
 		}
 
 		[TestMethod()]
-		public void AttackTest()
+		public void RangedAttackRangeTest()
 		{
-			target = new Creature(10) { Weapon = new Weapon() { Range = 3, Damage = 5 } };
-			map[0, 0].putCreature(target);
 			Creature enemy = new Creature(10);
 			map[1, 2].putCreature(enemy);
-			target.attack(enemy);
-			Assert.AreEqual(5, enemy.Health);
+			Creature enemy2 = new Creature(10);
+			map[0, 1].putCreature(enemy2);
+			Assert.IsTrue(target.canShoot(enemy));
+			Assert.IsTrue(target.canShoot(enemy2));
 		}
 
 		[TestMethod()]
 		public void DeadTest()
 		{
-			map[0, 0].putCreature(target);
 			Creature enemy = new Creature(1);
 			map[0, 1].putCreature(enemy);
 			target.attack(enemy);

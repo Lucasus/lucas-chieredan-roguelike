@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Roguelike
 {
-	public interface GameObject
+	public interface IGameObject
 	{
 		void objectPickedBy(Creature creature);
 	}

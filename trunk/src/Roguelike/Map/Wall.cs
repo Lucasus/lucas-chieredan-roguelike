@@ -14,7 +14,7 @@ namespace Roguelike
 			return false;
 		}
 		public override void removeCreature() { }
-		public override bool placeObject(GameObject field)
+		public override bool placeObject(IGameObject field)
 		{
 			return false;
 		}

@@ -54,7 +54,7 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			player = new Player(map) { Creature = new Creature(10) { Weapon = new Weapon() { Damage = 0, Range = 1 } } };
+			player = new Player(map) { Creature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 1 } } };
 			map[0,0].putCreature(player.Creature);
 		}
 
@@ -74,18 +74,29 @@ namespace Roguelike.Tests
 		public void HealthPickupTest()
 		{
 			MedKit medikitPickup = new MedKit() { Health = 5 };
+			player.Creature.Health = 1;
 			map[0, 0].placeObject(medikitPickup);
 			player.executeCommand(new PickupCommand());
-			Assert.AreEqual(15, player.Creature.Health);
+			Assert.AreEqual(6, player.Creature.Health);
+		}
+
+		[TestMethod()]
+		public void HealthPickupAlmostHealedTest()
+		{
+			MedKit medikitPickup = new MedKit() { Health = 5 };
+			player.Creature.Health = 9;
+			map[0, 0].placeObject(medikitPickup);
+			player.executeCommand(new PickupCommand());
+			Assert.AreEqual(10, player.Creature.Health);
 		}
 
 		[TestMethod()]
 		public void WeaponPickupTest()
 		{
-			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3};
+			Weapon weaponPickup = new Weapon() { Damage = 10 };
 			map[0, 0].placeObject(weaponPickup);
 			player.executeCommand(new PickupCommand());
-			Assert.AreSame(weaponPickup, player.Creature.Weapon);
+			Assert.AreSame(weaponPickup, player.Creature.MeleeWeapon);
 		}
 
 		[TestMethod()]
@@ -93,22 +104,22 @@ namespace Roguelike.Tests
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
 			map[0, 0].placeObject(moneyPickup);
-			MedKit medikitPickup = new MedKit() { Health = 5 };
-			map[0, 0].placeObject(medikitPickup);
+			Weapon weaponPickup = new Weapon() { Damage = 5 };
+			map[0, 0].placeObject(weaponPickup);
 			player.executeCommand(new PickupCommand());
 			Assert.AreEqual(10, player.Creature.Money);
-			Assert.AreEqual(15, player.Creature.Health);
+			Assert.AreEqual(weaponPickup, player.Creature.MeleeWeapon);
 		}
 
 		[TestMethod()]
 		public void MultipleWeaponsPickupTest()
 		{
-			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3 };
+			Weapon weaponPickup = new Weapon() { Damage = 10 };
 			map[0, 0].placeObject(weaponPickup);
-			Weapon newerWeapon = new Weapon() { Damage = 15, Range = 2 };
+			Weapon newerWeapon = new Weapon() { Damage = 15 };
 			map[0, 0].placeObject(newerWeapon);
 			player.executeCommand(new PickupCommand());
-			Assert.AreSame(newerWeapon, player.Creature.Weapon);
+			Assert.AreSame(newerWeapon, player.Creature.MeleeWeapon);
 		}
 	}
 }

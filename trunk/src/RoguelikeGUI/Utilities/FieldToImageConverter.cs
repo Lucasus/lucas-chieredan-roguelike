@@ -60,14 +60,16 @@ namespace RoguelikeGUI.Utilities
 				return null;
 		}
 
-		public static Image CreaObjectImage(GameObject gameObject)
+		public static Image CreaObjectImage(IGameObject gameObject)
 		{
 			if(gameObject is MedKit)
 				return LoadImage("health.png");
 			else if (gameObject is Money)
 				return LoadImage("money.png");
-			else
+			else if (gameObject is RangedWeapon)
 				return LoadImage("gun.png");
+			else
+				return LoadImage("knife.png");
 		}
 
 		public static Image LoadImage(string imageName)
