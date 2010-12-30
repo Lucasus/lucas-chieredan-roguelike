@@ -65,8 +65,8 @@ namespace Roguelike.Tests
 		public void MoneyPickupTest()
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
-			map[0, 1].placeObject(moneyPickup);
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
+			map[0, 0].placeObject(moneyPickup);
+			player.executeCommand(new PickupCommand());
 			Assert.AreEqual(10, player.Creature.Money);
 		}
 
@@ -74,8 +74,8 @@ namespace Roguelike.Tests
 		public void HealthPickupTest()
 		{
 			MedKit medikitPickup = new MedKit() { Health = 5 };
-			map[0, 1].placeObject(medikitPickup);
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
+			map[0, 0].placeObject(medikitPickup);
+			player.executeCommand(new PickupCommand());
 			Assert.AreEqual(15, player.Creature.Health);
 		}
 
@@ -83,8 +83,8 @@ namespace Roguelike.Tests
 		public void WeaponPickupTest()
 		{
 			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3};
-			map[0, 1].placeObject(weaponPickup);
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
+			map[0, 0].placeObject(weaponPickup);
+			player.executeCommand(new PickupCommand());
 			Assert.AreSame(weaponPickup, player.Creature.Weapon);
 		}
 
@@ -92,10 +92,10 @@ namespace Roguelike.Tests
 		public void MiltipleObjectPickupsTest()
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
-			map[0, 1].placeObject(moneyPickup);
+			map[0, 0].placeObject(moneyPickup);
 			MedKit medikitPickup = new MedKit() { Health = 5 };
-			map[0, 1].placeObject(medikitPickup);
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
+			map[0, 0].placeObject(medikitPickup);
+			player.executeCommand(new PickupCommand());
 			Assert.AreEqual(10, player.Creature.Money);
 			Assert.AreEqual(15, player.Creature.Health);
 		}
@@ -104,10 +104,10 @@ namespace Roguelike.Tests
 		public void MultipleWeaponsPickupTest()
 		{
 			Weapon weaponPickup = new Weapon() { Damage = 10, Range = 3 };
-			map[0, 1].placeObject(weaponPickup);
+			map[0, 0].placeObject(weaponPickup);
 			Weapon newerWeapon = new Weapon() { Damage = 15, Range = 2 };
-			map[0, 1].placeObject(newerWeapon);
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
+			map[0, 0].placeObject(newerWeapon);
+			player.executeCommand(new PickupCommand());
 			Assert.AreSame(newerWeapon, player.Creature.Weapon);
 		}
 	}

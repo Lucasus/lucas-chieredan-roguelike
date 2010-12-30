@@ -79,6 +79,7 @@
     <Compile Include="GameObjects\Money.cs" />
     <Compile Include="ICreatureInteraction.cs" />
     <Compile Include="IFieldVisitor.cs" />
+    <Compile Include="IRandomNumberGenerator.cs" />
     <Compile Include="Map\Field.cs" />
     <Compile Include="Map\Floor.cs" />
     <Compile Include="GameService.cs" />
@@ -89,6 +90,7 @@
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Map\Wall.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
+    <Compile Include="RandomNumberGenerator.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
