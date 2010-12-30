@@ -29,7 +29,7 @@ namespace Roguelike
 			this.Creature = null;
 		}
 
-		public override bool placeObject(GameObject gameObject)
+		public override bool placeObject(IGameObject gameObject)
 		{
 			Objects.Add(gameObject);
 			return true;

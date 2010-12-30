@@ -67,8 +67,10 @@ namespace RoguelikeGUI
 		{
 			window.PlayerHp.Content = gameService.Player.Creature.Health;
 			window.playerMoney.Content = gameService.Player.Creature.Money;
-			window.playerDamage.Content = gameService.Player.Creature.Weapon.Damage;
-			window.playerRange.Content = gameService.Player.Creature.Weapon.Range;
+			window.rangedDamage.Content = gameService.Player.Creature.RangedWeapon.Damage;
+			window.rangedRange.Content = gameService.Player.Creature.RangedWeapon.Range;
+			window.rangedChance.Content = (Math.Round(gameService.Player.Creature.RangedWeapon.Chance * 100)).ToString() + "%";
+			window.MeleeDamage.Content = gameService.Player.Creature.MeleeWeapon.Damage;
 			window.CurrentInputProcessor.Content = this.keyProcessor.ToString();
 		}
 

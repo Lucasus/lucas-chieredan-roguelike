@@ -15,7 +15,7 @@ namespace Roguelike
 		public void InitializeGame(char[,] initialMap)
 		{
 			Map = new Map(initialMap);
-			Creature playersCreature = new Creature(20){CreatureType = "Hero", Weapon = new Weapon(){Damage=3, Range=3}};
+			Creature playersCreature = new Creature(20){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}};
 			Map[2, 2].putCreature(playersCreature);
 			Player = new Player(Map){Creature = playersCreature};
 
@@ -24,7 +24,7 @@ namespace Roguelike
 			Random randomNumberGenerator = new Random();
 			for(int i=0; i<10;)
 			{
-				Creature enemy = new Creature(10){CreatureType = "Enemy", Weapon = new Weapon(){Damage=1,Range=1}};
+				Creature enemy = new Creature(10){CreatureType = "Enemy", MeleeWeapon = new Weapon(){Damage=1}};
 
 				bool success = Map[randomNumberGenerator.Next(Map.MapWidth), randomNumberGenerator.Next(Map.MapHeight)].putCreature(enemy);
 				if(success)

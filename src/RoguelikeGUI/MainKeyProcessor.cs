@@ -21,31 +21,31 @@ namespace RoguelikeGUI
 		{
 			switch (key)
 			{
-				case Key.B: // Key.NumPad1:
+				case Key.NumPad1:// Key.B: // 
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.LeftDown));
 					break;
-				case Key.N://NumPad2:
+				case Key.NumPad2: // Key.N://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.Down));
 					break;
-				case Key.M://NumPad3:
+				case Key.NumPad3: //Key.M://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.RightDown));
 					break;
-				case Key.G://NumPad4:
+				case Key.NumPad4: // Key.G://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.Left));
 					break;
-				case Key.J://NumPad6:
+				case Key.NumPad6: // Key.J://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.Right));
 					break;
-				case Key.T://NumPad7:
+				case Key.NumPad7: // Key.T://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.LeftUp));
 					break;
-				case Key.Y://NumPad8:
+				case Key.NumPad8: // Key.Y://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.Up));
 					break;
-				case Key.U://NumPad9:
+				case Key.NumPad9: // Key.U://
 					this.manager.PlayerCommand(new MoveCommand(MoveCommand.Direction.RightUp));
 					break;
-				case Key.H://NumPad5:
+				case Key.NumPad5: // Key.H://
 					this.manager.PlayerCommand(new DoNothingCommand());
 					break;
 				case Key.P:

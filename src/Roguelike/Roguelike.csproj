@@ -71,12 +71,14 @@
     <Compile Include="Creatures\MoveCommand.cs" />
     <Compile Include="Creatures\AttackCommand.cs" />
     <Compile Include="Creatures\PickupCommand.cs" />
+    <Compile Include="Creatures\ShootCommand.cs" />
     <Compile Include="CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
     <Compile Include="Fight.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\MedKit.cs" />
     <Compile Include="GameObjects\Money.cs" />
+    <Compile Include="GameObjects\RangedWeapon.cs" />
     <Compile Include="ICreatureInteraction.cs" />
     <Compile Include="IFieldVisitor.cs" />
     <Compile Include="IRandomNumberGenerator.cs" />
@@ -91,6 +93,7 @@
     <Compile Include="Map\Wall.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="RandomNumberGenerator.cs" />
+    <Compile Include="ShootOut.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

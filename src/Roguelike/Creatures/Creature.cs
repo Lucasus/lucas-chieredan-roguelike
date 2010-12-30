@@ -21,13 +21,20 @@ namespace Roguelike
 
 		private Field field;
 
+		private int maxHealth;
+		public int MaxHealth
+		{
+			get { return maxHealth; }
+		}
+
 		private int health;
 		public int Health 
 		{ 
 			get	{ return health;}
 			set	{ health = value; }
 		}
-		public Weapon Weapon { get; set; }
+		public Weapon MeleeWeapon { get; set; }
+		public RangedWeapon RangedWeapon { get; set; }
 		public int Money { get; set; }
 
 		public Field Field
@@ -57,9 +64,11 @@ namespace Roguelike
 			if(health <= 0)
 				throw new CreatureException();
 			else 
+			{
+				this.maxHealth = health;
 				this.health = health;
-
-			this.Weapon = new Weapon();
+			}
+			this.MeleeWeapon = new Weapon();
 			this.creatureType = "Creature";
 		}
 
@@ -80,26 +89,51 @@ namespace Roguelike
 
 		public bool canAttack(Creature creature)
 		{
-			int distance = Math.Max(Math.Abs(this.X - creature.X), Math.Abs(this.Y - creature.Y));
-			if(distance > this.Weapon.Range)
-				return false;
+			if(this.MeleeWeapon != null)
+			{
+				int distance = Math.Max(Math.Abs(this.X - creature.X), Math.Abs(this.Y - creature.Y));
+				if(distance > 1)
+					return false;
+				else
+					return true;
+			}
 			else
-				return true;
+				return false;
+		}
+
+		public bool canShoot(Creature creature)
+		{
+			if(this.RangedWeapon != null)
+			{
+				int distance = Math.Max(Math.Abs(this.X - creature.X), Math.Abs(this.Y - creature.Y));
+				if (distance > this.RangedWeapon.Range)
+					return false;
+				else
+					return true;
+			}
+			else
+				return false;
 		}
 
 		public void pickupItems()
 		{
-			foreach (GameObject gameObject in field.Objects)
+			foreach (IGameObject gameObject in field.Objects)
 			{
 				gameObject.objectPickedBy(this);
 			}
 			field.Objects.Clear();
 		}
+		
+		public void shoot(Creature creature)
+		{
+			if(this.canShoot(creature))
+				new ShootOut(new RandomNumberGenerator()).commenceInteraction(this, creature);
+		}
 
 		public void attack(Creature creature)
 		{
 			if(this.canAttack(creature))
-				new Fight(new RandomNumberGenerator()).commenceInteraction(this, creature);
+				new Fight().commenceInteraction(this, creature);
 		}
     }
 }

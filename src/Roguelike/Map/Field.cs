@@ -25,14 +25,14 @@ namespace Roguelike
 		{
 			this.x = x;
 			this.y = y;
-			this.Objects = new List<GameObject>();
+			this.Objects = new List<IGameObject>();
 		}
 
         public abstract bool putCreature(Creature thing);
 		public abstract void removeCreature();
-		public abstract bool placeObject(GameObject field);
+		public abstract bool placeObject(IGameObject field);
 		public abstract void accept(IFieldVisitor visitor);
 		public Creature Creature { get; set; }
-		public List<GameObject> Objects { get; set; }
+		public List<IGameObject> Objects { get; set; }
     }
 }

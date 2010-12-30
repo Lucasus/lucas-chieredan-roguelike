@@ -39,7 +39,7 @@ namespace RoguelikeGUI
 		public TargetSelectKeyProcessor(GameManager manager)
 		{
 			this.manager = manager;
-			this.creatures = this.manager.GameService.Ai.Creatures.Where(x => this.manager.GameService.Player.Creature.canAttack(x)).ToList();
+			this.creatures = this.manager.GameService.Ai.Creatures.Where(x => this.manager.GameService.Player.Creature.canShoot(x)).ToList();
 			this.CurrentPosition = 0;
 		}
 
@@ -59,8 +59,8 @@ namespace RoguelikeGUI
 					prevTarget();
 					break;
 				case Key.Enter:
-					if(this.Target != null && this.manager.GameService.Player.Creature.canAttack(this.Target))
-						this.manager.PlayerCommand(new AttackCommand(this.Target));
+					if(this.Target != null && this.manager.GameService.Player.Creature.canShoot(this.Target))
+						this.manager.PlayerCommand(new ShootCommand(this.Target));
 					break;
 			}
 		}

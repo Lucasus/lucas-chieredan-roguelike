@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class Money : GameObject
+	public class Money : IGameObject
 	{
 		public int Worth { get; set; }
 

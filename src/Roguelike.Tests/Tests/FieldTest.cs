@@ -69,7 +69,7 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void PlaceObjectTest()
 		{
-			GameObject obj = new Money();
+			IGameObject obj = new Money();
 			Field target = new Floor(0, 0);
 			Assert.IsTrue(target.placeObject(obj));
 			Field targe2 = new Wall(0, 0);
@@ -79,8 +79,8 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void PlaceMultipleObjectsTest()
 		{
-			GameObject thing = new Money();
-			GameObject thing2 = new Money();
+			IGameObject thing = new Money();
+			IGameObject thing2 = new Money();
 			Field target = new Floor(0, 0);
 
 			Assert.IsTrue(target.placeObject(thing));
