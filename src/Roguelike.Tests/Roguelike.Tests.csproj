@@ -66,6 +66,8 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Mock\TestRandom.cs" />
+    <Compile Include="Tests\FightTest.cs" />
     <Compile Include="Tests\AITest.cs" />
     <Compile Include="Tests\CreatureTest.cs" />
     <Compile Include="Tests\FieldTest.cs" />

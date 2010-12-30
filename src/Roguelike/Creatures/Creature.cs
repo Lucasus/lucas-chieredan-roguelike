@@ -99,7 +99,7 @@ namespace Roguelike
 		public void attack(Creature creature)
 		{
 			if(this.canAttack(creature))
-				new Fight().commenceInteraction(this, creature);
+				new Fight(new RandomNumberGenerator()).commenceInteraction(this, creature);
 		}
     }
 }

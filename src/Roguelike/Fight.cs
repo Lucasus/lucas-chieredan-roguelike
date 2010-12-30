@@ -7,14 +7,24 @@ namespace Roguelike
 {
 	public class Fight : ICreatureInteraction
 	{
+		IRandomNumberGenerator randomNumberGenerator;
+
+		public Fight(IRandomNumberGenerator randomNumberGen)
+		{
+			this.randomNumberGenerator = randomNumberGen;
+		}
+
 		public void commenceInteraction(Creature attacker, Creature deffender)
 		{
-			deffender.Health -= attacker.Weapon.Damage;
-			if(deffender.isDead)
+			if(randomNumberGenerator.generateNumber() <= attacker.Weapon.Chance)
 			{
-				LootGenerator lootGen = new LootGenerator();
-				lootGen.generateLoot(deffender);
-				deffender.Field.removeCreature();
+				deffender.Health -= attacker.Weapon.Damage;
+				if(deffender.isDead)
+				{
+					LootGenerator lootGen = new LootGenerator();
+					lootGen.generateLoot(deffender);
+					deffender.Field.removeCreature();
+				}
 			}
 		}
 	}
