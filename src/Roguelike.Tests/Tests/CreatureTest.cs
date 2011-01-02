@@ -48,6 +48,7 @@ namespace Roguelike.Tests
 		public void MyTestInitialize()
 		{
             map = TestObjects.GetTestMap();
+			CreatureVisitor.map = map;
 			target = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 }, RangedWeapon = new RangedWeapon() { Damage = 5, Range = 5, Chance = 0.5} };
 			map[0, 0].putCreature(target);
         }
@@ -57,13 +58,6 @@ namespace Roguelike.Tests
 		public void ConstructorTest()
 		{
 			Creature target = new Creature(-10);
-		}
-
-		[TestMethod()]
-		public void FieldNotInRange()
-		{
-			Assert.Inconclusive("Not Implemented");
-			//Assert.IsFalse(target.canInteractWithField(map[0, 2]));
 		}
 
 		[TestMethod()]
@@ -92,35 +86,11 @@ namespace Roguelike.Tests
 		}
 
 		[TestMethod()]
-		public void MeeleAttackRangeTest()
-		{
-			Assert.Inconclusive("Not implemented");
-			/*Creature enemy = new Creature(10);
-			map[1, 2].putCreature(enemy);
-			Creature enemy2 = new Creature(10);
-			map[0, 1].putCreature(enemy2);
-			Assert.IsFalse(target.canAttack(enemy));
-			Assert.IsTrue(target.canAttack(enemy2));*/
-		}
-
-		[TestMethod()]
-		public void RangedAttackRangeTest()
-		{
-			Assert.Inconclusive("Not implemented");
-			/*Creature enemy = new Creature(10);
-			map[1, 2].putCreature(enemy);
-			Creature enemy2 = new Creature(10);
-			map[0, 1].putCreature(enemy2);
-			Assert.IsTrue(target.canShoot(enemy));
-			Assert.IsTrue(target.canShoot(enemy2));*/
-		}
-
-		[TestMethod()]
 		public void DeadTest()
 		{
 			Creature enemy = new Creature(1);
 			map[0, 1].putCreature(enemy);
-			new AttackCommand(target, enemy).execute();
+			new AttackCommand(target, enemy, map).execute();
 			Assert.IsTrue(enemy.isDead);
 		}
 	}

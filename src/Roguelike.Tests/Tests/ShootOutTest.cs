@@ -56,6 +56,20 @@ namespace Roguelike.Tests
 		}
 
 		[TestMethod()]
+		public void RangedAttackRangeTest()
+		{
+
+			Creature enemy = new Creature(10);
+			map[1, 2].putCreature(enemy);
+
+			ICreatureCommand command = new ShootCommand(attacker, deffender, map, new TestRandom(0.1));
+			Assert.IsTrue(command.isExecutable());
+
+			command = new ShootCommand(attacker, enemy, map, new TestRandom(0.1));
+			Assert.IsFalse(command.isExecutable());
+		}
+
+		[TestMethod()]
 		public void ShootHitTest()
 		{
 			new ShootCommand(attacker, deffender, map, new TestRandom(0.1)).execute();

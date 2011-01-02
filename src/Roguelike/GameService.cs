@@ -15,7 +15,8 @@ namespace Roguelike
 		public void InitializeGame(char[,] initialMap)
 		{
 			Map = new Map(initialMap);
-			Player = new Creature(20){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}};
+			CreatureVisitor.map = Map;
+			Player = new Creature(20){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}, GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Count=2}};
 			Map[2, 2].putCreature(Player);
 
 			Ai = new AI(Map, Player);
@@ -38,8 +39,11 @@ namespace Roguelike
 		{
 			if(!gameEnded())
 			{
-				playerCommand.execute();
-				Ai.act();
+				if(playerCommand.isExecutable())
+				{
+					playerCommand.execute();
+					Ai.act();
+				}
 			}
 		}
 

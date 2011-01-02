@@ -54,6 +54,13 @@ namespace RoguelikeGUI
 			window.rangedChance.Content = (Math.Round(gameService.Player.RangedWeapon.Chance * 100)).ToString() + "%";
 			window.MeleeDamage.Content = gameService.Player.MeleeWeapon.Damage;
 			window.CurrentInputProcessor.Content = this.keyProcessor.ToString();
+			if(gameService.Player.GrenadeWeapon != null)
+			{
+				window.grenadeDamage.Content = gameService.Player.GrenadeWeapon.Damage;
+				window.grenadeSpread.Content = gameService.Player.GrenadeWeapon.Spread;
+				window.grenadeCount.Content = gameService.Player.GrenadeWeapon.Count;
+				window.grenadeRange.Content = gameService.Player.GrenadeWeapon.Range;
+			}
 		}
 
 		private void UpdateScreenMap()

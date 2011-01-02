@@ -13,13 +13,24 @@ namespace Roguelike
 			this.creature = creature;
 		}
 
+		public bool isExecutable()
+		{
+			if(creature.Field.Objects.Count > 0)
+				return true;
+			else
+				return false;
+		}
+
 		public void execute()
 		{
-			foreach (IGameObject gameObject in creature.Field.Objects)
+			if(this.isExecutable())
 			{
-				gameObject.objectPickedBy(creature);
+				foreach (IGameObject gameObject in creature.Field.Objects)
+				{
+					gameObject.objectPickedBy(creature);
+				}
+				creature.Field.Objects.Clear();
 			}
-			creature.Field.Objects.Clear();
 		}
 	}
 }

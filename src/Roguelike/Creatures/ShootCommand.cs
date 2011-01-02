@@ -19,6 +19,14 @@ namespace Roguelike
 			this.map = map;
 		}
 
+		public bool isExecutable()
+		{
+			if (attacker.RangedWeapon != null && map.getDistanceBetweenFields(attacker.Field, deffender.Field) <= attacker.RangedWeapon.Range && map.isSightBetweenFields(attacker.Field, deffender.Field))
+				return true;
+			else
+				return false;
+		}
+
 		public void execute()
 		{
 			if (attacker.RangedWeapon != null && map.getDistanceBetweenFields(attacker.Field, deffender.Field) <= attacker.RangedWeapon.Range && map.isSightBetweenFields(attacker.Field, deffender.Field))

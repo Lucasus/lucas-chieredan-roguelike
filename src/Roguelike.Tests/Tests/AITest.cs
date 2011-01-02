@@ -62,7 +62,7 @@ namespace Roguelike.Tests
 			Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			map[1,2].putCreature(aiControledCreature);
 			AI artificialInteligence = new AI(map, player);
-			artificialInteligence.move(aiControledCreature);
+			artificialInteligence.generateNextCommand(aiControledCreature);
 			Assert.AreEqual(1,aiControledCreature.X);
 			Assert.AreEqual(0,aiControledCreature.Y);
 		}
@@ -73,7 +73,9 @@ namespace Roguelike.Tests
 			Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			map[1, 0].putCreature(aiControledCreature);
 			AI artificialInteligence = new AI(map, player);
-			artificialInteligence.move(aiControledCreature);
+			ICreatureCommand command = artificialInteligence.generateNextCommand(aiControledCreature);
+			if(command != null)
+				command.execute();
 			Assert.AreEqual(5, player.Health);
 		}
 
@@ -83,7 +85,7 @@ namespace Roguelike.Tests
 		{
 			Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			AI artificialInteligence = new AI(map, player);
-			artificialInteligence.move(aiControledCreature);
+			artificialInteligence.generateNextCommand(aiControledCreature);
 		}
 	}
 }

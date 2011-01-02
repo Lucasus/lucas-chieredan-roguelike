@@ -85,6 +85,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="FieldSelectKeyProcessor.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="GuiMapField.cs" />
     <Compile Include="IKeyProcessor.cs" />
@@ -177,6 +178,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\chest.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Images\grenade.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

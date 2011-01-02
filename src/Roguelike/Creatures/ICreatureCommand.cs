@@ -7,6 +7,7 @@ namespace Roguelike
 {
 	public interface ICreatureCommand
 	{
+		bool isExecutable();
 		void execute();
 	}
 }

@@ -13,6 +13,11 @@ namespace Roguelike
 			this.creature = creature;
 		}
 
+		public bool isExecutable()
+		{
+			return true;
+		}
+
 		public void execute()
 		{
 		}
