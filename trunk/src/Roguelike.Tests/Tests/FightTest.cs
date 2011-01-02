@@ -2,6 +2,8 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
 
+using Roguelike.Tests.Utilities;
+
 namespace Roguelike.Tests
 {
     
@@ -15,6 +17,7 @@ namespace Roguelike.Tests
 	{
 		private Creature attacker;
 		private Creature deffender;
+		private Map map;
 
 		#region Additional test attributes
 		// 
@@ -44,14 +47,29 @@ namespace Roguelike.Tests
 		[TestInitialize()]
 		public void MyTestInitialize()
 		{
+			map = TestObjects.GetTestMap();
 			attacker = new Creature(10){MeleeWeapon = new Weapon(){Damage=1}};
 			deffender = new Creature(10);
+			map[0,0].putCreature(attacker);
+			map[0,1].putCreature(deffender);
+		}
+
+		[TestMethod()]
+		public void MeeleAttackRangeTest()
+		{
+			Creature enemy = new Creature(10);
+			map[1, 2].putCreature(enemy);
+
+			ICreatureCommand command = new AttackCommand(attacker, deffender, map);
+			Assert.IsTrue(command.isExecutable());
+			command = new AttackCommand(attacker, enemy, map);
+			Assert.IsFalse(command.isExecutable());
 		}
 
 		[TestMethod()]
 		public void CloseCombatHitTest()
 		{
-			new AttackCommand(attacker, deffender).execute();
+			new AttackCommand(attacker, deffender, map).execute();
 			Assert.AreEqual(9, deffender.Health);
 		}
 	}

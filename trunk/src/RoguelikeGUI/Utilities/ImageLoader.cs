@@ -30,6 +30,8 @@ namespace RoguelikeGUI.Utilities
 				return LoadImage("health.png");
 			else if (gameObject is Money)
 				return LoadImage("money.png");
+			else if (gameObject is GrenadeWeapon)
+				return LoadImage("grenade.png");
 			else if (gameObject is RangedWeapon)
 				return LoadImage("gun.png");
 			else

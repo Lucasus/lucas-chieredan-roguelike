@@ -54,6 +54,9 @@ namespace RoguelikeGUI
 				case Key.A:
 					this.manager.KeyProcessor = new TargetSelectKeyProcessor(this.manager);
 					break;
+				case Key.S:
+					this.manager.KeyProcessor = new FieldSelectKeyProcessor(this.manager);
+					break;
 			}
 		}
 	}

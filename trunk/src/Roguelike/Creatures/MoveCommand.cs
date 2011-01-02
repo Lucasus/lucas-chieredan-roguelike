@@ -30,9 +30,17 @@ namespace Roguelike
 			this.map = map;
 		}
 
+		public bool isExecutable()
+		{
+			if(creature.Field != null)
+				return true;
+			else
+				return false;
+		}
+
 		public void execute()
 		{
-			if (creature.Field != null)
+			if (this.isExecutable())
 			{
 				int newX = creature.X;
 				int newY = creature.Y;

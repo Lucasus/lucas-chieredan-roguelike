@@ -33,43 +33,45 @@ namespace Roguelike
 
 			foreach(Creature creature in creatures)
 			{
-				this.move(creature);
+				ICreatureCommand creatureCommand = this.generateNextCommand(creature);
+				if(creatureCommand != null)
+					creatureCommand.execute();
 			}
 		}
 
-		public void move(Creature creature)
+		public ICreatureCommand generateNextCommand(Creature creature)
 		{
-			if(!creature.isDead)
+			ICreatureCommand command = null;
+			if(creature.Field != null)
 			{
-				if(creature.Field != null)
+				if(!player.isDead)
 				{
-					if(!player.isDead)
+					if(map.getDistanceBetweenFields(player.Field, creature.Field) == 1)
 					{
-						if(map.getDistanceBetweenFields(player.Field, creature.Field) == 1)
-						{
-							new AttackCommand(creature, player).execute();
-						}
-						else
-						{
-							int newX = creature.X;
-							int newY = creature.Y;
-							if(player.X > creature.X)
-								newX += 1;
-							else if(player.X < creature.X)
-								newX -= 1;
+						command = new AttackCommand(creature, player, map);
+					}
+					else
+					{
+						int newX = creature.X;
+						int newY = creature.Y;
+						if(player.X > creature.X)
+							newX += 1;
+						else if(player.X < creature.X)
+							newX -= 1;
 
-							if(player.Y > creature.Y)
-								newY += 1;
-							else if(player.Y < creature.Y)
-								newY -= 1;
-							if (this.map[newY, newX].Creature == null)
-								creature.interactWithField(this.map[newY, newX]);
-						}
+						if(player.Y > creature.Y)
+							newY += 1;
+						else if(player.Y < creature.Y)
+							newY -= 1;
+						if (this.map[newY, newX].Creature == null)
+							creature.interactWithField(this.map[newY, newX]);
 					}
 				}
-				else
-					throw new CreatureException();
 			}
+			else
+				throw new CreatureException();
+
+			return command;
 		}
 	}
 }

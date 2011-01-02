@@ -7,7 +7,8 @@ namespace Roguelike
 {
 	public class CreatureVisitor : IFieldVisitor
 	{
-		Creature creature;
+		public static Map map;
+		private Creature creature;
 
 		public CreatureVisitor(Creature creature)
 		{
@@ -27,7 +28,7 @@ namespace Roguelike
 			}
 			else
 			{
-				new AttackCommand(creature, floor.Creature).execute();
+				new AttackCommand(creature, floor.Creature, map).execute();
 			}
 		}
 	}
