@@ -5,17 +5,35 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class ShootCommand : IPlayerCommand
+	public class ShootCommand : ICreatureCommand
 	{
-		Creature target;
-		public ShootCommand(Creature target)
+		private IRandomNumberGenerator randomNumberGenerator;
+		private Creature deffender;
+		private Creature attacker;
+		private Map map;
+		public ShootCommand(Creature attacker, Creature target, Map map, IRandomNumberGenerator randomNumberGenerator)
 		{
-			this.target = target;
+			this.randomNumberGenerator = randomNumberGenerator;
+			this.deffender = target;
+			this.attacker = attacker;
+			this.map = map;
 		}
 
-		public void execute(Player player)
+		public void execute()
 		{
-			player.Creature.shoot(target);
+			if (attacker.RangedWeapon != null && map.getDistanceBetweenFields(attacker.Field, deffender.Field) <= attacker.RangedWeapon.Range && map.isSightBetweenFields(attacker.Field, deffender.Field))
+			{
+				if (randomNumberGenerator.generateNumber() <= attacker.RangedWeapon.Chance)
+				{
+					deffender.Health -= attacker.RangedWeapon.Damage;
+					if (deffender.isDead)
+					{
+						LootGenerator lootGen = new LootGenerator();
+						lootGen.generateLoot(deffender);
+						deffender.Field.removeCreature();
+					}
+				}
+			}
 		}
 	}
 }

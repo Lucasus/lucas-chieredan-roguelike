@@ -4,10 +4,13 @@ using System.Linq;
 using System.Text;
 using System.Windows.Controls;
 using System.Windows;
+using System.Windows.Shapes;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 using Roguelike;
 using RoguelikeGUI.Utilities;
+
 
 namespace RoguelikeGUI
 {
@@ -26,24 +29,53 @@ namespace RoguelikeGUI
 			this.field = field;
 
 			if (field is Wall)
-				background = FieldToImageConverter.LoadImage("wall.png");
+				background = ImageLoader.LoadImage("wall.png");
 			else if (field is Floor)
-				background = FieldToImageConverter.LoadImage("floor.png");
+				background = ImageLoader.LoadImage("floor.png");
 		}
 
-		public void RefreshField()
+		public void RefreshField(bool visible)
 		{
 			this.Children.Clear();
 			this.Children.Add(background);
-			if(this.field.Objects.Count > 0)
+			if(visible)
 			{
-				Image objectImage = FieldToImageConverter.CreaObjectImage(field.Objects[0]);
-				this.Children.Add(objectImage);
+				if(this.field.Objects.Count > 0)
+				{
+					if(this.field.Objects.Count == 1)
+					{
+						Image objectImage = ImageLoader.CreaObjectImage(field.Objects[0]);
+						this.Children.Add(objectImage);
+					}
+					else
+					{
+						Image objectImage = ImageLoader.LoadImage("chest.png");
+						this.Children.Add(objectImage);
+					}
+				}
+				if(this.field.Creature != null)
+				{
+					Image creatureImage = ImageLoader.CreateCreatureImage(this.field.Creature);
+					this.Children.Add(creatureImage);
+					Line healthBar = new Line();
+					healthBar.Stroke = Brushes.LightGreen;
+					healthBar.X1 = 2;
+					healthBar.Y1 = 2;
+					healthBar.X2 = ((double)this.field.Creature.Health/this.field.Creature.MaxHealth) * 30 + 2;
+					healthBar.Y2 = 2;
+					healthBar.StrokeThickness = 2;
+
+					this.Children.Add(healthBar);
+				}
 			}
-			if(this.field.Creature != null)
+			else
 			{
-				Image creatureImage = FieldToImageConverter.CreateCreatureImage(this.field.Creature);
-				this.Children.Add(creatureImage);
+				Rectangle rectangle = new Rectangle();
+				rectangle.Width = 30;
+				rectangle.Height = 30;
+				rectangle.Fill = new SolidColorBrush(Colors.Black);
+				rectangle.Opacity = 0.5;
+				this.Children.Add(rectangle);
 			}
 		}
 

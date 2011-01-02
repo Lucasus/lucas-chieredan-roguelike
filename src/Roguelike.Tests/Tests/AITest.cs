@@ -15,7 +15,7 @@ namespace Roguelike.Tests
 	public class AITest
 	{
 		private Map map;
-		private Player player;
+		private Creature player;
 		public TestContext TestContext { get; set; }
 
 		#region Additional test attributes
@@ -52,9 +52,8 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			Creature playersCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5} };
-			map[0, 0].putCreature(playersCreature);
-			player = new Player(map) { Creature = playersCreature };
+			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
+			map[0, 0].putCreature(player);
 		}
 
 		[TestMethod()]
@@ -75,7 +74,7 @@ namespace Roguelike.Tests
 			map[1, 0].putCreature(aiControledCreature);
 			AI artificialInteligence = new AI(map, player);
 			artificialInteligence.move(aiControledCreature);
-			Assert.AreEqual(5, player.Creature.Health);
+			Assert.AreEqual(5, player.Health);
 		}
 
 		[TestMethod()]

@@ -19,10 +19,10 @@ namespace RoguelikeGUI
 		{
 			set {
 				if(this.Target != null)
-					manager.MapDrawer[this.Target.Field].RefreshField();
+					manager.MapDrawer.Draw(manager.GameService.Player.Field);
 				currentPosition = value;
 				if(this.Target != null)
-					manager.MapDrawer[this.Target.Field].DrawOnField(FieldToImageConverter.LoadImage("selectBorder.png"));
+					manager.MapDrawer[this.Target.Field].DrawOnField(ImageLoader.LoadImage("selectBorder.png"));
 			}
 		}
 
@@ -39,7 +39,9 @@ namespace RoguelikeGUI
 		public TargetSelectKeyProcessor(GameManager manager)
 		{
 			this.manager = manager;
-			this.creatures = this.manager.GameService.Ai.Creatures.Where(x => this.manager.GameService.Player.Creature.canShoot(x)).ToList();
+			Creature player = this.manager.GameService.Player;
+			Map map = this.manager.GameService.Map;
+			this.creatures = this.manager.GameService.Ai.Creatures.Where(x => map.getDistanceBetweenFields(player.Field, x.Field) <= player.RangedWeapon.Range && map.isSightBetweenFields(player.Field,x.Field)).ToList();
 			this.CurrentPosition = 0;
 		}
 
@@ -49,7 +51,7 @@ namespace RoguelikeGUI
 			{
 				case Key.Q:
 					if(this.Target != null)
-						manager.MapDrawer[this.Target.Field].RefreshField();
+						manager.MapDrawer.Draw(manager.GameService.Player.Field);
 					this.manager.KeyProcessor = new MainKeyProcessor(this.manager);
 					break;
 				case Key.X://NumPad6:
@@ -59,8 +61,8 @@ namespace RoguelikeGUI
 					prevTarget();
 					break;
 				case Key.Enter:
-					if(this.Target != null && this.manager.GameService.Player.Creature.canShoot(this.Target))
-						this.manager.PlayerCommand(new ShootCommand(this.Target));
+					if(this.Target != null)
+						this.manager.PlayerCommand(new ShootCommand(manager.GameService.Player, this.Target, manager.GameService.Map, new RandomNumberGenerator()));
 					break;
 			}
 		}

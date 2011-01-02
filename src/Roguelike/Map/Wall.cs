@@ -9,6 +9,11 @@ namespace Roguelike
     {
 		public Wall(int x, int y) : base(x,y){}
 
+		public override bool blocksSight()
+		{
+			return true;
+		}
+
 		public override bool putCreature(Creature thing)
 		{
 			return false;

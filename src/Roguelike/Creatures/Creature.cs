@@ -20,6 +20,16 @@ namespace Roguelike
 
 
 		private Field field;
+		public Field Field
+		{
+			get { return field; }
+			set
+			{
+				if (this.field != null)
+					this.field.Creature = null;
+				this.field = value;
+			}
+		}
 
 		private int maxHealth;
 		public int MaxHealth
@@ -35,17 +45,8 @@ namespace Roguelike
 		}
 		public Weapon MeleeWeapon { get; set; }
 		public RangedWeapon RangedWeapon { get; set; }
+		public GrenadeWeapon GrenadeWeapon { get; set; }
 		public int Money { get; set; }
-
-		public Field Field
-		{
-			get {return field;}
-			set {
-				if(this.field != null)
-					this.field.Creature = null;
-				this.field = value;
-			}
-		}
 
 		public int X
 		{
@@ -68,72 +69,13 @@ namespace Roguelike
 				this.maxHealth = health;
 				this.health = health;
 			}
-			this.MeleeWeapon = new Weapon();
 			this.creatureType = "Creature";
-		}
-
-		public bool canInteractWithField(Field field)
-		{
-			int distance = Math.Max(Math.Abs(this.X - field.X), Math.Abs(this.Y - field.Y));
-			if (distance > 1)
-				return false;
-			else
-				return true;
 		}
 
 		public void interactWithField(Field field)
 		{
 			CreatureVisitor visitor = new CreatureVisitor(this);
 			field.accept(visitor);
-		}
-
-		public bool canAttack(Creature creature)
-		{
-			if(this.MeleeWeapon != null)
-			{
-				int distance = Math.Max(Math.Abs(this.X - creature.X), Math.Abs(this.Y - creature.Y));
-				if(distance > 1)
-					return false;
-				else
-					return true;
-			}
-			else
-				return false;
-		}
-
-		public bool canShoot(Creature creature)
-		{
-			if(this.RangedWeapon != null)
-			{
-				int distance = Math.Max(Math.Abs(this.X - creature.X), Math.Abs(this.Y - creature.Y));
-				if (distance > this.RangedWeapon.Range)
-					return false;
-				else
-					return true;
-			}
-			else
-				return false;
-		}
-
-		public void pickupItems()
-		{
-			foreach (IGameObject gameObject in field.Objects)
-			{
-				gameObject.objectPickedBy(this);
-			}
-			field.Objects.Clear();
-		}
-		
-		public void shoot(Creature creature)
-		{
-			if(this.canShoot(creature))
-				new ShootOut(new RandomNumberGenerator()).commenceInteraction(this, creature);
-		}
-
-		public void attack(Creature creature)
-		{
-			if(this.canAttack(creature))
-				new Fight().commenceInteraction(this, creature);
 		}
     }
 }

@@ -56,10 +56,9 @@ namespace Roguelike.Tests
 		{
 			Creature playersCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			map[0,0].putCreature(playersCreature);
-			Player player = new Player(map) { Creature = playersCreature };
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
-			Assert.AreEqual(1, player.Creature.X);
-			Assert.AreEqual(0, player.Creature.Y);
+			new MoveCommand(playersCreature, MoveCommand.Direction.Right, map).execute();
+			Assert.AreEqual(1, playersCreature.X);
+			Assert.AreEqual(0, playersCreature.Y);
 		}
 
 		[TestMethod()]
@@ -67,8 +66,7 @@ namespace Roguelike.Tests
 		public void CreatureNotOnTheMapTest()
 		{
 			Creature playersCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
-			Player player = new Player(map) { Creature = playersCreature };
-			player.executeCommand(new MoveCommand(MoveCommand.Direction.Right));
+			new MoveCommand(playersCreature, MoveCommand.Direction.Right, map).execute();
 		}
     }
 }

@@ -7,7 +7,7 @@ namespace Roguelike
 {
     public class GameService
     {
-		public Player Player { get; set; }
+		public Creature Player { get; set; }
 		public AI Ai { get; set; }
 
 		public Map Map { get; set; }
@@ -15,9 +15,8 @@ namespace Roguelike
 		public void InitializeGame(char[,] initialMap)
 		{
 			Map = new Map(initialMap);
-			Creature playersCreature = new Creature(20){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}};
-			Map[2, 2].putCreature(playersCreature);
-			Player = new Player(Map){Creature = playersCreature};
+			Player = new Creature(20){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}};
+			Map[2, 2].putCreature(Player);
 
 			Ai = new AI(Map, Player);
 
@@ -35,18 +34,18 @@ namespace Roguelike
 			}
 		}
 
-		public void NextTurn(IPlayerCommand playerCommand)
+		public void NextTurn(ICreatureCommand playerCommand)
 		{
 			if(!gameEnded())
 			{
-				Player.executeCommand(playerCommand);
+				playerCommand.execute();
 				Ai.act();
 			}
 		}
 
 		public bool gameEnded()
 		{
-			return Player.Creature.isDead;
+			return Player.isDead;
 		}
 	}
 }

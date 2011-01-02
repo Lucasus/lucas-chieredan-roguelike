@@ -28,6 +28,7 @@ namespace Roguelike
 			this.Objects = new List<IGameObject>();
 		}
 
+		public abstract bool blocksSight();
         public abstract bool putCreature(Creature thing);
 		public abstract void removeCreature();
 		public abstract bool placeObject(IGameObject field);

@@ -11,6 +11,11 @@ namespace Roguelike
 		{
 		}
 
+		public override bool blocksSight()
+		{
+			return false;
+		}
+
 		public override bool putCreature(Creature thing)
 		{
 			if(this.Creature == null)
