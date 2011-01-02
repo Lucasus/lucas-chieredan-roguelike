@@ -15,7 +15,7 @@ namespace Roguelike.Tests
 	public class GameObjectTest
 	{
 		private Map map;
-		private Player player;
+		Creature player;
 
 		public TestContext TestContext { get; set; }
 
@@ -54,8 +54,8 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			player = new Player(map) { Creature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 1 } } };
-			map[0,0].putCreature(player.Creature);
+			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 1 } };
+			map[0,0].putCreature(player);
 		}
 
 		/// <summary>
@@ -66,28 +66,28 @@ namespace Roguelike.Tests
 		{
 			Money moneyPickup = new Money() { Worth = 10 };
 			map[0, 0].placeObject(moneyPickup);
-			player.executeCommand(new PickupCommand());
-			Assert.AreEqual(10, player.Creature.Money);
+			new PickupCommand(player).execute();
+			Assert.AreEqual(10, player.Money);
 		}
 
 		[TestMethod()]
 		public void HealthPickupTest()
 		{
 			MedKit medikitPickup = new MedKit() { Health = 5 };
-			player.Creature.Health = 1;
+			player.Health = 1;
 			map[0, 0].placeObject(medikitPickup);
-			player.executeCommand(new PickupCommand());
-			Assert.AreEqual(6, player.Creature.Health);
+			new PickupCommand(player).execute();
+			Assert.AreEqual(6, player.Health);
 		}
 
 		[TestMethod()]
 		public void HealthPickupAlmostHealedTest()
 		{
 			MedKit medikitPickup = new MedKit() { Health = 5 };
-			player.Creature.Health = 9;
+			player.Health = 9;
 			map[0, 0].placeObject(medikitPickup);
-			player.executeCommand(new PickupCommand());
-			Assert.AreEqual(10, player.Creature.Health);
+			new PickupCommand(player).execute();
+			Assert.AreEqual(10, player.Health);
 		}
 
 		[TestMethod()]
@@ -95,8 +95,8 @@ namespace Roguelike.Tests
 		{
 			Weapon weaponPickup = new Weapon() { Damage = 10 };
 			map[0, 0].placeObject(weaponPickup);
-			player.executeCommand(new PickupCommand());
-			Assert.AreSame(weaponPickup, player.Creature.MeleeWeapon);
+			new PickupCommand(player).execute();
+			Assert.AreSame(weaponPickup, player.MeleeWeapon);
 		}
 
 		[TestMethod()]
@@ -106,9 +106,9 @@ namespace Roguelike.Tests
 			map[0, 0].placeObject(moneyPickup);
 			Weapon weaponPickup = new Weapon() { Damage = 5 };
 			map[0, 0].placeObject(weaponPickup);
-			player.executeCommand(new PickupCommand());
-			Assert.AreEqual(10, player.Creature.Money);
-			Assert.AreEqual(weaponPickup, player.Creature.MeleeWeapon);
+			new PickupCommand(player).execute();
+			Assert.AreEqual(10, player.Money);
+			Assert.AreEqual(weaponPickup, player.MeleeWeapon);
 		}
 
 		[TestMethod()]
@@ -118,8 +118,8 @@ namespace Roguelike.Tests
 			map[0, 0].placeObject(weaponPickup);
 			Weapon newerWeapon = new Weapon() { Damage = 15 };
 			map[0, 0].placeObject(newerWeapon);
-			player.executeCommand(new PickupCommand());
-			Assert.AreSame(newerWeapon, player.Creature.MeleeWeapon);
+			new PickupCommand(player).execute();
+			Assert.AreSame(newerWeapon, player.MeleeWeapon);
 		}
 	}
 }

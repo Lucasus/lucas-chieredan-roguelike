@@ -66,34 +66,31 @@
   <ItemGroup>
     <Compile Include="Creatures\AI.cs" />
     <Compile Include="Creatures\DoNothingCommand.cs" />
-    <Compile Include="Creatures\IPlayerCommand.cs" />
+    <Compile Include="Creatures\ICreatureCommand.cs" />
     <Compile Include="Creatures\LootGenerator.cs" />
     <Compile Include="Creatures\MoveCommand.cs" />
     <Compile Include="Creatures\AttackCommand.cs" />
     <Compile Include="Creatures\PickupCommand.cs" />
     <Compile Include="Creatures\ShootCommand.cs" />
-    <Compile Include="CreatureVisitor.cs" />
+    <Compile Include="Map\CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
-    <Compile Include="Fight.cs" />
+    <Compile Include="GameObjects\GrenadeWeapon.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\MedKit.cs" />
     <Compile Include="GameObjects\Money.cs" />
     <Compile Include="GameObjects\RangedWeapon.cs" />
-    <Compile Include="ICreatureInteraction.cs" />
-    <Compile Include="IFieldVisitor.cs" />
+    <Compile Include="Map\IFieldVisitor.cs" />
     <Compile Include="IRandomNumberGenerator.cs" />
     <Compile Include="Map\Field.cs" />
     <Compile Include="Map\Floor.cs" />
     <Compile Include="GameService.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Exceptions\MapOutOfBoundException.cs" />
-    <Compile Include="Creatures\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Map\Wall.cs" />
     <Compile Include="GameObjects\Weapon.cs" />
     <Compile Include="RandomNumberGenerator.cs" />
-    <Compile Include="ShootOut.cs" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include="Microsoft.Net.Client.3.5">

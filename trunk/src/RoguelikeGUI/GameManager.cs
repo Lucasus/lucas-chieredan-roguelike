@@ -32,30 +32,12 @@ namespace RoguelikeGUI
 			set { keyProcessor = value; }
 		}
 
-		private char[,] initialMap;/* = {
-                          {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'},
-                          {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
-                          {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
-                          {'#','.','.','.','.','#','#','#','#','#','#','#','#','#','.','#','#','.','#','#'},
-                          {'#','.','.','.','.','#','.','#','.','.','#','.','.','#','.','.','.','.','.','#'},
-                          {'#','.','.','.','.','.','.','#','#','.','#','.','.','#','.','.','.','.','.','#'},
-                          {'#','.','.','.','.','#','.','.','.','.','.','.','.','#','.','.','.','.','.','#'},
-                          {'#','.','.','.','.','#','#','#','#','#','#','#','#','#','.','.','.','.','.','#'},
-                          {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-                          {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-						  {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','#','#','#','#'},
-						  {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#'},
-						  {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
-                          {'#','.','.','.','.','.','.','.','.','.','.','.','.','.','.','#','.','.','.','#'},
-                          {'#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#','#'}
-                       };*/
-
 		public GameManager(MapWindow view)
 		{
 			this.window = view;
 			this.keyProcessor = new MainKeyProcessor(this);
 			MapLoader loader = new MapLoader();
-			this.initialMap = loader.loadMap("TestMap.map");
+			char[,] initialMap = loader.loadMap("TestMap.map");
 			this.gameService.InitializeGame(initialMap);
 			this.mapDrawer = new MapDrawer(window.GridMap, 15, 20, this.gameService.Map);
 
@@ -65,19 +47,19 @@ namespace RoguelikeGUI
 
 		private void UpdateGui()
 		{
-			window.PlayerHp.Content = gameService.Player.Creature.Health;
-			window.playerMoney.Content = gameService.Player.Creature.Money;
-			window.rangedDamage.Content = gameService.Player.Creature.RangedWeapon.Damage;
-			window.rangedRange.Content = gameService.Player.Creature.RangedWeapon.Range;
-			window.rangedChance.Content = (Math.Round(gameService.Player.Creature.RangedWeapon.Chance * 100)).ToString() + "%";
-			window.MeleeDamage.Content = gameService.Player.Creature.MeleeWeapon.Damage;
+			window.PlayerHp.Content = gameService.Player.Health;
+			window.playerMoney.Content = gameService.Player.Money;
+			window.rangedDamage.Content = gameService.Player.RangedWeapon.Damage;
+			window.rangedRange.Content = gameService.Player.RangedWeapon.Range;
+			window.rangedChance.Content = (Math.Round(gameService.Player.RangedWeapon.Chance * 100)).ToString() + "%";
+			window.MeleeDamage.Content = gameService.Player.MeleeWeapon.Damage;
 			window.CurrentInputProcessor.Content = this.keyProcessor.ToString();
 		}
 
 		private void UpdateScreenMap()
 		{
 			Map map = gameService.Map;
-			mapDrawer.Draw();
+			mapDrawer.Draw(this.gameService.Player.Field);
 		}
 
 		public void processKey(Key key)
@@ -89,7 +71,7 @@ namespace RoguelikeGUI
 			}
 		}
 
-		public void PlayerCommand(IPlayerCommand playerCommand)
+		public void PlayerCommand(ICreatureCommand playerCommand)
 		{
 			gameService.NextTurn(playerCommand);
 			UpdateScreenMap();

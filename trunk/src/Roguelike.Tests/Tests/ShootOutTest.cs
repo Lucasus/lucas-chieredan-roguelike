@@ -1,11 +1,9 @@
 ﻿using Roguelike;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
-
+using Roguelike.Tests.Utilities;
 namespace Roguelike.Tests
 {
-    
-    
     /// <summary>
     ///This is a test class for ShootOutTest and is intended
     ///to contain all ShootOutTest Unit Tests
@@ -13,9 +11,9 @@ namespace Roguelike.Tests
 	[TestClass()]
 	public class ShootOutTest
 	{
-
 		private Creature attacker;
 		private Creature deffender;
+		private Map map;
 
 		#region Additional test attributes
 		// 
@@ -50,23 +48,24 @@ namespace Roguelike.Tests
 		[TestInitialize()]
 		public void MyTestInitialize()
 		{
+			map = TestObjects.GetTestMap();
 			attacker = new Creature(10) { RangedWeapon = new RangedWeapon() { Damage = 5, Range = 1, Chance = 0.5 } };
 			deffender = new Creature(10);
+			map[0,0].putCreature(attacker);
+			map[0,1].putCreature(deffender);
 		}
 
 		[TestMethod()]
 		public void ShootHitTest()
 		{
-			ShootOut target = new ShootOut(new TestRandom(0.1));			
-			target.commenceInteraction(attacker, deffender);
+			new ShootCommand(attacker, deffender, map, new TestRandom(0.1)).execute();
 			Assert.AreEqual(5, deffender.Health);
 		}
 
 		[TestMethod()]
 		public void ShootMissTest()
 		{
-			ShootOut target = new ShootOut(new TestRandom(0.9));
-			target.commenceInteraction(attacker, deffender);
+			new ShootCommand(attacker, deffender, map, new TestRandom(0.9)).execute();
 			Assert.AreEqual(10, deffender.Health);
 		}
 	}

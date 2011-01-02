@@ -8,14 +8,14 @@ namespace Roguelike
 	public class AI
 	{
 		private Map map;
-		private Player player;
+		private Creature player;
 		private List<Creature> creatures;
 		public List<Creature> Creatures
 		{
 			get { return this.creatures; }
 		}
 
-		public AI(Map map, Player player)
+		public AI(Map map, Creature player)
 		{
 			this.map = map;
 			this.player = player;
@@ -43,24 +43,24 @@ namespace Roguelike
 			{
 				if(creature.Field != null)
 				{
-					if(!player.Creature.isDead)
+					if(!player.isDead)
 					{
-						if(creature.canAttack(player.Creature))
+						if(map.getDistanceBetweenFields(player.Field, creature.Field) == 1)
 						{
-							creature.attack(player.Creature);
+							new AttackCommand(creature, player).execute();
 						}
 						else
 						{
 							int newX = creature.X;
 							int newY = creature.Y;
-							if(player.Creature.X > creature.X)
+							if(player.X > creature.X)
 								newX += 1;
-							else if(player.Creature.X < creature.X)
+							else if(player.X < creature.X)
 								newX -= 1;
 
-							if(player.Creature.Y > creature.Y)
+							if(player.Y > creature.Y)
 								newY += 1;
-							else if(player.Creature.Y < creature.Y)
+							else if(player.Y < creature.Y)
 								newY -= 1;
 							if (this.map[newY, newX].Creature == null)
 								creature.interactWithField(this.map[newY, newX]);

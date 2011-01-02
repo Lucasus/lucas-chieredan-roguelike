@@ -12,8 +12,8 @@ namespace RoguelikeGUI
 {
     public class MapDrawer
     {
+		private Map mapModel;
 		public GuiMapField[,] fields;
-        public Grid Grid { get; set; }
         public int RowCount { get; set; }
         public int ColumnCount { get; set; }
 
@@ -29,9 +29,9 @@ namespace RoguelikeGUI
 			}	
 		}
 
-        public MapDrawer(Grid _grid, int rows, int columns, Map map)
+        public MapDrawer(Grid grid, int rows, int columns, Map map)
         {
-            this.Grid = _grid;
+			this.mapModel = map;
             this.RowCount = rows; 
             this.ColumnCount = columns;
 			fields = new GuiMapField[rows, columns];
@@ -46,43 +46,23 @@ namespace RoguelikeGUI
 					field.SetValue(Grid.RowProperty, i);
 					field.SetValue(Grid.ColumnProperty, j);
 
-					Grid.Children.Add(field);
+					grid.Children.Add(field);
 				}
 			}
         }
 
-		public void Draw()
+		public void Draw(Field centerField)
 		{
 			for (int i = 0; i < fields.GetLength(0); ++i)
 			{
 				for (int j = 0; j < fields.GetLength(1); ++j)
 				{
-					fields[i,j].RefreshField();
+					if (centerField != null)
+						fields[i, j].RefreshField(mapModel.isSightBetweenFields(centerField, fields[i, j].Field));
+					else
+						fields[i, j].RefreshField(true);
 				}
 			}
 		}
-
-        /*public void Draw(IList<Image>[,] images)
-        {
-            if(images.GetLength(0) != RowCount || images.GetLength(1) != ColumnCount)
-            {
-                throw new IndexOutOfRangeException("Ilości wierszy i kolumn talicy z obrazkami nie są takie same jak ilości wierszy i kolumn MapDrawer'a");
-            }
-
-			Grid.Children.Clear();
-            for(int i = 0 ; i < images.GetLength(0) ; ++i)
-            {
-                for (int j = 0; j < images.GetLength(1); ++j)
-                {
-					foreach (Image img in images[i, j])
-					{
-						img.SetValue(Grid.RowProperty, i);
-						img.SetValue(Grid.ColumnProperty, j);
-
-						Grid.Children.Add(img);
-					}
-				}
-            }
-        }*/
     }
 }

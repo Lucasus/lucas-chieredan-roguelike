@@ -5,11 +5,21 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class PickupCommand : IPlayerCommand
+	public class PickupCommand : ICreatureCommand
 	{
-		public void execute(Player player)
+		private Creature creature;
+		public PickupCommand(Creature creature)
 		{
-			player.Creature.pickupItems();
+			this.creature = creature;
+		}
+
+		public void execute()
+		{
+			foreach (IGameObject gameObject in creature.Field.Objects)
+			{
+				gameObject.objectPickedBy(creature);
+			}
+			creature.Field.Objects.Clear();
 		}
 	}
 }

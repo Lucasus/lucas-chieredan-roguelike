@@ -5,9 +5,15 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class DoNothingCommand : IPlayerCommand
+	public class DoNothingCommand : ICreatureCommand
 	{
-		public void execute(Player player)
+		private Creature creature;
+		public DoNothingCommand(Creature creature)
+		{
+			this.creature = creature;
+		}
+
+		public void execute()
 		{
 		}
 	}

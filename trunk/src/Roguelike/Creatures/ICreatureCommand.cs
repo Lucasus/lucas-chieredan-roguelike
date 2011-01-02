@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Roguelike
 {
-	public interface IPlayerCommand
+	public interface ICreatureCommand
 	{
-		void execute(Player player);
+		void execute();
 	}
 }

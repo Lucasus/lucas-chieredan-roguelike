@@ -51,8 +51,7 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void CloseCombatHitTest()
 		{
-			Fight fight = new Fight();
-			fight.commenceInteraction(attacker, deffender);
+			new AttackCommand(attacker, deffender).execute();
 			Assert.AreEqual(9, deffender.Health);
 		}
 	}

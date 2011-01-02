@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class MoveCommand : IPlayerCommand
+	public class MoveCommand : ICreatureCommand
 	{
 		public enum Direction
 		{
@@ -20,18 +20,22 @@ namespace Roguelike
 		}
 
 		public Direction moveDirection;
+		private Map map;
+		private Creature creature;
 
-		public MoveCommand(Direction moveDirection)
+		public MoveCommand(Creature creature, Direction moveDirection, Map map)
 		{
+			this.creature = creature;
 			this.moveDirection = moveDirection;
+			this.map = map;
 		}
 
-		public void execute(Player player)
+		public void execute()
 		{
-			if (player.Creature.Field != null)
+			if (creature.Field != null)
 			{
-				int newX = player.Creature.X;
-				int newY = player.Creature.Y;
+				int newX = creature.X;
+				int newY = creature.Y;
 				if (moveDirection == Direction.RightUp || moveDirection == Direction.Right || moveDirection == Direction.RightDown)
 					newX += 1;
 				else if (moveDirection == Direction.LeftUp || moveDirection == Direction.Left || moveDirection == Direction.LeftDown)
@@ -42,7 +46,7 @@ namespace Roguelike
 				else if (moveDirection == Direction.LeftUp || moveDirection == Direction.Up || moveDirection == Direction.RightUp)
 					newY -= 1;
 
-				player.Creature.interactWithField(player.map[newY, newX]);
+				creature.interactWithField(map[newY, newX]);
 			}
 			else
 				throw new CreatureException();

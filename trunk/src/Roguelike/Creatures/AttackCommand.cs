@@ -5,17 +5,28 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class AttackCommand : IPlayerCommand
+	public class AttackCommand : ICreatureCommand
 	{
-		Creature target;
-		public AttackCommand(Creature target)
+		Creature deffender;
+		Creature attacker;
+		public AttackCommand(Creature attacker, Creature target)
 		{
-			this.target = target;
+			this.deffender = target;
+			this.attacker = attacker;
 		}
 
-		public void execute(Player player)
+		public void execute()
 		{
-			player.Creature.attack(target);
+			if(attacker.MeleeWeapon != null)
+			{
+				deffender.Health -= attacker.MeleeWeapon.Damage;
+				if (deffender.isDead)
+				{
+					LootGenerator lootGen = new LootGenerator();
+					lootGen.generateLoot(deffender);
+					deffender.Field.removeCreature();
+				}
+			}
 		}
 	}
 }
