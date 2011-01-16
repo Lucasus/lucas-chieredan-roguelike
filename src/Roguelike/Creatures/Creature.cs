@@ -72,6 +72,13 @@ namespace Roguelike
 			this.creatureType = "Creature";
 		}
 
+        public bool canInteractWithField(Field field)
+        {
+            if (!(field is Wall) && field.Creature == null)
+                return true;
+            return false;
+        }
+
 		public void interactWithField(Field field)
 		{
 			CreatureVisitor visitor = new CreatureVisitor(this);

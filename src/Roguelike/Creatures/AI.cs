@@ -52,19 +52,38 @@ namespace Roguelike
 					}
 					else
 					{
-						int newX = creature.X;
-						int newY = creature.Y;
-						if(player.X > creature.X)
-							newX += 1;
-						else if(player.X < creature.X)
-							newX -= 1;
+                        int minDistance = int.MaxValue;
+                        int bestX = 0;
+                        int bestY = 0;
+                        for (int i = -1; i <= 1; ++i)
+                        {
+                            for (int j = -1; j <= 1; ++j)
+                            {
+                                Field f = this.map[creature.Y + j,creature.X + i];
+                                if(f != null && creature.canInteractWithField(f) == true)
+                                {
+                                    int distance = map.getEuclideanDistanceBetweenFields(player.Field, f);
+                                    if (distance < minDistance)
+                                    {
+                                        minDistance = distance;
+                                        bestX = creature.X + i;
+                                        bestY = creature.Y + j;
+                                    }
+                                }
+                            }
+                        }
 
-						if(player.Y > creature.Y)
-							newY += 1;
-						else if(player.Y < creature.Y)
-							newY -= 1;
-						if (this.map[newY, newX].Creature == null)
-							creature.interactWithField(this.map[newY, newX]);
+                        Random r = new Random();
+
+                        if (minDistance > 10 || (map.isSightBetweenFields(player.Field, creature.Field) == false && minDistance > 3))
+                        {
+                            bestX = creature.X + r.Next(3) - 1;
+                            bestY = creature.Y + r.Next(3) - 1;
+                        }
+
+                        if (this.map[bestY, bestX].Creature == null)
+                            creature.interactWithField(this.map[bestY, bestX]);
+
 					}
 				}
 			}

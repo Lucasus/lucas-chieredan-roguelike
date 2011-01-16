@@ -37,7 +37,7 @@ namespace Roguelike
 					if (deffender.isDead)
 					{
 						LootGenerator lootGen = new LootGenerator();
-						lootGen.generateLoot(deffender);
+						lootGen.generateLoot(attacker, deffender);
 						deffender.Field.removeCreature();
 					}
 				}

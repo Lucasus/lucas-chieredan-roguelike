@@ -37,28 +37,28 @@ namespace RoguelikeGUI
 		{
 			switch (key)
 			{
-				case Key.NumPad1:// Key.B: // 
+				case Key.B: // 
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y + 1, this.TargetField.X - 1];
 					break;
-				case Key.NumPad2: // Key.N://
+				case Key.N://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y + 1, this.TargetField.X];
 					break;
-				case Key.NumPad3: //Key.M://
+				case Key.M://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y + 1, this.TargetField.X + 1];
 					break;
-				case Key.NumPad4: // Key.G://
+				case Key.G://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y, this.TargetField.X - 1];
 					break;
-				case Key.NumPad6: // Key.J://
+				case Key.J://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y, this.TargetField.X + 1];
 					break;
-				case Key.NumPad7: // Key.T://
+				case Key.T://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y - 1, this.TargetField.X - 1];
 					break;
-				case Key.NumPad8: // Key.Y://
+				case Key.Y://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y - 1, this.TargetField.X];
 					break;
-				case Key.NumPad9: // Key.U://
+				case Key.U://
 					this.TargetField = this.manager.GameService.Map[this.TargetField.Y - 1, this.TargetField.X + 1];
 					break;
 				case Key.Q:

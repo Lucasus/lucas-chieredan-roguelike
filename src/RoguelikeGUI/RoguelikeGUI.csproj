@@ -162,10 +162,10 @@
     <Resource Include="Images\enemy.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\money.png" />
+    <Resource Include="Images\health.png" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Images\health.png" />
+    <Resource Include="Images\money.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Images\gun.png" />
