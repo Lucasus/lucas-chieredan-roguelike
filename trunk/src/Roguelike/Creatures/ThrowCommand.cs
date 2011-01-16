@@ -36,17 +36,20 @@ namespace Roguelike
 				{
 					for(int j=-thrower.GrenadeWeapon.Spread; j<thrower.GrenadeWeapon.Spread + 1; j++)
 					{
-						Field damagedField = map[targetField.Y + j, targetField.X + i];
-						if(damagedField.Creature != null)
-						{
-							damagedField.Creature.Health -= this.thrower.GrenadeWeapon.Damage;
-							if (damagedField.Creature.isDead)
-							{
-								LootGenerator lootGen = new LootGenerator();
-								lootGen.generateLoot(damagedField.Creature);
-								damagedField.Creature.Field.removeCreature();
-							}
-						}
+                        if (map.IsWithinBounds(targetField.Y + j, targetField.X + i))
+                        {
+                            Field damagedField = map[targetField.Y + j, targetField.X + i];
+                            if (damagedField.Creature != null)
+                            {
+                                damagedField.Creature.Health -= this.thrower.GrenadeWeapon.Damage;
+                                if (damagedField.Creature.isDead)
+                                {
+                                    LootGenerator lootGen = new LootGenerator();
+                                    lootGen.generateLoot(thrower, damagedField.Creature);
+                                    damagedField.Creature.Field.removeCreature();
+                                }
+                            }
+                        }
 					}
 				}
 			}

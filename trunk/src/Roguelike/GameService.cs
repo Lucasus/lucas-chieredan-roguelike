@@ -22,9 +22,10 @@ namespace Roguelike
 			Ai = new AI(Map, Player);
 
 			Random randomNumberGenerator = new Random();
-			for(int i=0; i<10;)
+			for(int i=0; i<30;)
 			{
-				Creature enemy = new Creature(10){CreatureType = "Enemy", MeleeWeapon = new Weapon(){Damage=1}};
+
+				Creature enemy = new Creature(5 + randomNumberGenerator.Next(10)){CreatureType = "Enemy", MeleeWeapon = new Weapon(){Damage=1}};
 
 				bool success = Map[randomNumberGenerator.Next(Map.MapWidth), randomNumberGenerator.Next(Map.MapHeight)].putCreature(enemy);
 				if(success)

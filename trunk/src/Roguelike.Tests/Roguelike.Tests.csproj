@@ -79,7 +79,6 @@
     <Compile Include="Tests\PlayerTest.cs" />
     <Compile Include="AssemblyInfo.cs" />
     <Compile Include="Tests\MapTest.cs" />
-    <Compile Include="UnitTest1.cs" />
     <Compile Include="Utilities\TestObjects.cs" />
   </ItemGroup>
   <ItemGroup>

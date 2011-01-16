@@ -43,16 +43,28 @@ namespace Roguelike
         {
             get
             {
-				if(index1 < 0 || index1 >= fields.GetLength(0) || index2 < 0 || index2 >= fields.GetLength(1))
+				if(!IsWithinBounds(index1, index2))
 					throw new MapOutOfBoundException();
                 return fields[index1,index2];
             }
         }
 
-		public double getDistanceBetweenFields(Field sourceField, Field destField)
+        public bool IsWithinBounds(int index1, int index2)
+        {
+            if (index1 < 0 || index1 >= fields.GetLength(0) || index2 < 0 || index2 >= fields.GetLength(1))
+                return false;
+            return true;
+        }
+
+		public int getDistanceBetweenFields(Field sourceField, Field destField)
 		{
 			return Math.Max(Math.Abs(sourceField.X - destField.X), Math.Abs(sourceField.Y - destField.Y));
 		}
+
+        public int getEuclideanDistanceBetweenFields(Field sourceField, Field destField)
+        {
+            return Math.Abs(sourceField.X - destField.X) + Math.Abs(sourceField.Y - destField.Y);
+        }
 
 		public bool isSightBetweenFields(Field sourceField, Field destField)
 		{

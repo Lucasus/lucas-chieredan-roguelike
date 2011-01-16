@@ -18,8 +18,8 @@ namespace RoguelikeGUI
 		private int CurrentPosition
 		{
 			set {
-				if(this.Target != null)
-					manager.MapDrawer.Draw(manager.GameService.Player.Field);
+                if (this.Target != null)
+                    manager.MapDrawer.Draw(manager.GameService.Player.Field);
 				currentPosition = value;
 				if(this.Target != null)
 					manager.MapDrawer[this.Target.Field].DrawOnField(ImageLoader.LoadImage("selectBorder.png"));

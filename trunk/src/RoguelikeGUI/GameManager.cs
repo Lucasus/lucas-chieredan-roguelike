@@ -66,7 +66,7 @@ namespace RoguelikeGUI
 		private void UpdateScreenMap()
 		{
 			Map map = gameService.Map;
-			mapDrawer.Draw(this.gameService.Player.Field);
+            mapDrawer.Draw(this.gameService.Player.Field);
 		}
 
 		public void processKey(Key key)
