@@ -12,7 +12,7 @@ namespace RoguelikeGUI
 {
 	public class GameManager
 	{
-		private MapWindow window;
+		private MapView window;
 		private GameService gameService = new GameService();
 		private IKeyProcessor keyProcessor;
 		private MapDrawer mapDrawer;
@@ -32,7 +32,7 @@ namespace RoguelikeGUI
 			set { keyProcessor = value; }
 		}
 
-		public GameManager(MapWindow view)
+		public GameManager(MapView view)
 		{
 			this.window = view;
 			this.keyProcessor = new MainKeyProcessor(this);
