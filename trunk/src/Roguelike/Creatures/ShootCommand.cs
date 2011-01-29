@@ -65,6 +65,10 @@ namespace Roguelike
 						}
 					}
 				}
+				else
+				{
+					AbstractLogger.Current.Log(attacker.MianownikName + " strzelił do " + deffender.BiernikName + " ale nie trafił.");
+				}
 			}
 		}
 	}
