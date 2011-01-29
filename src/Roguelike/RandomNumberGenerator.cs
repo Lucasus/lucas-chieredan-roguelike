@@ -7,7 +7,14 @@ namespace Roguelike
 {
 	public class RandomNumberGenerator : IRandomNumberGenerator
 	{
+		public static Random GlobalRandom { get; set; }
+
 		Random random;
+		static RandomNumberGenerator()
+		{
+			GlobalRandom = new Random();
+		}
+
 		public RandomNumberGenerator()
 		{
 			random = new Random();

@@ -16,7 +16,8 @@ namespace Roguelike
 			LeftDown = 5,
 			Left = 6,
 			LeftUp = 7,
-			Up = 8
+			Up = 8,
+			Stop = 9
 		}
 
 		public Direction moveDirection;
@@ -39,6 +40,7 @@ namespace Roguelike
 			if (xDir == -1 && yDir == 0) moveDirection = Direction.Left;
 			if (xDir == -1 && yDir == 1) moveDirection = Direction.LeftDown;
 			if (xDir == 0 && yDir == -1) moveDirection = Direction.Up;
+			if (xDir == 0 && yDir == 0) moveDirection = Direction.Stop;
 			if (xDir == 0 && yDir == 1) moveDirection = Direction.Down;
 			if (xDir == 1 && yDir == -1) moveDirection = Direction.RightUp;
 			if (xDir == 1 && yDir == 0) moveDirection = Direction.Right;

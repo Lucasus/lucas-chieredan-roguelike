@@ -76,6 +76,7 @@
     <Compile Include="Creatures\ShootCommand.cs" />
     <Compile Include="Creatures\ThrowCommand.cs" />
     <Compile Include="AbstractLogger.cs" />
+    <Compile Include="EmptyLogger.cs" />
     <Compile Include="Map\CreatureVisitor.cs" />
     <Compile Include="Exceptions\CreatureException.cs" />
     <Compile Include="GameObjects\GrenadeWeapon.cs" />
