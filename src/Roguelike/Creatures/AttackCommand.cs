@@ -30,6 +30,8 @@ namespace Roguelike
 			if(this.isExecutable())
 			{
 				deffender.Health -= attacker.MeleeWeapon.Damage;
+				if (deffender.Health*2 < deffender.MaxHealth)
+					deffender.PanicModeCounter = 20;
 				if (deffender.isDead)
 				{
 					LootGenerator lootGen = new LootGenerator();

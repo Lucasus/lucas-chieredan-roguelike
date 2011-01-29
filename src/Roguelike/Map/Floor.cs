@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Roguelike
 {
-    public class Floor : Field
-    {
+	public class Floor : Field
+	{
 		public Floor(int x, int y) : base(x, y)
 		{
 		}
@@ -18,14 +18,16 @@ namespace Roguelike
 
 		public override bool putCreature(Creature thing)
 		{
-			if(this.Creature == null)
+			if (this.Creature == null)
 			{
 				this.Creature = thing;
 				this.Creature.Field = this;
 				return true;
 			}
 			else
+			{
 				return false;
+			}
 		}
 
 		public override void removeCreature()
@@ -44,5 +46,5 @@ namespace Roguelike
 		{
 			visitor.visit(this);
 		}
-    }
+	}
 }

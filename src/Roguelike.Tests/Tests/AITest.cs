@@ -5,12 +5,12 @@ using Roguelike.Tests.Utilities;
 
 namespace Roguelike.Tests
 {
-    
-    
-    /// <summary>
-    ///This is a test class for AITest and is intended
-    ///to contain all AITest Unit Tests
-    ///</summary>
+	
+	
+	/// <summary>
+	///This is a test class for AITest and is intended
+	///to contain all AITest Unit Tests
+	///</summary>
 	[TestClass()]
 	public class AITest
 	{
@@ -51,7 +51,7 @@ namespace Roguelike.Tests
 		[TestInitialize()]
 		public void MapTestInitialize()
 		{
-            map = TestObjects.GetTestMap();
+			map = TestObjects.GetTestMap();
 			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			map[0, 0].putCreature(player);
 		}
@@ -61,19 +61,31 @@ namespace Roguelike.Tests
 		{
 			Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			map[1,2].putCreature(aiControledCreature);
-			AI artificialInteligence = new AI(map, player);
-			artificialInteligence.generateNextCommand(aiControledCreature);
+			AI artificialInteligence = new AI(map, player, aiControledCreature);
+			artificialInteligence.GenerateNextCommand();
 			Assert.AreEqual(1,aiControledCreature.X);
 			Assert.AreEqual(0,aiControledCreature.Y);
 		}
+
+		//[TestMethod()]
+		//public void CreatureMovingTowardPlayer()
+		//{
+		//    Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
+		//    map[1, 0].putCreature(aiControledCreature);
+		//    AI artificialInteligence = new AI(map, player);
+		//    ICreatureCommand command = artificialInteligence.generateNextCommand(aiControledCreature);
+		//    if (command != null)
+		//        command.execute();
+		//    Assert.AreEqual(5, player.Health);
+		//}
 
 		[TestMethod()]
 		public void AttackPlayerTest()
 		{
 			Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
 			map[1, 0].putCreature(aiControledCreature);
-			AI artificialInteligence = new AI(map, player);
-			ICreatureCommand command = artificialInteligence.generateNextCommand(aiControledCreature);
+			AI artificialInteligence = new AI(map, player, aiControledCreature);
+			ICreatureCommand command = artificialInteligence.GenerateNextCommand();
 			if(command != null)
 				command.execute();
 			Assert.AreEqual(5, player.Health);
@@ -84,8 +96,8 @@ namespace Roguelike.Tests
 		public void CreatureNotOnTheMapTest()
 		{
 			Creature aiControledCreature = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
-			AI artificialInteligence = new AI(map, player);
-			artificialInteligence.generateNextCommand(aiControledCreature);
+			AI artificialInteligence = new AI(map, player, aiControledCreature);
+			artificialInteligence.GenerateNextCommand();
 		}
 	}
 }

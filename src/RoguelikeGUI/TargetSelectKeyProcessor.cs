@@ -18,8 +18,8 @@ namespace RoguelikeGUI
 		private int CurrentPosition
 		{
 			set {
-                if (this.Target != null)
-                    manager.MapDrawer.Draw(manager.GameService.Player.Field);
+				if (this.Target != null)
+					manager.MapDrawer.Draw(manager.GameService.Player.Field);
 				currentPosition = value;
 				if(this.Target != null)
 					manager.MapDrawer[this.Target.Field].DrawOnField(ImageLoader.LoadImage("selectBorder.png"));
@@ -41,7 +41,7 @@ namespace RoguelikeGUI
 			this.manager = manager;
 			Creature player = this.manager.GameService.Player;
 			Map map = this.manager.GameService.Map;
-			this.creatures = this.manager.GameService.Ai.Creatures.Where(x => map.getDistanceBetweenFields(player.Field, x.Field) <= player.RangedWeapon.Range && map.isSightBetweenFields(player.Field,x.Field)).ToList();
+			this.creatures = this.manager.GameService.Creatures.Where(x => map.getDistanceBetweenFields(player.Field, x.Field) <= player.RangedWeapon.Range && map.isSightBetweenFields(player.Field,x.Field)).ToList();
 			this.CurrentPosition = 0;
 		}
 

@@ -40,6 +40,10 @@ namespace Roguelike
 						lootGen.generateLoot(attacker, deffender);
 						deffender.Field.removeCreature();
 					}
+					else if (deffender.Health * 2 < deffender.MaxHealth)
+					{
+						deffender.PanicModeCounter = 20;
+					}
 				}
 			}
 		}

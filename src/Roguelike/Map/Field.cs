@@ -5,8 +5,8 @@ using System.Text;
 
 namespace Roguelike
 {
-    public abstract class Field
-    {
+	public abstract class Field
+	{
 		private int x;
 		private int y;
 
@@ -29,11 +29,11 @@ namespace Roguelike
 		}
 
 		public abstract bool blocksSight();
-        public abstract bool putCreature(Creature thing);
+		public abstract bool putCreature(Creature thing);
 		public abstract void removeCreature();
 		public abstract bool placeObject(IGameObject field);
 		public abstract void accept(IFieldVisitor visitor);
 		public Creature Creature { get; set; }
 		public List<IGameObject> Objects { get; set; }
-    }
+	}
 }
