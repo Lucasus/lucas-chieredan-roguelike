@@ -14,8 +14,7 @@ namespace Roguelike
 
 		private Map map;
 		private Creature player;
-		private bool sawPlayer = false;
-		private bool sniper = false;
+		public bool Sniper { get; set; }
 
 		/// <summary>
 		/// referencja do stwora, którym będzie sztuczna inteligencja kierować
@@ -33,9 +32,9 @@ namespace Roguelike
 
 			Random r = new Random();
 			if(r.Next(2) == 0)
-				sniper = true;
+				Sniper = true;
 			else
-				sniper = false;
+				Sniper = false;
 
 		}
 
@@ -51,7 +50,7 @@ namespace Roguelike
 				if (!player.isDead)
 				{
 					if (map.isSightBetweenFields(player.Field, creature.Field) == true)
-						sawPlayer = true;
+						creature.SawPlayer = true;
 
 					int minDistance = int.MaxValue;
 					int maxDistance = 0;
@@ -64,23 +63,26 @@ namespace Roguelike
 					for (int i = -1; i <= 1; ++i)
 						for (int j = -1; j <= 1; ++j)
 						{
-							Field f = this.map[creature.Y + j, creature.X + i];
-							if (f != null && creature.canInteractWithField(f) == true
-								&& this.map[creature.Y + j, creature.X + i].Creature == null)
+							if(map.IsWithinBounds(creature.Y + j, creature.X + i))
 							{
-								int distance = map.getEuclideanDistanceBetweenFields(player.Field, f);
-								if (distance < minDistance)
+								Field f = this.map[creature.Y + j, creature.X + i];
+								if (f != null && creature.canInteractWithField(f) == true
+									&& this.map[creature.Y + j, creature.X + i].Creature == null)
 								{
-									minDistance = distance;
-									nearPlayerDirX = i;
-									nearPlayerDirY = j;
-								}
-								if (distance >= maxDistance)
-								{
-									maxDistance = distance;
-									furtherPlayerDirX = i;
-									furtherPlayerDirY = j;
-								}
+									int distance = map.getEuclideanDistanceBetweenFields(player.Field, f);
+									if (distance < minDistance)
+									{
+										minDistance = distance;
+										nearPlayerDirX = i;
+										nearPlayerDirY = j;
+									}
+									if (distance >= maxDistance)
+									{
+										maxDistance = distance;
+										furtherPlayerDirX = i;
+										furtherPlayerDirY = j;
+									}
+								}							
 							}
 						}
 
@@ -103,14 +105,14 @@ namespace Roguelike
 						return new AttackCommand(creature, player, map);
 					}
 					// jeśli przeciwnik nie widział gracza - rusza się losowo
-					else if (minDistance > 10 && sawPlayer == false)
+					else if (minDistance > creature.SightRange || creature.SawPlayer == false)
 					{
 						return RandomMove();
 					}
 					// przeciwnik widzi (widział gracza) to idzie w jego stronę lub strzela jak lubi
 					else
 					{
-						if (sniper == false || ShootCommand.CanShoot(map, creature, player) == false)
+						if (Sniper == false || ShootCommand.CanShoot(map, creature, player) == false)
 						{
 							return new MoveCommand(creature, nearPlayerDirX, nearPlayerDirY, map, false);
 						}
@@ -128,7 +130,7 @@ namespace Roguelike
 
 		private ICreatureCommand RandomMove()
 		{
-			Random r = new Random();
+			Random r = RandomNumberGenerator.GlobalRandom;
 			return new MoveCommand(creature, r.Next(3) - 1, r.Next(3) - 1, map, false);
 		}
 	}

@@ -14,8 +14,10 @@ namespace Roguelike
 		public int PanicModeCounter { get; set; }
 		public int MaxHealth { get { return maxHealth; } }
 		public bool isDead { get { return Health <= 0; } }
+		public bool SawPlayer { get; set; }
 		public string CreatureType { get; set; }
 		public int Health { get; set; }
+		public int SightRange { get; set; }
 		public Weapon MeleeWeapon { get; set; }
 		public RangedWeapon RangedWeapon { get; set; }
 		public GrenadeWeapon GrenadeWeapon { get; set; }
@@ -48,6 +50,8 @@ namespace Roguelike
 			}
 			this.CreatureType = "Creature";
 			this.PanicModeCounter = 0;
+			this.SightRange = 10;
+			this.SawPlayer = false;
 		}
 
 		public bool canInteractWithField(Field field)

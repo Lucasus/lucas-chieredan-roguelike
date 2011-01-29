@@ -47,17 +47,20 @@ namespace Roguelike.Tests
 		[TestInitialize()]
 		public void MyTestInitialize()
 		{
-            map = TestObjects.GetTestMap();
+			map = TestObjects.GetTestMap();
 			CreatureVisitor.map = map;
 			target = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 }, RangedWeapon = new RangedWeapon() { Damage = 5, Range = 5, Chance = 0.5} };
 			map[0, 0].putCreature(target);
-        }
+		}
 
 		[TestMethod()]
-		[ExpectedException(typeof(CreatureException))]
 		public void ConstructorTest()
 		{
-			Creature target = new Creature(-10);
+			try
+			{
+				Creature target = new Creature(-10);
+				Assert.Fail("spodziewany był wyjątek");
+			} catch(CreatureException) { }
 		}
 
 		[TestMethod()]
