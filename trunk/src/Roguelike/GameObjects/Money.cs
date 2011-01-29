@@ -11,7 +11,9 @@ namespace Roguelike
 
 		public void objectPickedBy(Creature creature)
 		{
-			creature.Money += this.Worth;
+			int money = this.Worth;
+			creature.Money += money;
+			AbstractLogger.Current.Log(creature.MianownikName + " zebrał " + money + " pieniędzy.");
 		}
 	}
 }

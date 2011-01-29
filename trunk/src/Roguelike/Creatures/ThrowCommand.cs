@@ -32,9 +32,11 @@ namespace Roguelike
 			if(this.isExecutable())
 			{
 				this.thrower.GrenadeWeapon.Count -= 1;
+				int enemyCount = 0;
+				int enemyKilledCount = 0;
 				for(int i=-thrower.GrenadeWeapon.Spread; i<thrower.GrenadeWeapon.Spread + 1; i++)
 				{
-					for(int j=-thrower.GrenadeWeapon.Spread; j<thrower.GrenadeWeapon.Spread + 1; j++)
+					for (int j = -thrower.GrenadeWeapon.Spread; j < thrower.GrenadeWeapon.Spread + 1; j++)
 					{
 						if (map.IsWithinBounds(targetField.Y + j, targetField.X + i))
 						{
@@ -44,18 +46,24 @@ namespace Roguelike
 								damagedField.Creature.Health -= this.thrower.GrenadeWeapon.Damage;
 								if (damagedField.Creature.isDead)
 								{
+									++enemyKilledCount;
 									LootGenerator lootGen = new LootGenerator();
 									lootGen.generateLoot(thrower, damagedField.Creature);
 									damagedField.Creature.Field.removeCreature();
 								}
-								else if (damagedField.Creature.Health * 2 < damagedField.Creature.MaxHealth)
+								else
 								{
-									damagedField.Creature.PanicModeCounter = 20;
+									++enemyCount;
+									if (damagedField.Creature.Health * 2 < damagedField.Creature.MaxHealth)
+									{
+										damagedField.Creature.PanicModeCounter = 20;
+									}
 								}
 							}
 						}
 					}
 				}
+				AbstractLogger.Current.Log(thrower.MianownikName + " rzucił granatem zabijając " + enemyKilledCount + " i raniąc " + enemyCount + " osób.");
 			}
 		}
 	}

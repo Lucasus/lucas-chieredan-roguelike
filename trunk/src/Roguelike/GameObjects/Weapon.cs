@@ -17,6 +17,7 @@ namespace Roguelike
 		public virtual void objectPickedBy(Creature creature)
 		{
 			creature.MeleeWeapon = this;
+			AbstractLogger.Current.Log(creature.MianownikName + " zebrał nóż zadający " + this.Damage + " obrażeń.");
 		}
 	}
 }

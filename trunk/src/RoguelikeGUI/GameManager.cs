@@ -32,12 +32,13 @@ namespace RoguelikeGUI
 			set { keyProcessor = value; }
 		}
 
-		public GameManager(MapView view)
+		public GameManager(MapView mapView, ListBoxLogger listBoxLogger)
 		{
-			this.window = view;
+			this.window = mapView;
 			this.keyProcessor = new MainKeyProcessor(this);
 			MapLoader loader = new MapLoader();
 			char[,] initialMap = loader.loadMap("TestMap.map");
+			AbstractLogger.Current = listBoxLogger;
 			this.gameService.InitializeGame(initialMap);
 			this.mapDrawer = new MapDrawer(window.GridMap, 15, 20, this.gameService.Map);
 
@@ -66,7 +67,7 @@ namespace RoguelikeGUI
 		private void UpdateScreenMap()
 		{
 			Map map = gameService.Map;
-            mapDrawer.Draw(this.gameService.Player.Field);
+			mapDrawer.Draw(this.gameService.Player.Field);
 		}
 
 		public void processKey(Key key)

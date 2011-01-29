@@ -11,10 +11,14 @@ namespace Roguelike
 		
 		public void objectPickedBy(Creature creature)
 		{
+			int oldHealth = creature.Health;
+
 			if(creature.Health + this.Health <= creature.MaxHealth)
 				creature.Health += this.Health;
 			else
 				creature.Health = creature.MaxHealth;
+
+			AbstractLogger.Current.Log(creature.MianownikName + " wyleczył " + (creature.Health - oldHealth) + " zdrowia.");
 		}
 	}
 }

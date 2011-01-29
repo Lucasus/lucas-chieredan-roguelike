@@ -23,6 +23,9 @@ namespace Roguelike
 		public int X { get { return field.X; } }
 		public int Y { get { return field.Y; } }
 
+		public string MianownikName { get; set; }
+		public string BiernikName { get; set; }
+
 		public Field Field
 		{
 			get { return field; }

@@ -15,6 +15,7 @@ namespace Roguelike
 		private Map map;
 		private Creature player;
 		private bool sawPlayer = false;
+		private bool sniper = false;
 
 		/// <summary>
 		/// referencja do stwora, którym będzie sztuczna inteligencja kierować
@@ -29,6 +30,13 @@ namespace Roguelike
 			this.map = map;
 			this.player = player;
 			this.creature = creature;
+
+			Random r = new Random();
+			if(r.Next(2) == 0)
+				sniper = true;
+			else
+				sniper = false;
+
 		}
 
 		#endregion
@@ -81,15 +89,14 @@ namespace Roguelike
 					if(creature.PanicModeCounter > 0)
 					{
 						creature.PanicModeCounter--;
-						if (map.getDistanceBetweenFields(player.Field, map[creature.Y + furtherPlayerDirY, creature.X + furtherPlayerDirX]) == 1)
-						{
-							return new AttackCommand(creature, player, map);
-						}
-						else
+						int currentDistance = map.getEuclideanDistanceBetweenFields(player.Field, map[creature.Y, creature.X]);
+						int furtherDistance = map.getEuclideanDistanceBetweenFields(player.Field, map[creature.Y + furtherPlayerDirY, creature.X + furtherPlayerDirX]);
+						if(furtherDistance > currentDistance)
 						{
 							return new MoveCommand(creature, furtherPlayerDirX, furtherPlayerDirY, map, false);
 						}
 					}
+
 					// jeżeli przeciwnik jest w miarę blisko - atakuje
 					if (map.getDistanceBetweenFields(player.Field, creature.Field) == 1)
 					{
@@ -100,10 +107,17 @@ namespace Roguelike
 					{
 						return RandomMove();
 					}
-					// przeciwnik widzi (widział gracza) to idzie w jego stronę
+					// przeciwnik widzi (widział gracza) to idzie w jego stronę lub strzela jak lubi
 					else
 					{
-						return new MoveCommand(creature, nearPlayerDirX, nearPlayerDirY, map, false);
+						if (sniper == false || ShootCommand.CanShoot(map, creature, player) == false)
+						{
+							return new MoveCommand(creature, nearPlayerDirX, nearPlayerDirY, map, false);
+						}
+						else
+						{
+							return new ShootCommand(creature, player, map, new RandomNumberGenerator());
+						}
 					}
 				}
 			}

@@ -102,6 +102,7 @@
     </Compile>
     <Compile Include="GuiMapField.cs" />
     <Compile Include="IKeyProcessor.cs" />
+    <Compile Include="ListBoxLogger.cs" />
     <Compile Include="MainKeyProcessor.cs" />
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
