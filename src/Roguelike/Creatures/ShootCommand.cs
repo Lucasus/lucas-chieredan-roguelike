@@ -7,10 +7,20 @@ namespace Roguelike
 {
 	public class ShootCommand : ICreatureCommand
 	{
+		public static bool CanShoot(Map map, Creature attacker, Creature target)
+		{
+			if (attacker.RangedWeapon != null
+				&& map.getDistanceBetweenFields(attacker.Field, target.Field) <= attacker.RangedWeapon.Range
+				&& map.isSightBetweenFields(attacker.Field, target.Field))
+				return true;
+			return false;
+		}
+
 		private IRandomNumberGenerator randomNumberGenerator;
 		private Creature deffender;
 		private Creature attacker;
 		private Map map;
+
 		public ShootCommand(Creature attacker, Creature target, Map map, IRandomNumberGenerator randomNumberGenerator)
 		{
 			this.randomNumberGenerator = randomNumberGenerator;
@@ -29,20 +39,30 @@ namespace Roguelike
 
 		public void execute()
 		{
-			if (attacker.RangedWeapon != null && map.getDistanceBetweenFields(attacker.Field, deffender.Field) <= attacker.RangedWeapon.Range && map.isSightBetweenFields(attacker.Field, deffender.Field))
+			if (CanShoot(map, attacker, deffender))
 			{
 				if (randomNumberGenerator.generateNumber() <= attacker.RangedWeapon.Chance)
 				{
-					deffender.Health -= attacker.RangedWeapon.Damage;
+					int damage = attacker.RangedWeapon.Damage;
+					deffender.Health -= damage;
 					if (deffender.isDead)
 					{
 						LootGenerator lootGen = new LootGenerator();
 						lootGen.generateLoot(attacker, deffender);
 						deffender.Field.removeCreature();
+						AbstractLogger.Current.Log(attacker.MianownikName + " zabił " + deffender.BiernikName);
 					}
-					else if (deffender.Health * 2 < deffender.MaxHealth)
+					else
 					{
-						deffender.PanicModeCounter = 20;
+						if (deffender.Health * 2 < deffender.MaxHealth)
+						{
+							deffender.PanicModeCounter = 20;
+							AbstractLogger.Current.Log(attacker.MianownikName + " strzelił " + deffender.BiernikName + " i zadał mu " + damage + " obrażeń. " + deffender.MianownikName + " ucieka w popłochu");
+						}
+						else
+						{
+							AbstractLogger.Current.Log(attacker.MianownikName + " strzelił do " + deffender.BiernikName + " i zadał mu " + damage + " obrażeń");
+						}
 					}
 				}
 			}

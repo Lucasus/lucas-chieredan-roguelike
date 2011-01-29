@@ -16,22 +16,22 @@ using RoguelikeGUI.Utilities;
 
 namespace RoguelikeGUI
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
-    public partial class MapView : UserControl
-    {
+	/// <summary>
+	/// Interaction logic for Window1.xaml
+	/// </summary>
+	public partial class MapView : UserControl
+	{
 		private GameManager gameManager;
 
-        public MapView()
-        {
-            InitializeComponent();
-			gameManager = new GameManager(this);
-        }
+		public MapView()
+		{
+			InitializeComponent();
+			gameManager = new GameManager(this, new ListBoxLogger(Logger) );
+		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)
 		{
 			gameManager.processKey(e.Key);
 		}
-    }
+	}
 }

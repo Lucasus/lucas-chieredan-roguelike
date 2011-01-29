@@ -29,14 +29,26 @@ namespace Roguelike
 		{
 			if(this.isExecutable())
 			{
-				deffender.Health -= attacker.MeleeWeapon.Damage;
-				if (deffender.Health*2 < deffender.MaxHealth)
-					deffender.PanicModeCounter = 20;
+				int damage = attacker.MeleeWeapon.Damage;
+				deffender.Health -= damage;
 				if (deffender.isDead)
 				{
 					LootGenerator lootGen = new LootGenerator();
 					lootGen.generateLoot(attacker, deffender);
 					deffender.Field.removeCreature();
+					AbstractLogger.Current.Log(attacker.MianownikName + " zabił " + deffender.BiernikName);
+				}
+				else
+				{
+					if (deffender.Health * 2 < deffender.MaxHealth)
+					{
+						deffender.PanicModeCounter = 20;
+						AbstractLogger.Current.Log(attacker.MianownikName + " zaatakował nożem " + deffender.BiernikName + " i zadał mu " + damage + " obrażeń. " + deffender.MianownikName + " ucieka w popłochu");
+					}
+					else
+					{
+						AbstractLogger.Current.Log(attacker.MianownikName + " zaatakował nożem " + deffender.BiernikName + " i zadał mu " + damage + " obrażeń");
+					}
 				}
 			}
 		}
