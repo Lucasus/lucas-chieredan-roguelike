@@ -22,12 +22,32 @@ namespace Roguelike
 		public Direction moveDirection;
 		private Map map;
 		private Creature creature;
+		private bool interactIfCreature = false;
 
 		public MoveCommand(Creature creature, Direction moveDirection, Map map)
 		{
 			this.creature = creature;
 			this.moveDirection = moveDirection;
 			this.map = map;
+			this.interactIfCreature = true;
+		}
+
+		public MoveCommand(Creature creature, int xDir, int yDir, Map map, bool interactIfCreature)
+		{
+			Direction moveDirection = Direction.Down;
+			if (xDir == -1 && yDir == -1) moveDirection = Direction.LeftUp;
+			if (xDir == -1 && yDir == 0) moveDirection = Direction.Left;
+			if (xDir == -1 && yDir == 1) moveDirection = Direction.LeftDown;
+			if (xDir == 0 && yDir == -1) moveDirection = Direction.Up;
+			if (xDir == 0 && yDir == 1) moveDirection = Direction.Down;
+			if (xDir == 1 && yDir == -1) moveDirection = Direction.RightUp;
+			if (xDir == 1 && yDir == 0) moveDirection = Direction.Right;
+			if (xDir == 1 && yDir == 1) moveDirection = Direction.RightDown;
+
+			this.creature = creature;
+			this.moveDirection = moveDirection;
+			this.map = map;
+			this.interactIfCreature = interactIfCreature;
 		}
 
 		public bool isExecutable()
@@ -54,7 +74,8 @@ namespace Roguelike
 				else if (moveDirection == Direction.LeftUp || moveDirection == Direction.Up || moveDirection == Direction.RightUp)
 					newY -= 1;
 
-				creature.interactWithField(map[newY, newX]);
+				if (this.map[newY, newX].Creature == null || this.interactIfCreature)
+					creature.interactWithField(map[newY, newX]);
 			}
 			else
 				throw new CreatureException();

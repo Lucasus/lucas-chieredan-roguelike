@@ -5,9 +5,9 @@ using System.Text;
 
 namespace Roguelike
 {
-    public class Map
-    {
-        private Field[,] fields;
+	public class Map
+	{
+		private Field[,] fields;
 
 		public int MapWidth
 		{
@@ -19,52 +19,52 @@ namespace Roguelike
 			get {return fields.GetLength(1);}
 		}
 
-        public Map(char[,] mapString)
-        {
-            fields = new Field[mapString.GetLength(0), mapString.GetLength(1)];
-            for (int i = 0; i < mapString.GetLength(0); ++i)
-            {
-                for (int j = 0; j < mapString.GetLength(1); ++j)
-                {
-                    switch (mapString[i, j])
-                    {
-                        case '.':
-                            fields[i, j] = new Floor(j,i);
-                            break;
-                        case '#':
+		public Map(char[,] mapString)
+		{
+			fields = new Field[mapString.GetLength(0), mapString.GetLength(1)];
+			for (int i = 0; i < mapString.GetLength(0); ++i)
+			{
+				for (int j = 0; j < mapString.GetLength(1); ++j)
+				{
+					switch (mapString[i, j])
+					{
+						case '.':
+							fields[i, j] = new Floor(j,i);
+							break;
+						case '#':
 							fields[i, j] = new Wall(j, i);
-                            break;
-                    }
-                }
-            }
-        }
+							break;
+					}
+				}
+			}
+		}
 
-        public Field this[int index1, int index2]
-        {
-            get
-            {
+		public Field this[int index1, int index2]
+		{
+			get
+			{
 				if(!IsWithinBounds(index1, index2))
 					throw new MapOutOfBoundException();
-                return fields[index1,index2];
-            }
-        }
+				return fields[index1,index2];
+			}
+		}
 
-        public bool IsWithinBounds(int index1, int index2)
-        {
-            if (index1 < 0 || index1 >= fields.GetLength(0) || index2 < 0 || index2 >= fields.GetLength(1))
-                return false;
-            return true;
-        }
+		public bool IsWithinBounds(int index1, int index2)
+		{
+			if (index1 < 0 || index1 >= fields.GetLength(0) || index2 < 0 || index2 >= fields.GetLength(1))
+				return false;
+			return true;
+		}
 
 		public int getDistanceBetweenFields(Field sourceField, Field destField)
 		{
 			return Math.Max(Math.Abs(sourceField.X - destField.X), Math.Abs(sourceField.Y - destField.Y));
 		}
 
-        public int getEuclideanDistanceBetweenFields(Field sourceField, Field destField)
-        {
-            return Math.Abs(sourceField.X - destField.X) + Math.Abs(sourceField.Y - destField.Y);
-        }
+		public int getEuclideanDistanceBetweenFields(Field sourceField, Field destField)
+		{
+			return Math.Abs(sourceField.X - destField.X) + Math.Abs(sourceField.Y - destField.Y);
+		}
 
 		public bool isSightBetweenFields(Field sourceField, Field destField)
 		{
@@ -110,5 +110,5 @@ namespace Roguelike
 			
 			return true;
 		}
-    }
+	}
 }

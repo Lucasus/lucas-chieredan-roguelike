@@ -5,92 +5,117 @@ using System.Text;
 
 namespace Roguelike
 {
+	/// <summary>
+	/// klasa odpowiedzialna za ruchy i sztuczną inteligencję komputerowych przeciwników
+	/// </summary>
 	public class AI
 	{
+		#region Private fields
+
 		private Map map;
 		private Creature player;
-		private List<Creature> creatures;
-		public List<Creature> Creatures
-		{
-			get { return this.creatures; }
-		}
+		private bool sawPlayer = false;
 
-		public AI(Map map, Creature player)
+		/// <summary>
+		/// referencja do stwora, którym będzie sztuczna inteligencja kierować
+		/// </summary>
+		private Creature creature;
+
+		#endregion
+		#region Constructor
+
+		public AI(Map map, Creature player, Creature creature)
 		{
 			this.map = map;
 			this.player = player;
-			this.creatures = new List<Creature>();
+			this.creature = creature;
 		}
 
-		public void addCreature(Creature creature)
-		{
-			creatures.Add(creature);
-		}
+		#endregion
 
-		public void act()
+		/// <summary>
+		/// Generuje komendę - co ma zrobić komputerowy przeciwnik
+		/// </summary>
+		public ICreatureCommand GenerateNextCommand()
 		{
-			creatures.RemoveAll(x => x.isDead || x.Field == null);
-
-			foreach(Creature creature in creatures)
+			if (creature.Field != null)
 			{
-				ICreatureCommand creatureCommand = this.generateNextCommand(creature);
-				if(creatureCommand != null)
-					creatureCommand.execute();
-			}
-		}
-
-		public ICreatureCommand generateNextCommand(Creature creature)
-		{
-			ICreatureCommand command = null;
-			if(creature.Field != null)
-			{
-				if(!player.isDead)
+				if (!player.isDead)
 				{
-					if(map.getDistanceBetweenFields(player.Field, creature.Field) == 1)
+					if (map.isSightBetweenFields(player.Field, creature.Field) == true)
+						sawPlayer = true;
+
+					int minDistance = int.MaxValue;
+					int maxDistance = 0;
+					int nearPlayerDirX = 0;
+					int nearPlayerDirY = 0;
+					int furtherPlayerDirX = 0;
+					int furtherPlayerDirY = 0;
+
+					// liczymy, na które pole przeciwnik może wejść aby być najbliżej/najdalej gracza
+					for (int i = -1; i <= 1; ++i)
+						for (int j = -1; j <= 1; ++j)
+						{
+							Field f = this.map[creature.Y + j, creature.X + i];
+							if (f != null && creature.canInteractWithField(f) == true
+								&& this.map[creature.Y + j, creature.X + i].Creature == null)
+							{
+								int distance = map.getEuclideanDistanceBetweenFields(player.Field, f);
+								if (distance < minDistance)
+								{
+									minDistance = distance;
+									nearPlayerDirX = i;
+									nearPlayerDirY = j;
+								}
+								if (distance >= maxDistance)
+								{
+									maxDistance = distance;
+									furtherPlayerDirX = i;
+									furtherPlayerDirY = j;
+								}
+							}
+						}
+
+
+					// jeżeli przeciwnik jest ranny (prawie umiera), to ucieka. Chyba że nie ma gdzie uciec, wtedy strzela
+					if(creature.PanicModeCounter > 0)
 					{
-						command = new AttackCommand(creature, player, map);
+						creature.PanicModeCounter--;
+						if (map.getDistanceBetweenFields(player.Field, map[creature.Y + furtherPlayerDirY, creature.X + furtherPlayerDirX]) == 1)
+						{
+							return new AttackCommand(creature, player, map);
+						}
+						else
+						{
+							return new MoveCommand(creature, furtherPlayerDirX, furtherPlayerDirY, map, false);
+						}
 					}
+					// jeżeli przeciwnik jest w miarę blisko - atakuje
+					if (map.getDistanceBetweenFields(player.Field, creature.Field) == 1)
+					{
+						return new AttackCommand(creature, player, map);
+					}
+					// jeśli przeciwnik nie widział gracza - rusza się losowo
+					else if (minDistance > 10 && sawPlayer == false)
+					{
+						return RandomMove();
+					}
+					// przeciwnik widzi (widział gracza) to idzie w jego stronę
 					else
 					{
-                        int minDistance = int.MaxValue;
-                        int bestX = 0;
-                        int bestY = 0;
-                        for (int i = -1; i <= 1; ++i)
-                        {
-                            for (int j = -1; j <= 1; ++j)
-                            {
-                                Field f = this.map[creature.Y + j,creature.X + i];
-                                if(f != null && creature.canInteractWithField(f) == true)
-                                {
-                                    int distance = map.getEuclideanDistanceBetweenFields(player.Field, f);
-                                    if (distance < minDistance)
-                                    {
-                                        minDistance = distance;
-                                        bestX = creature.X + i;
-                                        bestY = creature.Y + j;
-                                    }
-                                }
-                            }
-                        }
-
-                        Random r = new Random();
-
-                        if (minDistance > 10 || (map.isSightBetweenFields(player.Field, creature.Field) == false && minDistance > 3))
-                        {
-                            bestX = creature.X + r.Next(3) - 1;
-                            bestY = creature.Y + r.Next(3) - 1;
-                        }
-
-                        if (this.map[bestY, bestX].Creature == null)
-                            creature.interactWithField(this.map[bestY, bestX]);
-
+						return new MoveCommand(creature, nearPlayerDirX, nearPlayerDirY, map, false);
 					}
 				}
 			}
 			else
 				throw new CreatureException();
+			return null;
+		}
 
-			return command;
+		private ICreatureCommand RandomMove()
+		{
+			Random r = new Random();
+			return new MoveCommand(creature, r.Next(3) - 1, r.Next(3) - 1, map, false);
 		}
 	}
 }

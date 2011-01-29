@@ -5,21 +5,24 @@ using System.Text;
 
 namespace Roguelike
 {
-    public class Creature
-    {
-		public bool isDead 
-		{
-			get{return health<=0;}
-		}
-
-		private string creatureType;
-		public string CreatureType{
-			get{ return creatureType; }
-			set{ creatureType = value; }
-		}
-
-
+	public class Creature
+	{
 		private Field field;
+		private int maxHealth;
+
+		public AI AI { get; set; }
+		public int PanicModeCounter { get; set; }
+		public int MaxHealth { get { return maxHealth; } }
+		public bool isDead { get { return Health <= 0; } }
+		public string CreatureType { get; set; }
+		public int Health { get; set; }
+		public Weapon MeleeWeapon { get; set; }
+		public RangedWeapon RangedWeapon { get; set; }
+		public GrenadeWeapon GrenadeWeapon { get; set; }
+		public int Money { get; set; }
+		public int X { get { return field.X; } }
+		public int Y { get { return field.Y; } }
+
 		public Field Field
 		{
 			get { return field; }
@@ -31,35 +34,6 @@ namespace Roguelike
 			}
 		}
 
-		private int maxHealth;
-		public int MaxHealth
-		{
-			get { return maxHealth; }
-		}
-
-		private int health;
-		public int Health 
-		{ 
-			get	{ return health;}
-			set	{ health = value; }
-		}
-		public Weapon MeleeWeapon { get; set; }
-		public RangedWeapon RangedWeapon { get; set; }
-		public GrenadeWeapon GrenadeWeapon { get; set; }
-		public int Money { get; set; }
-
-		public int X
-		{
-			get { return field.X; }
-			set { field.X = value; }
-		}
-
-		public int Y
-		{
-			get { return field.Y; }
-			set { field.Y = value; }
-		}
-
 		public Creature(int health)
 		{
 			if(health <= 0)
@@ -67,22 +41,23 @@ namespace Roguelike
 			else 
 			{
 				this.maxHealth = health;
-				this.health = health;
+				Health = health;
 			}
-			this.creatureType = "Creature";
+			this.CreatureType = "Creature";
+			this.PanicModeCounter = 0;
 		}
 
-        public bool canInteractWithField(Field field)
-        {
-            if (!(field is Wall) && field.Creature == null)
-                return true;
-            return false;
-        }
+		public bool canInteractWithField(Field field)
+		{
+			if (!(field is Wall) && field.Creature == null)
+				return true;
+			return false;
+		}
 
 		public void interactWithField(Field field)
 		{
 			CreatureVisitor visitor = new CreatureVisitor(this);
 			field.accept(visitor);
 		}
-    }
+	}
 }

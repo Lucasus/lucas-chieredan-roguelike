@@ -5,21 +5,24 @@ using System.Text;
 
 namespace Roguelike
 {
-    public class GameService
-    {
+	public class GameService
+	{
 		public Creature Player { get; set; }
-		public AI Ai { get; set; }
 
+		/// <summary>
+		///  lista przeciwników obecnych na mapie
+		/// </summary>
+		public List<Creature> Creatures { get; set; }
+	
 		public Map Map { get; set; }
 
 		public void InitializeGame(char[,] initialMap)
 		{
 			Map = new Map(initialMap);
 			CreatureVisitor.map = Map;
+			Creatures = new List<Creature>();
 			Player = new Creature(20){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}, GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Count=2}};
 			Map[2, 2].putCreature(Player);
-
-			Ai = new AI(Map, Player);
 
 			Random randomNumberGenerator = new Random();
 			for(int i=0; i<30;)
@@ -30,7 +33,9 @@ namespace Roguelike
 				bool success = Map[randomNumberGenerator.Next(Map.MapWidth), randomNumberGenerator.Next(Map.MapHeight)].putCreature(enemy);
 				if(success)
 				{
-					Ai.addCreature(enemy);
+					AI ai = new AI(Map, Player, enemy);
+					enemy.AI = ai;
+					Creatures.Add(enemy);
 					i++;
 				}
 			}
@@ -43,7 +48,15 @@ namespace Roguelike
 				if(playerCommand.isExecutable())
 				{
 					playerCommand.execute();
-					Ai.act();
+
+					Creatures.RemoveAll(x => x.isDead || x.Field == null);
+
+					foreach (Creature creature in Creatures)
+					{
+						ICreatureCommand creatureCommand = creature.AI.GenerateNextCommand();
+						if (creatureCommand != null)
+							creatureCommand.execute();
+					}
 				}
 			}
 		}
