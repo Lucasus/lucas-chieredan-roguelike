@@ -14,7 +14,7 @@ namespace Roguelike
 		{
 			creature.RangedWeapon.Ammo += Bullets;
 			creature.GrenadeWeapon.Ammo += Grenades; 
-			AbstractLogger.Current.Log(creature.MianownikName + " zebrał skrzynkę z amonicją.");
+			AbstractLogger.Current.Log(creature.MianownikName + " zebrał skrzynkę z amunicją (" + Bullets + " pocisków i "+ Grenades +" granatów)");
 		}
 	}
 }
