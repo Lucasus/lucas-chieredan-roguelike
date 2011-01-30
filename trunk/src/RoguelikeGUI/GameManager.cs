@@ -49,7 +49,7 @@ namespace RoguelikeGUI
 		private void UpdateGui()
 		{
 			window.PlayerHp.Content = gameService.Player.Health;
-			window.playerMoney.Content = gameService.Player.Money;
+			window.playerMoney.Content = gameService.Player.Money + "(" + gameService.Player.PickedPointsCount + "/" + gameService.Generator.PointObjectsCount + ")";
 			window.rangedDamage.Content = gameService.Player.RangedWeapon.Damage;
 			window.rangedRange.Content = gameService.Player.RangedWeapon.Range;
 			window.rangedAmmo.Content = gameService.Player.RangedWeapon.Ammo;

@@ -16,12 +16,12 @@ namespace Roguelike
 		public List<Creature> Creatures { get; set; }
 	
 		public Map Map { get; set; }
-		private MapGenerator generator;
+		public MapGenerator Generator { get; set; }
 
 		public void InitializeGame(char[,] initialMap)
 		{
 			Random r = RandomNumberGenerator.GlobalRandom;
-			generator = new MapGenerator();
+			Generator = new MapGenerator();
 			Creatures = new List<Creature>();
 			Player = new Creature(40)
 			{
@@ -32,9 +32,9 @@ namespace Roguelike
 			};
 			Player.MianownikName = "Gracz";
 			Player.BiernikName = "gracza";
-			Map = generator.GenerateMap(Player);// new Map(initialMap);
+			Map = Generator.GenerateMap(Player);// new Map(initialMap);
 			CreatureVisitor.map = Map;
-			Creatures.AddRange(generator.GeneratedCreatures);
+			Creatures.AddRange(Generator.GeneratedCreatures);
 
 			bool playerPlaced = false;
 			while (playerPlaced == false)
@@ -68,7 +68,7 @@ namespace Roguelike
 					{
 						if (Player.isDead == true)
 							AbstractLogger.Current.Log("Przegrałeś. Twój wynik to " + Player.Money + " punktów.");
-						else if (Player.PicketPointsCount == generator.PointObjectsCount)
+						else if (Player.PickedPointsCount == Generator.PointObjectsCount)
 						{
 							Player.Money += 10;
 							Player.Money += Player.Health/2;
@@ -80,7 +80,7 @@ namespace Roguelike
 
 					if (turnCounter % 8 == 0)
 					{
-						Creatures.Add(generator.GenerateRandomCreature(Map, Player));
+						Creatures.Add(Generator.GenerateRandomCreature(Map, Player));
 					}
 				}
 			}
@@ -88,7 +88,7 @@ namespace Roguelike
 
 		public bool gameEnded()
 		{
-			return Player.isDead || Player.PicketPointsCount == generator.PointObjectsCount;
+			return Player.isDead || Player.PickedPointsCount == Generator.PointObjectsCount;
 		}
 	}
 }
