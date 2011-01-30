@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Roguelike;
+
 namespace RoguelikeGUI
 {
 	/// <summary>
@@ -19,7 +21,9 @@ namespace RoguelikeGUI
 	/// </summary>
 	public partial class MainMenuView : UserControl
 	{
-		public event EventHandler startGamePressed;
+		public delegate void StartGameEventHandler(object sender, StartGameEventArgs e);
+
+		public event StartGameEventHandler startGamePressed;
 		public event EventHandler hallOfFamePressed;
 
 		public MainMenuView()
@@ -29,8 +33,11 @@ namespace RoguelikeGUI
 
 		private void button1_Click(object sender, RoutedEventArgs e)
 		{
+			GameService gameService = new GameService();
+			gameService.InitializeGame(Convert.ToInt32(this.mapWidth.Text), Convert.ToInt32(this.mapHeight.Text), Convert.ToInt32(this.numberOfBags.Text), Convert.ToInt32(this.numberOfBuildings.Text));
+
 			if(startGamePressed != null)
-				startGamePressed(this, null);
+				startGamePressed(this, new StartGameEventArgs(gameService));
 		}
 
 		private void button2_Click(object sender, RoutedEventArgs e)

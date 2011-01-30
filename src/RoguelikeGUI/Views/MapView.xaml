@@ -54,8 +54,8 @@
 				<ColumnDefinition />
 			</Grid.ColumnDefinitions>
 		</Grid>
-		<Grid Name="GridStats" Grid.Column="1" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Background="#FFBE4242">
-            <Label Content="Player Statistics" Height="28" HorizontalAlignment="Left" Margin="0,6,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" Width="172" />
+		<Grid Name="GridStats" Grid.Column="1" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Background="#FFC1C1C1">
+            <Label Content="Player Statistics" HorizontalAlignment="Left" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="20" Width="172" FontFamily="MV Boli" />
             <Image Height="30" HorizontalAlignment="Left" Margin="0,39,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/health.png" />
             <Label Content="Health:" Height="25" HorizontalAlignment="Left" Margin="31,41,0,0" VerticalAlignment="Top" Width="49" />
             <Label Content="0" Height="28" Margin="79,41,0,0" Name="PlayerHp" VerticalAlignment="Top" HorizontalAlignment="Left" Width="93" />
@@ -63,7 +63,7 @@
 			<Label Content="Points:" Height="28" HorizontalAlignment="Left" Margin="31,69,0,0" VerticalAlignment="Top" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="79,69,0,0" Name="playerMoney" VerticalAlignment="Top" Width="93" />
 
-            <Label Content="Inventory" Height="28" Margin="0,103,0,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Bold" FontSize="14" HorizontalAlignment="Left" Width="172" />
+            <Label Content="Inventory" Margin="-2,90,0,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Width="172" FontFamily="MV Boli" />
             <Image Height="30" Margin="0,128,0,0" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/gun.png" />
             <Label Content="Damage:" HorizontalAlignment="Left" Margin="6,160,0,0" VerticalAlignment="Top" Padding="0" />
 			<Label Content="0" HorizontalAlignment="Left" Margin="89,160,0,0" Name="rangedDamage" VerticalAlignment="Top" Width="82" Padding="0" />
@@ -89,12 +89,12 @@
 			<Label Content="0" HorizontalAlignment="Left" Margin="89,365,0,0" Name="grenadeCount" VerticalAlignment="Top" Padding="0" Width="83" />
 			<Label Content="Range:" HorizontalAlignment="Left" Margin="5,380,0,0" VerticalAlignment="Top" Padding="0" />
 			<Label Content="0" HorizontalAlignment="Left" Margin="89,380,0,0" Name="grenadeRange" VerticalAlignment="Top" Padding="0" Width="83" />
-			<Label Content="Ranged Weapon" HorizontalAlignment="Left" Margin="31,130,0,0" Name="label3" VerticalAlignment="Top" FontWeight="Bold" Width="140" />
-			<Label Content="Melee Weapon" HorizontalAlignment="Left" Margin="31,232,0,0" Name="label4" VerticalAlignment="Top" Width="140" FontWeight="Bold" />
-			<Label Content="Throwing Weapon" HorizontalAlignment="Left" Margin="31,302,0,0" Name="label5" VerticalAlignment="Top" FontWeight="Bold" />
+			<Label Content="Ranged Weapon" HorizontalAlignment="Left" Margin="30,128,0,0" Name="label3" VerticalAlignment="Top" FontWeight="Bold" Width="140" FontFamily="MV Boli" FontSize="16" />
+			<Label Content="Melee Weapon" HorizontalAlignment="Left" Margin="30,232,0,0" Name="label4" VerticalAlignment="Top" Width="140" FontWeight="Bold" FontFamily="MV Boli" FontSize="16" />
+			<Label Content="Throwing Weapon" HorizontalAlignment="Left" Margin="30,300,0,0" Name="label5" VerticalAlignment="Top" FontWeight="Bold" FontFamily="MV Boli" FontSize="16" />
 		</Grid>
 		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
-			<Label Content="Label" Height="28" HorizontalAlignment="Left" Name="CurrentInputProcessor" VerticalAlignment="Top" Margin="0,-3,0,0" />
+			<Label Content="Label" Height="28" HorizontalAlignment="Left" Name="CurrentInputProcessor" VerticalAlignment="Top" Margin="0,-4,0,0" />
 		</Grid>
         <Grid Grid.Row="2" Height="100" HorizontalAlignment="Left" Name="feedback" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
             <ListBox Name="Logger" Height="100" IsEnabled="False" />

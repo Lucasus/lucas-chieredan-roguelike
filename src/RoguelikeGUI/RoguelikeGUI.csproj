@@ -104,6 +104,7 @@
     <Compile Include="IKeyProcessor.cs" />
     <Compile Include="ListBoxLogger.cs" />
     <Compile Include="MainKeyProcessor.cs" />
+    <Compile Include="StartGameEventArgs.cs" />
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>

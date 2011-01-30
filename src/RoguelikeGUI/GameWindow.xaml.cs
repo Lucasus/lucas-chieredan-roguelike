@@ -11,6 +11,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
+using Roguelike;
+
 namespace RoguelikeGUI
 {
 	/// <summary>
@@ -19,12 +21,15 @@ namespace RoguelikeGUI
 	public partial class GameWindow : Window
 	{
 		MainMenuView mainMenu;
+		HallOfFameView hallOfFame;
 		public GameWindow()
 		{
 			InitializeComponent();
 			mainMenu = new MainMenuView();
-			mainMenu.startGamePressed += this.onStartGame;
-			mainMenu.hallOfFamePressed += this.onHallOfFame;
+			mainMenu.startGamePressed += this.switchToGameView;
+			mainMenu.hallOfFamePressed += this.switchToHallOfFame;
+			hallOfFame = new HallOfFameView();
+			hallOfFame.backPressed += this.switchToMenu;
 			this.switchView(mainMenu);
 		}
 
@@ -37,13 +42,19 @@ namespace RoguelikeGUI
 		{
 			Keyboard.Focus((UserControl)sender);
 		}
-		private void onStartGame(object sender, EventArgs e)
-		{
-			this.switchView(new MapView());
+		private void switchToGameView(object sender, StartGameEventArgs e)
+		{ 
+			MapView map = new MapView(e.gameService);
+			map.gameEndedEvent += this.switchToHallOfFame;
+			this.switchView(map);
 		}
-		private void onHallOfFame(object sender, EventArgs e)
+		private void switchToHallOfFame(object sender, EventArgs e)
 		{
-			this.switchView(new HallOfFameView());
+			this.switchView(hallOfFame);
+		}
+		private void switchToMenu(object sender, EventArgs e)
+		{
+			this.switchView(mainMenu);
 		}
 	}
 }
