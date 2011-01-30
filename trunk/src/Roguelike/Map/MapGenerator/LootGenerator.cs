@@ -18,7 +18,7 @@ namespace Roguelike
 		public void generateLoot(Field f)
 		{
 			Random r = new Random();
-			int generatedValue = randomGenerator.Next(23);
+			int generatedValue = randomGenerator.Next(28);
 			if (0 <= generatedValue && generatedValue <= 3)
 			{
 				int spread = randomGenerator.Next(4) + 1;
@@ -41,6 +41,10 @@ namespace Roguelike
 			else if (17 <= generatedValue && generatedValue <= 22)
 			{
 				f.placeObject(new MedKit() { Health = randomGenerator.Next(8) + 3 });
+			}
+			else
+			{
+				f.placeObject(new Points() {Value = randomGenerator.Next(10) + 5});
 			}
 		}
 
