@@ -34,7 +34,7 @@ namespace RoguelikeGUI.Utilities
 				return LoadImage("grenade.png");
 			else if (gameObject is RangedWeapon)
 				return LoadImage("gun.png");
-			else if (gameObject is Weapon)
+			else if (gameObject is MeleeWeapon)
 				return LoadImage("knife.png");
 			else 
 				return LoadImage("money.png");
