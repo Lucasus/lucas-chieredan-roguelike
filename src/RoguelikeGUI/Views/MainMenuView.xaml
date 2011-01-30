@@ -1,24 +1,20 @@
 ﻿<UserControl x:Class="RoguelikeGUI.MainMenuView"
-      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
-      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-      mc:Ignorable="d" 
-      d:DesignHeight="300" d:DesignWidth="300" Width="778" Height="570">
+	  xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	  xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	  xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+	  xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+	  mc:Ignorable="d" 
+	  d:DesignHeight="300" d:DesignWidth="300" Width="778" Height="570">
 
-    <Grid Focusable="True">
+	<Grid Focusable="True">
 		<Image Height="470" HorizontalAlignment="Left" Margin="328,100,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="450" Source="/RoguelikeGUI;component/Images/MainLogo.png" />
 		<Label Content="Gangster Roguelike" HorizontalAlignment="Left" Margin="101,0,0,0" Name="label1" VerticalAlignment="Top" FontSize="60" FontFamily="MV Boli" />
 		<Image Height="213" HorizontalAlignment="Left" Margin="15,345,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="294" Source="/RoguelikeGUI;component/Images/MainMenuFootImage.png" />
 		<Button Content="Start New Game" Height="100" HorizontalAlignment="Left" Margin="12,117,0,0" Name="button1" VerticalAlignment="Top" Width="157" Click="button1_Click" />
 		<Button Content="Hall Of Fame" Height="99" HorizontalAlignment="Left" Margin="12,223,0,0" Name="button2" VerticalAlignment="Top" Width="310" Click="button2_Click" />
-		<Label Content="Map Width:" Height="28" HorizontalAlignment="Left" Margin="175,112,0,0" Name="label2" VerticalAlignment="Top" />
-		<Label Content="Map Height:" Height="28" HorizontalAlignment="Left" Margin="175,138,0,0" Name="label3" VerticalAlignment="Top" />
-		<TextBox Height="23" HorizontalAlignment="Left" Margin="253,117,0,0" Name="mapWidth" VerticalAlignment="Top" Width="69" Text="30" FlowDirection="LeftToRight" TextAlignment="Right" />
-		<TextBox Height="23" HorizontalAlignment="Left" Margin="253,143,0,0" Name="mapHeight" VerticalAlignment="Top" Width="69" Text="30" FlowDirection="LeftToRight" TextAlignment="Right" />
-		<TextBox Height="23" HorizontalAlignment="Left" Margin="253,169,0,0" Name="numberOfBags" VerticalAlignment="Top" Width="69" Text="4" FlowDirection="LeftToRight" TextAlignment="Right" />
-		<Label Content="Money Bags:" Height="28" HorizontalAlignment="Left" Margin="175,164,0,0" Name="label4" VerticalAlignment="Top" />
-		<Label Content="Buildings:" Height="28" HorizontalAlignment="Left" Margin="175,191,0,0" Name="label5" VerticalAlignment="Top" />
-		<TextBox Height="23" HorizontalAlignment="Left" Margin="253,194,0,0" Name="numberOfBuildings" VerticalAlignment="Top" Width="69" Text="10" FlowDirection="LeftToRight" ForceCursor="False" TextAlignment="Right" />
+		<Label Content="Map Width:" Height="28" HorizontalAlignment="Left" Margin="175,130,0,0" Name="label2" VerticalAlignment="Top" />
+		<Label Content="Map Height:" Height="28" HorizontalAlignment="Left" Margin="175,169,0,0" Name="label3" VerticalAlignment="Top" />
+		<TextBox Height="23" HorizontalAlignment="Left" Margin="253,135,0,0" Name="mapWidth" VerticalAlignment="Top" Width="69" Text="30" FlowDirection="LeftToRight" TextAlignment="Right" />
+		<TextBox Height="23" HorizontalAlignment="Left" Margin="253,174,0,0" Name="mapHeight" VerticalAlignment="Top" Width="69" Text="30" FlowDirection="LeftToRight" TextAlignment="Right" />
 	</Grid>
 </UserControl>

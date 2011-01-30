@@ -19,10 +19,10 @@ namespace Roguelike
 	
 		public Map Map { get; set; }
 
-		public void InitializeGame(int mapSizeX, int mapSizeY, int pointsToCollect, int maxBuildings)//char[,] initialMap)
+		public void InitializeGame(int mapSizeX, int mapSizeY)//char[,] initialMap)
 		{
 			Random r = RandomNumberGenerator.GlobalRandom;
-			Generator = new MapGenerator(mapSizeX, mapSizeY, pointsToCollect, maxBuildings);
+			Generator = new MapGenerator(mapSizeX, mapSizeY);
 			Creatures = new List<Creature>();
 			Player = new Creature(40)
 			{

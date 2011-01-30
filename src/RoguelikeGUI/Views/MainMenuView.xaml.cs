@@ -34,7 +34,7 @@ namespace RoguelikeGUI
 		private void button1_Click(object sender, RoutedEventArgs e)
 		{
 			GameService gameService = new GameService();
-			gameService.InitializeGame(Convert.ToInt32(this.mapWidth.Text), Convert.ToInt32(this.mapHeight.Text), Convert.ToInt32(this.numberOfBags.Text), Convert.ToInt32(this.numberOfBuildings.Text));
+			gameService.InitializeGame(Convert.ToInt32(this.mapWidth.Text), Convert.ToInt32(this.mapHeight.Text));
 
 			if(startGamePressed != null)
 				startGamePressed(this, new StartGameEventArgs(gameService));
