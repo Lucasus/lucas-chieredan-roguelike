@@ -56,6 +56,7 @@ namespace Roguelike
 					attacker.MeleeWeapon.Damage = (attacker.MeleeWeapon.Damage + 1) / 2;
 					AbstractLogger.Current.Log("Twój nóż uległ uszkodzeniu. Daje teraz tylko " + attacker.MeleeWeapon.Damage + " obrażeń");
 				}
+				attacker.MeleeWeapon.BrokeChance = Math.Min(1, attacker.MeleeWeapon.BrokeChance * 1.1);
 			}
 		}
 	}
