@@ -53,8 +53,10 @@ namespace RoguelikeGUI
 			window.rangedDamage.Content = gameService.Player.RangedWeapon.Damage;
 			window.rangedRange.Content = gameService.Player.RangedWeapon.Range;
 			window.rangedAmmo.Content = gameService.Player.RangedWeapon.Ammo;
+			window.MeleeBrokeChance.Content = (Math.Round(gameService.Player.MeleeWeapon.BrokeChance * 100)).ToString() + "%";
 			window.rangedChance.Content = (Math.Round(gameService.Player.RangedWeapon.Chance * 100)).ToString() + "%";
 			window.MeleeDamage.Content = gameService.Player.MeleeWeapon.Damage;
+			window.CurrentInputProcessor.Content = this.keyProcessor.ToString();
 			if(gameService.Player.GrenadeWeapon != null)
 			{
 				window.grenadeDamage.Content = gameService.Player.GrenadeWeapon.Damage;
@@ -62,8 +64,6 @@ namespace RoguelikeGUI
 				window.grenadeCount.Content = gameService.Player.GrenadeWeapon.Ammo;
 				window.grenadeRange.Content = gameService.Player.GrenadeWeapon.Range;
 			}
-
-			window.CurrentInputProcessor.Content = this.keyProcessor.getProcessorComment();
 		}
 
 		private void UpdateScreenMap()
