@@ -13,7 +13,7 @@ namespace RoguelikeGUI
 	public class GameManager
 	{
 		private MapView window;
-		private GameService gameService = new GameService();
+		private GameService gameService;
 		private IKeyProcessor keyProcessor;
 		private MapDrawer mapDrawer;
 
@@ -32,14 +32,15 @@ namespace RoguelikeGUI
 			set { keyProcessor = value; }
 		}
 
-		public GameManager(MapView mapView, ListBoxLogger listBoxLogger)
+		public GameManager(MapView mapView, GameService service, ListBoxLogger listBoxLogger)
 		{
+			this.gameService = service;
 			this.window = mapView;
 			this.keyProcessor = new MainKeyProcessor(this);
 			MapLoader loader = new MapLoader();
-			char[,] initialMap = loader.loadMap("TestMap.map");
+			//char[,] initialMap = loader.loadMap("TestMap.map");
 			AbstractLogger.Current = listBoxLogger;
-			this.gameService.InitializeGame(initialMap);
+			//this.gameService.InitializeGame(initialMap);
 			this.mapDrawer = new MapDrawer(window.GridMap, 15, 20, this.gameService.Map);
 
 			UpdateScreenMap();
@@ -48,6 +49,7 @@ namespace RoguelikeGUI
 
 		private void UpdateGui()
 		{
+			window.playerMoney.Content = gameService.Player.Money;
 			window.PlayerHp.Content = gameService.Player.Health;
 			window.playerMoney.Content = gameService.Player.Money + " (" + gameService.Player.PickedPointsCount + "/" + gameService.Generator.PointObjectsCount + ")";
 			window.rangedDamage.Content = gameService.Player.RangedWeapon.Damage;
@@ -78,6 +80,10 @@ namespace RoguelikeGUI
 			{
 				this.keyProcessor.processKey(key);
 				this.UpdateGui();
+			}
+			else
+			{
+				window.gameEnded();
 			}
 		}
 

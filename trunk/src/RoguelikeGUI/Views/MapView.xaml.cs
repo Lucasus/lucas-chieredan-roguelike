@@ -21,12 +21,19 @@ namespace RoguelikeGUI
 	/// </summary>
 	public partial class MapView : UserControl
 	{
+		public event EventHandler gameEndedEvent;
 		private GameManager gameManager;
 
-		public MapView()
+		public MapView(GameService service)
 		{
 			InitializeComponent();
-			gameManager = new GameManager(this, new ListBoxLogger(Logger) );
+			gameManager = new GameManager(this, service, new ListBoxLogger(Logger) );
+		}
+
+		public void gameEnded()
+		{
+			if(gameEndedEvent != null)
+				gameEndedEvent(this, null);
 		}
 
 		private void Window_KeyDown(object sender, KeyEventArgs e)

@@ -8,6 +8,8 @@ namespace Roguelike
 	public class GameService
 	{
 		public Creature Player { get; set; }
+		public MapGenerator Generator { get; set; }
+		
 		private int turnCounter = 0;
 
 		/// <summary>
@@ -16,12 +18,11 @@ namespace Roguelike
 		public List<Creature> Creatures { get; set; }
 	
 		public Map Map { get; set; }
-		public MapGenerator Generator { get; set; }
 
-		public void InitializeGame(char[,] initialMap)
+		public void InitializeGame(int mapSizeX, int mapSizeY, int pointsToCollect, int maxBuildings)//char[,] initialMap)
 		{
 			Random r = RandomNumberGenerator.GlobalRandom;
-			Generator = new MapGenerator();
+			Generator = new MapGenerator(mapSizeX, mapSizeY, pointsToCollect, maxBuildings);
 			Creatures = new List<Creature>();
 			Player = new Creature(40)
 			{
@@ -86,9 +87,15 @@ namespace Roguelike
 			}
 		}
 
+		public int getPoints()
+		{
+			return Player.Money;
+		}
+
 		public bool gameEnded()
 		{
 			return Player.isDead || Player.PickedPointsCount == Generator.PointObjectsCount;
 		}
 	}
 }
+ 

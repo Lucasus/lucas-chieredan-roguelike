@@ -19,9 +19,17 @@ namespace RoguelikeGUI
 	/// </summary>
 	public partial class HallOfFameView : UserControl
 	{
+		public event EventHandler backPressed;
+
 		public HallOfFameView()
 		{
 			InitializeComponent();
+		}
+
+		private void button1_Click(object sender, RoutedEventArgs e)
+		{
+			if(backPressed != null)
+				backPressed(this, null);
 		}
 	}
 }
