@@ -11,22 +11,24 @@ namespace Roguelike
 		public int SizeY { get; set; }
 		public int PointObjectsCount { get; set; }
 		private int maxBuildingNumber;
+		private int maxBuildingCounter;
 		public List<Creature> GeneratedCreatures = new List<Creature>();
 
 		private char[,] mapTemplate;
 
-		public MapGenerator(int sizeX, int sizeY, int pointObjects, int buildingNumber)
+		public MapGenerator(int sizeX, int sizeY)
 		{
 			SizeX = sizeX;
 			SizeY = sizeY;
-			PointObjectsCount = pointObjects;
-			maxBuildingNumber = buildingNumber;
+			maxBuildingNumber = SizeX * SizeY / 20;
+			maxBuildingCounter = maxBuildingNumber + 50;
+			PointObjectsCount = maxBuildingNumber / 2;
 		}
 
 		public Map GenerateMap(Creature player)
 		{
 			//int maxBuildingNumber = 10;
-			int maxBuildingCounter = 30;
+			//int maxBuildingCounter = 30;
 			//PointObjectsCount = 4;
 
 			mapTemplate = new char[SizeX, SizeY];
