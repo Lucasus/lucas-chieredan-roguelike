@@ -95,21 +95,21 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="FieldSelectKeyProcessor.cs" />
+    <Compile Include="KeyboardProcessors\FieldSelectKeyProcessor.cs" />
     <Compile Include="GameManager.cs" />
     <Compile Include="GameWindow.xaml.cs">
       <DependentUpon>GameWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="GuiMapField.cs" />
-    <Compile Include="IKeyProcessor.cs" />
+    <Compile Include="KeyboardProcessors\IKeyProcessor.cs" />
     <Compile Include="ListBoxLogger.cs" />
-    <Compile Include="MainKeyProcessor.cs" />
+    <Compile Include="KeyboardProcessors\MainKeyProcessor.cs" />
     <Compile Include="StartGameEventArgs.cs" />
     <Compile Include="Views\MainMenuView.xaml.cs">
       <DependentUpon>MainMenuView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="MapLoader.cs" />
-    <Compile Include="TargetSelectKeyProcessor.cs" />
+    <Compile Include="Utilities\MapLoader.cs" />
+    <Compile Include="KeyboardProcessors\TargetSelectKeyProcessor.cs" />
     <Compile Include="Views\HallOfFameView.xaml.cs">
       <DependentUpon>HallOfFameView.xaml</DependentUpon>
     </Compile>
@@ -216,6 +216,7 @@
   <ItemGroup>
     <Resource Include="Images\MainMenuFootImage.png" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

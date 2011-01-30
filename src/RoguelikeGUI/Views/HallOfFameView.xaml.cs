@@ -16,9 +16,6 @@ using Roguelike;
 
 namespace RoguelikeGUI
 {
-	/// <summary>
-	/// Interaction logic for UserControl1.xaml
-	/// </summary>
 	public partial class HallOfFameView : UserControl
 	{
 		public GlobalGameModel gameModel;
