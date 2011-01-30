@@ -93,9 +93,8 @@
 			<Label Content="Melee Weapon" HorizontalAlignment="Left" Margin="31,232,0,0" Name="label4" VerticalAlignment="Top" Width="140" FontWeight="Bold" />
 			<Label Content="Throwing Weapon" HorizontalAlignment="Left" Margin="31,302,0,0" Name="label5" VerticalAlignment="Top" FontWeight="Bold" />
 		</Grid>
-		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">                        
-			<Label Content="Input Processor:" Height="28" HorizontalAlignment="Left" Margin="0,-4,0,0" VerticalAlignment="Top" />
-			<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="101,-4,0,0" Name="CurrentInputProcessor" VerticalAlignment="Top" />
+		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
+			<Label Content="Label" Height="28" HorizontalAlignment="Left" Name="CurrentInputProcessor" VerticalAlignment="Top" Margin="0,-3,0,0" />
 		</Grid>
         <Grid Grid.Row="2" Height="100" HorizontalAlignment="Left" Name="feedback" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
             <ListBox Name="Logger" Height="100" IsEnabled="False" />
