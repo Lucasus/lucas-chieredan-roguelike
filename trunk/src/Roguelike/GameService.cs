@@ -72,8 +72,8 @@ namespace Roguelike
 						{
 							Player.Money += 10;
 							Player.Money += Player.Health/2;
-							AbstractLogger.Current.Log("Dostajesz bonus "+Player.Health/2+" punktów za zachowane zdrowie.");
-							AbstractLogger.Current.Log("Dostajesz bonus 10 punktów za ukończenie gry.");
+							AbstractLogger.Current.Log("Dostajesz bonus " + Player.Health/2 + " punktów za zachowane zdrowie.");
+							AbstractLogger.Current.Log("Dostajesz bonus " + (Generator.SizeX*Generator.SizeY)/10 + " punktów za wielkość mapy.");
 							AbstractLogger.Current.Log("Wygrałeś!. Twój wynik to " + Player.Money + " punktów.");
 						}
 					}
