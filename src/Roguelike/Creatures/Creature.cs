@@ -11,6 +11,7 @@ namespace Roguelike
 		private int maxHealth;
 
 		public AI AI { get; set; }
+		public int PicketPointsCount { get; set; }
 		public int PanicModeCounter { get; set; }
 		public int MaxHealth { get { return maxHealth; } }
 		public bool isDead { get { return Health <= 0; } }
@@ -52,6 +53,7 @@ namespace Roguelike
 			this.PanicModeCounter = 0;
 			this.SightRange = 10;
 			this.SawPlayer = false;
+			this.PicketPointsCount = 0;
 		}
 
 		public bool canInteractWithField(Field field)

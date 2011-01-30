@@ -48,7 +48,7 @@ namespace Roguelike
 			Random r = RandomNumberGenerator.GlobalRandom;
 			if (!gameEnded())
 			{
-				if(playerCommand.isExecutable())
+				if (playerCommand.isExecutable())
 				{
 					//AbstractLogger.Current.Clear();
 					playerCommand.execute();
@@ -64,7 +64,21 @@ namespace Roguelike
 					++turnCounter;
 					AbstractLogger.Current.Log("Tura " + turnCounter);
 
-					if (turnCounter % 5 == 0)
+					if(gameEnded())
+					{
+						if (Player.isDead == true)
+							AbstractLogger.Current.Log("Przegrałeś. Twój wynik to " + Player.Money + " punktów.");
+						else if (Player.PicketPointsCount == generator.PointObjectsCount)
+						{
+							Player.Money += 10;
+							Player.Money += Player.Health/2;
+							AbstractLogger.Current.Log("Dostajesz bonus "+Player.Health/2+" punktów za zachowane zdrowie.");
+							AbstractLogger.Current.Log("Dostajesz bonus 10 punktów za ukończenie gry.");
+							AbstractLogger.Current.Log("Wygrałeś!. Twój wynik to " + Player.Money + " punktów.");
+						}
+					}
+
+					if (turnCounter % 8 == 0)
 					{
 						Creatures.Add(generator.GenerateRandomCreature(Map, Player));
 					}
@@ -74,7 +88,7 @@ namespace Roguelike
 
 		public bool gameEnded()
 		{
-			return Player.isDead;
+			return Player.isDead || Player.PicketPointsCount == generator.PointObjectsCount;
 		}
 	}
 }

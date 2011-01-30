@@ -122,6 +122,19 @@ namespace Roguelike
 			}
 		}
 
+		public bool GeneratePoints(Map m)
+		{
+			if (SizeX > 2 && SizeY > 2)
+			{
+				int x = X + 1 + r.Next(SizeX - 2);
+				int y = Y + 1 + r.Next(SizeY - 2);
+				m[x,y].placeObject(new Points() { Value = 10 });
+				return true;
+			}
+			return false;
+		}
+
+
 		public List<Creature> GenerateCreatures(Map map, Creature player)
 		{
 			List<Creature> cList = new List<Creature>();
@@ -159,5 +172,6 @@ namespace Roguelike
 
 			return false;
 		}
+
 	}
 }

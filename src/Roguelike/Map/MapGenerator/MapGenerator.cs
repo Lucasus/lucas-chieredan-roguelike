@@ -9,18 +9,23 @@ namespace Roguelike
 	{
 		public int SizeX { get; set; }
 		public int SizeY { get; set; }
+		public int PointObjectsCount { get; set; }
 		public List<Creature> GeneratedCreatures = new List<Creature>();
 
 		private char[,] mapTemplate;
 
 		public MapGenerator()
 		{
-			SizeX = 100;
-			SizeY = 100;
+			SizeX = 16;
+			SizeY = 20;
 		}
 
 		public Map GenerateMap(Creature player)
 		{
+			int maxBuildingNumber = 10;
+			int maxBuildingCounter = 30;
+			PointObjectsCount = 4;
+
 			mapTemplate = new char[SizeX, SizeY];
 
 			// na początku wszystko jest terenem po którym można chodzić + obwódka ze ścian
@@ -32,11 +37,11 @@ namespace Roguelike
 						mapTemplate[i, j] = '.';
 
 			List<Building> buildings = new List<Building>();
-			for (int i = 0; i < 600; ++i)
+			for (int i = 0; i < maxBuildingNumber; ++i)
 			{
 				bool success = false;
 				int counter = 0;
-				while (success == false && counter < 300)
+				while (success == false && counter < maxBuildingCounter)
 				{
 					Building b = Building.NewRandomBuilding(2, 2, SizeX - 2, SizeY - 2);
 					if (!intersects(b, buildings))
@@ -59,10 +64,24 @@ namespace Roguelike
 			foreach (Building b in buildings)
 				b.GenerateLoot(map);
 
+			int pointsCounter = 0;
+			while (pointsCounter < PointObjectsCount)
+			{
+				foreach(Building b in buildings)
+				{
+					if (b.GeneratePoints(map) == true)
+						++pointsCounter;
+					if (pointsCounter >= PointObjectsCount)
+						break;
+				}
+			}
+
 			foreach (Building b in buildings)
 			{
 				GeneratedCreatures.AddRange(b.GenerateCreatures(map, player));
 			}
+
+
 
 			return map;
 		}

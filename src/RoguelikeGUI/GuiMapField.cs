@@ -43,7 +43,7 @@ namespace RoguelikeGUI
 			get 
 			{
 				if(x != -1 && y != -1)
-					return this.map[x, y];
+					return this.map[y, x];
 				return null;
 			} // this.field; }
 		}
@@ -58,11 +58,6 @@ namespace RoguelikeGUI
 					background = ImageLoader.LoadImage("floor.png");
 			}
 		}
-
-//		public GuiMapField(Field field)
-//		{
-//			Field = field;
-//		}
 
 		public GuiMapField(Map m, Field field)
 		{
