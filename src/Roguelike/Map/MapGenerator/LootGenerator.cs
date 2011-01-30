@@ -39,7 +39,8 @@ namespace Roguelike
 			}
 			else
 			{
-				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(10) + 1, Range = randomGenerator.Next(10) + 1, Spread = randomGenerator.Next(4), Ammo = 1 + randomGenerator.Next(3) });
+				int spread = randomGenerator.Next(4) + 1;
+				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(10) + 5, Range = randomGenerator.Next(10) + spread, Spread = spread, Ammo = 1 + randomGenerator.Next(3) });
 			}
 		}
 
