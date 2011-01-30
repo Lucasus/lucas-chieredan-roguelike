@@ -93,9 +93,14 @@ namespace Roguelike
 						creature.PanicModeCounter--;
 						int currentDistance = map.getEuclideanDistanceBetweenFields(player.Field, map[creature.Y, creature.X]);
 						int furtherDistance = map.getEuclideanDistanceBetweenFields(player.Field, map[creature.Y + furtherPlayerDirY, creature.X + furtherPlayerDirX]);
-						if(furtherDistance > currentDistance)
+						if (furtherDistance > currentDistance)
 						{
 							return new MoveCommand(creature, furtherPlayerDirX, furtherPlayerDirY, map, false);
+						}
+						// jeżeli nie ma dokąd uciec, to zachowuje zimną krew i zaczyna atakować
+						else
+						{
+							creature.PanicModeCounter = 0;
 						}
 					}
 

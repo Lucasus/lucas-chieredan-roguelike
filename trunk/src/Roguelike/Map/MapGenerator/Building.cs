@@ -127,7 +127,7 @@ namespace Roguelike
 			List<Creature> cList = new List<Creature>();
 			if (SizeX > 2 && SizeY > 2)
 			{
-				int creatureCount = Math.Min((SizeX - 2) * (SizeY - 2), 1 + r.Next(3));
+				int creatureCount = Math.Min((SizeX - 2) * (SizeY - 2), 1 + r.Next(4));
 				for (int i = 0; i < creatureCount; ++i)
 				{
 					Creature enemy = new CreatureGenerator().GetRandomCreature();

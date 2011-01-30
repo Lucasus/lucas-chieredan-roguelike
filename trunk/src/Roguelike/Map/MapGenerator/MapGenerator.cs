@@ -32,11 +32,11 @@ namespace Roguelike
 						mapTemplate[i, j] = '.';
 
 			List<Building> buildings = new List<Building>();
-			for (int i = 0; i < 500; ++i)
+			for (int i = 0; i < 600; ++i)
 			{
 				bool success = false;
 				int counter = 0;
-				while (success == false && counter < 200)
+				while (success == false && counter < 300)
 				{
 					Building b = Building.NewRandomBuilding(2, 2, SizeX - 2, SizeY - 2);
 					if (!intersects(b, buildings))

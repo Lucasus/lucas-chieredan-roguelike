@@ -29,7 +29,9 @@ namespace Roguelike
 			}
 			else if (generatedValue == 2)
 			{
-				f.placeObject(new Weapon() { Damage = randomGenerator.Next(10) + 1, BrokeChance = (double)(1 + r.Next(4))/100 });
+				Weapon w = new Weapon() { Damage = randomGenerator.Next(10) + 1 };
+				w.BrokeChance = (double)(3 + w.Damage/5 + r.Next(4)) / 100;
+				f.placeObject(w);
 			}
 			else if (generatedValue == 3)
 			{
