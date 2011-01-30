@@ -21,7 +21,7 @@ namespace Roguelike
 	
 		public Map Map { get; set; }
 
-		public void InitializeGame(int mapSizeX, int mapSizeY, string playerName)//char[,] initialMap)
+		public GameService(int mapSizeX, int mapSizeY, string playerName)//char[,] initialMap)
 		{
 			this.playerName = playerName;
 			Random r = RandomNumberGenerator.GlobalRandom;
