@@ -52,7 +52,7 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
 			map = new Map(TestObjects.mapConfig);
-			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 } };
+			player = new Creature(10) { MeleeWeapon = new MeleeWeapon() { Damage = 5 } };
 		}
 
 		[TestMethod()]
@@ -201,7 +201,7 @@ namespace Roguelike.Tests
 		{
 			// arrange
 			Creature nozownik = TestObjects.GetSimpleCreature(map, player);
-			nozownik.MeleeWeapon = new Weapon() { Damage = 5 } ;
+			nozownik.MeleeWeapon = new MeleeWeapon() { Damage = 5 } ;
 			map[0, 0].putCreature(player);
 			map[1, 0].putCreature(nozownik);
 
@@ -218,7 +218,7 @@ namespace Roguelike.Tests
 		{
 			// arrange
 			Creature snajper = TestObjects.GetSimpleCreature(map, player);
-			snajper.MeleeWeapon = new Weapon() { Damage = 5 };
+			snajper.MeleeWeapon = new MeleeWeapon() { Damage = 5 };
 			snajper.AI.Sniper = true;
 			map[0, 0].putCreature(player);
 			map[1, 0].putCreature(snajper);
@@ -236,7 +236,7 @@ namespace Roguelike.Tests
 		{
 			// arrange
 			Creature enemyInPanic = TestObjects.GetSimpleCreature(map, player);
-			enemyInPanic.MeleeWeapon = new Weapon() { Damage = 5 };
+			enemyInPanic.MeleeWeapon = new MeleeWeapon() { Damage = 5 };
 			enemyInPanic.PanicModeCounter = 10;
 			map[0, 0].putCreature(player);
 			map[0, 1].putCreature(enemyInPanic);
@@ -255,7 +255,7 @@ namespace Roguelike.Tests
 		{
 			// arrange
 			Creature enemyInPanic = TestObjects.GetSimpleCreature(map, player);
-			enemyInPanic.MeleeWeapon = new Weapon() { Damage = 5 };
+			enemyInPanic.MeleeWeapon = new MeleeWeapon() { Damage = 5 };
 			enemyInPanic.PanicModeCounter = 1;
 			map[0, 0].putCreature(player);
 			map[0, 1].putCreature(enemyInPanic);
@@ -278,7 +278,7 @@ namespace Roguelike.Tests
 		{
 			// arrange
 			Creature nozownikInPanic = TestObjects.GetSimpleCreature(map, player);
-			nozownikInPanic.MeleeWeapon = new Weapon() { Damage = 5 };
+			nozownikInPanic.MeleeWeapon = new MeleeWeapon() { Damage = 5 };
 			nozownikInPanic.PanicModeCounter = 10;
 			map[1, 1].putCreature(player);
 			map[0, 0].putCreature(nozownikInPanic);

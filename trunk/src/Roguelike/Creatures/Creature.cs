@@ -19,7 +19,7 @@ namespace Roguelike
 		public string CreatureType { get; set; }
 		public int Health { get; set; }
 		public int SightRange { get; set; }
-		public Weapon MeleeWeapon { get; set; }
+		public MeleeWeapon MeleeWeapon { get; set; }
 		public RangedWeapon RangedWeapon { get; set; }
 		public GrenadeWeapon GrenadeWeapon { get; set; }
 		public int Money { get; set; }

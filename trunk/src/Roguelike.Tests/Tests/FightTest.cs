@@ -48,7 +48,7 @@ namespace Roguelike.Tests
 		public void MyTestInitialize()
 		{
 			map = TestObjects.GetTestMap();
-			attacker = new Creature(10){MeleeWeapon = new Weapon(){Damage=1}};
+			attacker = new Creature(10){MeleeWeapon = new MeleeWeapon(){Damage=1}};
 			deffender = new Creature(10);
 			map[0,0].putCreature(attacker);
 			map[0,1].putCreature(deffender);

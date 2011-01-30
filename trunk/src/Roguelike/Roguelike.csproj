@@ -69,6 +69,7 @@
     <Compile Include="Creatures\AI.cs" />
     <Compile Include="Creatures\DoNothingCommand.cs" />
     <Compile Include="Creatures\ICreatureCommand.cs" />
+    <Compile Include="GameObjects\MeleeWeapon.cs" />
     <Compile Include="GameObjects\Points.cs" />
     <Compile Include="GlobalGameModel.cs" />
     <Compile Include="HallOfFameModel.cs" />
