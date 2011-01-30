@@ -52,6 +52,8 @@ namespace RoguelikeGUI
 			window.playerMoney.Content = gameService.Player.Money;
 			window.rangedDamage.Content = gameService.Player.RangedWeapon.Damage;
 			window.rangedRange.Content = gameService.Player.RangedWeapon.Range;
+			window.rangedCount.Content = gameService.Player.RangedWeapon.Count;
+			window.MeleeBrokeChance.Content = (Math.Round(gameService.Player.MeleeWeapon.BrokeChance * 100)).ToString() + "%";
 			window.rangedChance.Content = (Math.Round(gameService.Player.RangedWeapon.Chance * 100)).ToString() + "%";
 			window.MeleeDamage.Content = gameService.Player.MeleeWeapon.Damage;
 			window.CurrentInputProcessor.Content = this.keyProcessor.ToString();

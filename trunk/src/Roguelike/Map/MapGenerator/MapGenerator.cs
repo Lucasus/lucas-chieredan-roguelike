@@ -61,7 +61,7 @@ namespace Roguelike
 
 			foreach (Building b in buildings)
 			{
-				//GeneratedCreatures.AddRange(b.GenerateCreatures(map, player));
+				GeneratedCreatures.AddRange(b.GenerateCreatures(map, player));
 			}
 
 			return map;

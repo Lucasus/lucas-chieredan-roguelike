@@ -31,7 +31,7 @@ namespace Roguelike
 
 		public bool isExecutable()
 		{
-			if (attacker.RangedWeapon != null && map.getDistanceBetweenFields(attacker.Field, deffender.Field) <= attacker.RangedWeapon.Range && map.isSightBetweenFields(attacker.Field, deffender.Field))
+			if (attacker.RangedWeapon != null && attacker.RangedWeapon.Count > 0 &&  map.getDistanceBetweenFields(attacker.Field, deffender.Field) <= attacker.RangedWeapon.Range && map.isSightBetweenFields(attacker.Field, deffender.Field))
 				return true;
 			else
 				return false;
@@ -41,6 +41,7 @@ namespace Roguelike
 		{
 			if (CanShoot(map, attacker, deffender))
 			{
+				attacker.RangedWeapon.Count--;
 				if (randomNumberGenerator.generateNumber() <= attacker.RangedWeapon.Chance)
 				{
 					int damage = attacker.RangedWeapon.Damage;

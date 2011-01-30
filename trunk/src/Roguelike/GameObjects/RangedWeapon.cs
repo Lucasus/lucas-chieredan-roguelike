@@ -9,6 +9,7 @@ namespace Roguelike
 	{
 		public double Chance { get; set; }
 		public int Range { get; set; }
+		public int Count { get; set; }
 
 		public RangedWeapon()
 		{

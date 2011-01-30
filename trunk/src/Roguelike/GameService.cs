@@ -23,7 +23,13 @@ namespace Roguelike
 			Random r = RandomNumberGenerator.GlobalRandom;
 			generator = new MapGenerator();
 			Creatures = new List<Creature>();
-			Player = new Creature(40){CreatureType = "Hero", MeleeWeapon = new Weapon(){Damage=3}, RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5}, GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Count=2}};
+			Player = new Creature(40)
+			{
+				CreatureType = "Hero", 
+				MeleeWeapon = new Weapon(){Damage=3, BrokeChance=0.0}, 
+				RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5, Count=15}, 
+				GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Count=2}
+			};
 			Player.MianownikName = "Gracz";
 			Player.BiernikName = "gracza";
 			Map = generator.GenerateMap(Player);// new Map(initialMap);
@@ -44,7 +50,7 @@ namespace Roguelike
 			{
 				if(playerCommand.isExecutable())
 				{
-					AbstractLogger.Current.Clear();
+					//AbstractLogger.Current.Clear();
 					playerCommand.execute();
 
 					Creatures.RemoveAll(x => x.isDead || x.Field == null);

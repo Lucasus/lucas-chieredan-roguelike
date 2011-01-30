@@ -69,7 +69,7 @@
     <Compile Include="Creatures\AI.cs" />
     <Compile Include="Creatures\DoNothingCommand.cs" />
     <Compile Include="Creatures\ICreatureCommand.cs" />
-    <Compile Include="Creatures\LootGenerator.cs" />
+    <Compile Include="Map\MapGenerator\LootGenerator.cs" />
     <Compile Include="Creatures\MoveCommand.cs" />
     <Compile Include="Creatures\AttackCommand.cs" />
     <Compile Include="Creatures\PickupCommand.cs" />

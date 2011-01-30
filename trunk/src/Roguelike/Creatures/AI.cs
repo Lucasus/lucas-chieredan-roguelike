@@ -112,7 +112,8 @@ namespace Roguelike
 					// przeciwnik widzi (widział gracza) to idzie w jego stronę lub strzela jak lubi
 					else
 					{
-						if (Sniper == false || ShootCommand.CanShoot(map, creature, player) == false)
+						if (Sniper == false || ShootCommand.CanShoot(map, creature, player) == false
+							|| (Sniper == true && creature.RangedWeapon.Count == 0 ))
 						{
 							return new MoveCommand(creature, nearPlayerDirX, nearPlayerDirY, map, false);
 						}
