@@ -18,11 +18,11 @@ namespace Roguelike
 
 		public MapGenerator(int sizeX, int sizeY)
 		{
-			SizeX = sizeX;
-			SizeY = sizeY;
-			maxBuildingNumber = SizeX * SizeY / 20;
+			SizeX = Math.Max(sizeX, 4);
+			SizeY = Math.Max(sizeY, 4);
+			maxBuildingNumber = 2 + Math.Max(0, (SizeX-4)) * Math.Max(0, (SizeY-4)) / 16;
 			maxBuildingCounter = maxBuildingNumber + 50;
-			PointObjectsCount = maxBuildingNumber / 2;
+			PointObjectsCount = (int)(Math.Ceiling((double)((SizeX-3) * (SizeY-3)) / 40));
 		}
 
 		public Map GenerateMap(Creature player)
@@ -70,8 +70,15 @@ namespace Roguelike
 				b.GenerateLoot(map);
 
 			int pointsCounter = 0;
+			int tryCounter = 0;
 			while (pointsCounter < PointObjectsCount)
 			{
+				++tryCounter;
+				if (buildings.Count == 0 || tryCounter > 10)
+				{
+					map[1, 1].placeObject(new Points() { Value = 10 });
+					++pointsCounter;
+				}
 				foreach(Building b in buildings)
 				{
 					if (b.GeneratePoints(map) == true)
