@@ -83,7 +83,7 @@ namespace RoguelikeGUI
 
 		public String getProcessorComment()
 		{
-			return "Select Target";
+			return "Select Enemy";
 		}
 	}
 }

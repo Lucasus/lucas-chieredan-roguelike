@@ -84,7 +84,7 @@ namespace RoguelikeGUI
 		}
 		public String getProcessorComment()
 		{
-			return "Select Tile to throw granade to";
+			return "Select Field";
 		}
 	}
 }
