@@ -50,6 +50,12 @@ namespace Roguelike
 						AbstractLogger.Current.Log(attacker.MianownikName + " zaatakował nożem " + deffender.BiernikName + " i zadał mu " + damage + " obrażeń");
 					}
 				}
+				Random r = RandomNumberGenerator.GlobalRandom;
+				if (r.Next(100) < attacker.MeleeWeapon.BrokeChance * 100)
+				{
+					attacker.MeleeWeapon.Damage = (attacker.MeleeWeapon.Damage + 1) / 2;
+					AbstractLogger.Current.Log("Twój nóż uległ uszkodzeniu. Daje teraz tylko " + attacker.MeleeWeapon.Damage + " obrażeń");
+				}
 			}
 		}
 	}

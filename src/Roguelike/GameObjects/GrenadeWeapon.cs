@@ -8,7 +8,6 @@ namespace Roguelike
 	public class GrenadeWeapon : RangedWeapon
 	{
 		public int Spread { get; set; }
-		public int Count { get; set; }
 	
 		public GrenadeWeapon()
 		{

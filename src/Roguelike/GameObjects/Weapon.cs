@@ -8,9 +8,11 @@ namespace Roguelike
 	public class Weapon : IGameObject
 	{
 		public int Damage { get; set; }
+		public double BrokeChance { get; set; }
 
 		public Weapon()
 		{
+			BrokeChance = 0;
 			Damage = 1;
 		}
 
