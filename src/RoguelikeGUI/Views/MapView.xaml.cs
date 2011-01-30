@@ -23,15 +23,18 @@ namespace RoguelikeGUI
 	{
 		public event EventHandler gameEndedEvent;
 		private GameManager gameManager;
+		private GlobalGameModel gameModel;
 
-		public MapView(GameService service)
+		public MapView(GlobalGameModel gameModel, GameService service)
 		{
 			InitializeComponent();
+			this.gameModel = gameModel;
 			gameManager = new GameManager(this, service, new ListBoxLogger(Logger) );
 		}
 
 		public void gameEnded()
 		{
+			this.gameModel.HallOfFame.add(gameManager.GameService.playerName, gameManager.GameService.getPoints());
 			if(gameEndedEvent != null)
 				gameEndedEvent(this, null);
 		}

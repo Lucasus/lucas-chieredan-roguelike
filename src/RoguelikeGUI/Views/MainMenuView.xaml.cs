@@ -21,20 +21,23 @@ namespace RoguelikeGUI
 	/// </summary>
 	public partial class MainMenuView : UserControl
 	{
+		public GlobalGameModel gameModel;
+
 		public delegate void StartGameEventHandler(object sender, StartGameEventArgs e);
 
 		public event StartGameEventHandler startGamePressed;
 		public event EventHandler hallOfFamePressed;
 
-		public MainMenuView()
+		public MainMenuView(GlobalGameModel gameModel)
 		{
 			InitializeComponent();
+			this.gameModel = gameModel;
 		}
 
 		private void button1_Click(object sender, RoutedEventArgs e)
 		{
 			GameService gameService = new GameService();
-			gameService.InitializeGame(Convert.ToInt32(this.mapWidth.Text), Convert.ToInt32(this.mapHeight.Text));
+			gameService.InitializeGame(Convert.ToInt32(this.mapWidth.Text), Convert.ToInt32(this.mapHeight.Text), this.playerName.Text);
 
 			if(startGamePressed != null)
 				startGamePressed(this, new StartGameEventArgs(gameService));
