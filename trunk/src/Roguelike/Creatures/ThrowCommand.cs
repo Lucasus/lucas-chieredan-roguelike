@@ -52,7 +52,7 @@ namespace Roguelike
 								if (damagedField.Creature.isDead)
 								{
 									++enemyKilledCount;
-									thrower.Money += 1;
+									thrower.Money += 3;
 									LootGenerator lootGen = new LootGenerator();
 									lootGen.generateLoot(thrower, damagedField.Creature);
 									damagedField.Creature.Field.removeCreature();

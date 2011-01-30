@@ -18,11 +18,11 @@ namespace Roguelike
 		public void generateLoot(Field f)
 		{
 			Random r = new Random();
-			int generatedValue = randomGenerator.Next(26);
+			int generatedValue = randomGenerator.Next(23);
 			if (0 <= generatedValue && generatedValue <= 3)
 			{
 				int spread = randomGenerator.Next(4) + 1;
-				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(9) + 5, Range = randomGenerator.Next(10) + spread, Spread = spread, Ammo = 1 + randomGenerator.Next(3) });
+				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(9) + 5, Range = 1 + randomGenerator.Next(9) + spread, Spread = spread, Ammo = 1 + randomGenerator.Next(3) });
 			}
 			else if (4 <= generatedValue && generatedValue <= 7)
 			{
