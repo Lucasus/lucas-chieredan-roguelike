@@ -12,6 +12,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
+using Roguelike;
+
 namespace RoguelikeGUI
 {
 	/// <summary>
@@ -19,11 +21,24 @@ namespace RoguelikeGUI
 	/// </summary>
 	public partial class HallOfFameView : UserControl
 	{
+		public GlobalGameModel gameModel;
 		public event EventHandler backPressed;
 
-		public HallOfFameView()
+		public HallOfFameView(GlobalGameModel gameModel)
 		{
 			InitializeComponent();
+			this.gameModel = gameModel;
+			this.gameModel.HallOfFame.recordAdded += this.refreshList;
+		}
+
+		private void refreshList(object sender, EventArgs e)
+		{
+			hallOfFameBlock.Text = "";
+			IEnumerable<KeyValuePair<string, int>> highscores = this.gameModel.HallOfFame.getTopN(10);
+			foreach(KeyValuePair<string, int> highscore in highscores)
+			{
+				hallOfFameBlock.Text += highscore.Key + " " + highscore.Value + "\n";
+			}
 		}
 
 		private void button1_Click(object sender, RoutedEventArgs e)

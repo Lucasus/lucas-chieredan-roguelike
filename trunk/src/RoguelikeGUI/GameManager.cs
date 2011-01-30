@@ -37,7 +37,7 @@ namespace RoguelikeGUI
 			this.gameService = service;
 			this.window = mapView;
 			this.keyProcessor = new MainKeyProcessor(this);
-			MapLoader loader = new MapLoader();
+			//MapLoader loader = new MapLoader();
 			//char[,] initialMap = loader.loadMap("TestMap.map");
 			AbstractLogger.Current = listBoxLogger;
 			//this.gameService.InitializeGame(initialMap);

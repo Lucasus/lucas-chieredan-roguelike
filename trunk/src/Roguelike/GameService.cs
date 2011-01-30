@@ -7,6 +7,8 @@ namespace Roguelike
 {
 	public class GameService
 	{
+		public string playerName;
+
 		public Creature Player { get; set; }
 		public MapGenerator Generator { get; set; }
 		
@@ -19,8 +21,9 @@ namespace Roguelike
 	
 		public Map Map { get; set; }
 
-		public void InitializeGame(int mapSizeX, int mapSizeY)//char[,] initialMap)
+		public void InitializeGame(int mapSizeX, int mapSizeY, string playerName)//char[,] initialMap)
 		{
+			this.playerName = playerName;
 			Random r = RandomNumberGenerator.GlobalRandom;
 			Generator = new MapGenerator(mapSizeX, mapSizeY);
 			Creatures = new List<Creature>();

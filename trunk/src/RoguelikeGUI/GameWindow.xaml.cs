@@ -20,15 +20,20 @@ namespace RoguelikeGUI
 	/// </summary>
 	public partial class GameWindow : Window
 	{
+		GlobalGameModel gameModel;
+
 		MainMenuView mainMenu;
 		HallOfFameView hallOfFame;
 		public GameWindow()
 		{
 			InitializeComponent();
-			mainMenu = new MainMenuView();
+
+			gameModel = new GlobalGameModel();
+
+			mainMenu = new MainMenuView(gameModel);
 			mainMenu.startGamePressed += this.switchToGameView;
 			mainMenu.hallOfFamePressed += this.switchToHallOfFame;
-			hallOfFame = new HallOfFameView();
+			hallOfFame = new HallOfFameView(gameModel);
 			hallOfFame.backPressed += this.switchToMenu;
 			this.switchView(mainMenu);
 		}
@@ -43,8 +48,8 @@ namespace RoguelikeGUI
 			Keyboard.Focus((UserControl)sender);
 		}
 		private void switchToGameView(object sender, StartGameEventArgs e)
-		{ 
-			MapView map = new MapView(e.gameService);
+		{
+			MapView map = new MapView(gameModel, e.gameService);
 			map.gameEndedEvent += this.switchToHallOfFame;
 			this.switchView(map);
 		}

@@ -8,5 +8,6 @@
     <Grid>
 		<Label Content="Hall Of Fame" FontFamily="MV Boli" FontSize="60" HorizontalAlignment="Left" Margin="197,12,0,0" Name="label1" VerticalAlignment="Top" />
 		<Button Content="Back" Height="84" HorizontalAlignment="Left" Margin="108,474,0,0" Name="button1" VerticalAlignment="Top" Width="529" Click="button1_Click" />
+		<TextBlock Height="368" HorizontalAlignment="Left" Margin="12,100,0,0" Name="hallOfFameBlock" Text="" VerticalAlignment="Top" Width="754" TextWrapping="Wrap" TextAlignment="Center" />
 	</Grid>
 </UserControl>
