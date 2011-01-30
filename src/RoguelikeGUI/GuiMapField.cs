@@ -16,76 +16,107 @@ namespace RoguelikeGUI
 {
 	public class GuiMapField : Canvas
 	{
-		private Field field;
+		//private Field field;
+		private Map map;
+		private int x;
+		private int y;
 		private Image background;
 		
 		public Field Field
 		{
-            set {
-                this.field = value;
+			set 
+			{
+				if (value != null)
+				{
+					this.x = value.X;
+					this.y = value.Y;
+				}
+				else
+				{
+					this.x = -1;
+					this.y = -1;
+				}
+				//this.field = value;
 
-                if (value != null)
-                {
-                    if (value is Wall)
-                        background = ImageLoader.LoadImage("wall.png");
-                    else if (value is Floor)
-                        background = ImageLoader.LoadImage("floor.png");
-                }
-            }
-			get { return this.field; }
+				UpdateBackground();
+			}
+			get 
+			{
+				if(x != -1 && y != -1)
+					return this.map[x, y];
+				return null;
+			} // this.field; }
 		}
 
-		public GuiMapField(Field field)
+		private void UpdateBackground()
 		{
-            Field = field;
+			if (Field != null)
+			{
+				if (Field is Wall)
+					background = ImageLoader.LoadImage("wall.png");
+				else if (Field is Floor)
+					background = ImageLoader.LoadImage("floor.png");
+			}
+		}
+
+//		public GuiMapField(Field field)
+//		{
+//			Field = field;
+//		}
+
+		public GuiMapField(Map m, Field field)
+		{
+			this.map = m;
+			this.Field = field;
 		}
 
 		public void RefreshField(bool visible)
 		{
+			UpdateBackground();
 			this.Children.Clear();
-            if (this.field != null)
-            {
-                this.Children.Add(background);
-                if (visible)
-                {
-                    if (this.field.Objects.Count > 0)
-                    {
-                        if (this.field.Objects.Count == 1)
-                        {
-                            Image objectImage = ImageLoader.CreaObjectImage(field.Objects[0]);
-                            this.Children.Add(objectImage);
-                        }
-                        else
-                        {
-                            Image objectImage = ImageLoader.LoadImage("chest.png");
-                            this.Children.Add(objectImage);
-                        }
-                    }
-                    if (this.field.Creature != null)
-                    {
-                        Image creatureImage = ImageLoader.CreateCreatureImage(this.field.Creature);
-                        this.Children.Add(creatureImage);
-                        Line healthBar = new Line();
-                        healthBar.Stroke = Brushes.LightGreen;
-                        healthBar.X1 = 2;
-                        healthBar.Y1 = 2;
-                        healthBar.X2 = ((double)this.field.Creature.Health / this.field.Creature.MaxHealth) * 30 + 2;
-                        healthBar.Y2 = 2;
-                        healthBar.StrokeThickness = 2;
+			if (this.Field != null)
+			{
+				this.Children.Add(background);
+				if (visible)
+				{
+					if (this.Field.Objects.Count > 0)
+					{
+						if (this.Field.Objects.Count == 1)
+						{
+							Image objectImage = ImageLoader.CreaObjectImage(Field.Objects[0]);
+							this.Children.Add(objectImage);
+						}
+						else
+						{
+							Image objectImage = ImageLoader.LoadImage("chest.png");
+							this.Children.Add(objectImage);
+						}
+					}
+					if (this.Field.Creature != null)
+					{
+						Image creatureImage = ImageLoader.CreateCreatureImage(this.Field.Creature);
+						this.Children.Add(creatureImage);
+						Line healthBar = new Line();
+						healthBar.Stroke = Brushes.LightGreen;
+						healthBar.X1 = 2;
+						healthBar.Y1 = 2;
+						healthBar.X2 = ((double)this.Field.Creature.Health / this.Field.Creature.MaxHealth) * 30 + 2;
+						healthBar.Y2 = 2;
+						healthBar.StrokeThickness = 2;
 
-                        this.Children.Add(healthBar);
-                    }
-                }
-                else
-                {
-                    Rectangle rectangle = new Rectangle();
-                    rectangle.Width = 30;
-                    rectangle.Height = 30;
-                    rectangle.Fill = new SolidColorBrush(Colors.Black);
-                    rectangle.Opacity = 0.5;
-                    this.Children.Add(rectangle);
-                }
-            }
+						this.Children.Add(healthBar);
+					}
+				}
+				else
+				{
+					Rectangle rectangle = new Rectangle();
+					rectangle.Width = 30;
+					rectangle.Height = 30;
+					rectangle.Fill = new SolidColorBrush(Colors.Black);
+					rectangle.Opacity = 0.5;
+					this.Children.Add(rectangle);
+				}
+			}
 		}
 
 		public void DrawOnField(UIElement element)
