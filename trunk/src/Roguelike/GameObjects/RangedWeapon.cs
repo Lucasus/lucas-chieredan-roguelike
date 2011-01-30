@@ -9,12 +9,14 @@ namespace Roguelike
 	{
 		public double Chance { get; set; }
 		public int Range { get; set; }
-		public int Count { get; set; }
+		public int Ammo { get; set; }
+
 
 		public RangedWeapon()
 		{
 			Chance = 1;
 			Range = 1;
+			Ammo = 1;
 		}
 
 		public override void objectPickedBy(Creature creature)

@@ -55,44 +55,38 @@
 			</Grid.ColumnDefinitions>
 		</Grid>
 		<Grid Name="GridStats" Grid.Column="1" Height="450" HorizontalAlignment="Left" VerticalAlignment="Top" Width="178" Background="#FFBE4242">
-            <Label Content="Player Statistics" Height="28" HorizontalAlignment="Left" Margin="34,17,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
-            <Image Height="30" HorizontalAlignment="Left" Margin="0,44,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/health.png" />
-            <Label Content="Health:" Height="25" HorizontalAlignment="Left" Margin="31,44,0,0" VerticalAlignment="Top" Width="49" />
-            <Label Content="0" Height="28" Margin="79,44,0,0" Name="PlayerHp" VerticalAlignment="Top" HorizontalAlignment="Left" Width="93" />
-            <Image Height="30" HorizontalAlignment="Left" Margin="0,78,0,0" Name="image4" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/money.png" />
+			<Label Content="Health:" Height="25" HorizontalAlignment="Left" Margin="31,44,0,0" VerticalAlignment="Top" Width="49" />
+			<Label Content="0" Height="28" Margin="79,44,0,0" Name="PlayerHp" VerticalAlignment="Top" HorizontalAlignment="Left" Width="93" />
 			<Label Content="Money:" Height="28" HorizontalAlignment="Left" Margin="31,78,0,0" VerticalAlignment="Top" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="79,78,0,0" Name="playerMoney" VerticalAlignment="Top" Width="93" />
-
-            <Label Content="Weapon" Height="28" Margin="55,116,58,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Bold" FontSize="14" />
-            <Image Height="30" Margin="0,148,0,0" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/gun.png" />
-            <Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="34,148,0,0" VerticalAlignment="Top" />
+			<Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="34,148,0,0" VerticalAlignment="Top" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,148,0,0" Name="rangedDamage" VerticalAlignment="Top" Width="83" />
 			<Label Content="Range:" Margin="34,172,0,0" Height="28" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" />
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,172,0,0" Name="rangedRange" VerticalAlignment="Top" Width="83" />
-            <Label Content="Count:" Height="28" HorizontalAlignment="Left" Margin="34,195,0,0" Name="label22" VerticalAlignment="Top" />
-            <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,195,0,0" Name="rangedCount" VerticalAlignment="Top" Width="83" />
-            <Label Content="Chance:" Height="28" HorizontalAlignment="Left" Margin="34,218,0,0" Name="label2" VerticalAlignment="Top" />
-            <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,218,0,0" Name="rangedChance" VerticalAlignment="Top" Width="83" />
-
-            <Image Height="30" HorizontalAlignment="Left" Margin="0,261,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/knife.png" />
-			<Label Content="Damage:" Height="28" Margin="34,261,87,0" VerticalAlignment="Top" />
-            <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,261,0,0" Name="MeleeDamage" VerticalAlignment="Top" Width="83" />
-            <Label Content="Broke Chance:" Height="28" Width="100" Margin="34,284,57,0" VerticalAlignment="Top" />
-            <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="119,284,0,0" Name="MeleeBrokeChance" VerticalAlignment="Top" Width="83" />
-
-            <Image Height="30" HorizontalAlignment="Left" Margin="0,323,0,0" Name="image5" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/grenade.png" />
-			<Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="34,323,0,0" VerticalAlignment="Top" />
-            <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,323,0,0" Name="grenadeDamage" VerticalAlignment="Top" />
-            <Label Content="Spread:" Height="28" HorizontalAlignment="Left" Margin="34,347,0,0" VerticalAlignment="Top" />
-            <Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,347,0,0" Name="grenadeSpread" VerticalAlignment="Top" />
-            <Label Content="Count:" Height="28" HorizontalAlignment="Left" Margin="34,369,0,0" VerticalAlignment="Top" />
-			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,369,0,0" Name="grenadeCount" VerticalAlignment="Top" />
-			<Label Content="Range:" Height="28" HorizontalAlignment="Left" Margin="34,389,0,0" VerticalAlignment="Top" />
-			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,389,0,0" Name="grenadeRange" VerticalAlignment="Top" />
+			<Label Content="Weapon" Height="28" Margin="55,116,58,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Bold" FontSize="14" />
+			<Label Content="Player Statistics" Height="28" HorizontalAlignment="Left" Margin="34,17,0,0" Name="label1" VerticalAlignment="Top" FontWeight="Bold" FontSize="14" />
+			<Image Height="30" HorizontalAlignment="Left" Margin="0,148,0,0" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/gun.png" />
+			<Image Height="30" HorizontalAlignment="Left" Margin="0,270,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/knife.png" />
+			<Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="34,270,0,0" VerticalAlignment="Top" />
+			<Image Height="30" HorizontalAlignment="Left" Margin="0,44,0,0" Name="image3" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/health.png" />
+			<Image Height="30" HorizontalAlignment="Left" Margin="0,78,0,0" Name="image4" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/money.png" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,270,0,0" Name="MeleeDamage" VerticalAlignment="Top" Width="83" />
+			<Label Content="Chance:" Height="28" HorizontalAlignment="Left" Margin="34,195,0,0" Name="label2" VerticalAlignment="Top" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,195,0,0" Name="rangedChance" VerticalAlignment="Top" Width="83" />
+			<Image Height="30" HorizontalAlignment="Left" Margin="0,332,0,0" Name="image5" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/grenade.png" />
+			<Label Content="Damage:" Height="28" HorizontalAlignment="Left" Margin="34,332,0,0" VerticalAlignment="Top" />
+			<Label Content="Spread:" Height="28" HorizontalAlignment="Left" Margin="34,356,0,0" VerticalAlignment="Top" />
+			<Label Content="Ammo:" Height="28" HorizontalAlignment="Left" Margin="34,378,0,0" VerticalAlignment="Top" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,332,0,0" Name="grenadeDamage" VerticalAlignment="Top" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,356,0,0" Name="grenadeSpread" VerticalAlignment="Top" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,378,0,0" Name="grenadeCount" VerticalAlignment="Top" />
+			<Label Content="Range:" Height="28" HorizontalAlignment="Left" Margin="34,398,0,0" VerticalAlignment="Top" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,398,0,0" Name="grenadeRange" VerticalAlignment="Top" />
+			<Label Content="Ammo:" Height="28" HorizontalAlignment="Left" Margin="34,220,0,0" VerticalAlignment="Top" />
+			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="89,220,0,0" Name="rangedAmmo" VerticalAlignment="Top" Width="83" />
 		</Grid>
-		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">                        
-			<Label Content="Input Processor:" Height="28" HorizontalAlignment="Left" Margin="0,-4,0,0" VerticalAlignment="Top" />
-			<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="101,-4,0,0" Name="CurrentInputProcessor" VerticalAlignment="Top" />
+		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
+			<Label Content="Label" Height="28" HorizontalAlignment="Left" Margin="6,-4,0,0" Name="CurrentInputProcessor" VerticalAlignment="Top" />
 		</Grid>
         <Grid Grid.Row="2" Height="100" HorizontalAlignment="Left" Name="feedback" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
             <ListBox Name="Logger" Height="100" IsEnabled="False" />

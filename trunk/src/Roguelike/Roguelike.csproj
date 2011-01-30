@@ -82,7 +82,7 @@
     <Compile Include="GameObjects\GrenadeWeapon.cs" />
     <Compile Include="GameObjects\IGameObject.cs" />
     <Compile Include="GameObjects\MedKit.cs" />
-    <Compile Include="GameObjects\Money.cs" />
+    <Compile Include="GameObjects\Ammo.cs" />
     <Compile Include="GameObjects\RangedWeapon.cs" />
     <Compile Include="Map\IFieldVisitor.cs" />
     <Compile Include="IRandomNumberGenerator.cs" />

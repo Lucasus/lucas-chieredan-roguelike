@@ -27,8 +27,8 @@ namespace Roguelike
 			{
 				CreatureType = "Hero", 
 				MeleeWeapon = new Weapon(){Damage=3, BrokeChance=0.0}, 
-				RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5, Count=15}, 
-				GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Count=2}
+				RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5, Ammo=15}, 
+				GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Ammo=2}
 			};
 			Player.MianownikName = "Gracz";
 			Player.BiernikName = "gracza";

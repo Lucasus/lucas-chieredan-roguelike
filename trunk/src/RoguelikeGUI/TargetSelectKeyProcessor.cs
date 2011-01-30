@@ -80,5 +80,10 @@ namespace RoguelikeGUI
 			if(this.creatures.Count > 0)
 				CurrentPosition = (currentPosition + 1) % this.creatures.Count;
 		}
+
+		public String getProcessorComment()
+		{
+			return "Select Target";
+		}
 	}
 }

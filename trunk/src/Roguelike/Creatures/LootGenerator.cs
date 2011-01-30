@@ -21,7 +21,7 @@ namespace Roguelike
 			int generatedValue = randomGenerator.Next(5);
 			if (generatedValue == 0)
 			{
-				f.placeObject(new Money() { Worth = randomGenerator.Next(5) + 1 });
+				f.placeObject(new Ammo() { Bullets = randomGenerator.Next(5) + 1, Grenades = 1 });
 			}
 			else if (generatedValue == 1)
 			{
@@ -37,13 +37,8 @@ namespace Roguelike
 			}
 			else
 			{
-				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(10) + 1, Range = randomGenerator.Next(10) + 1, Spread = randomGenerator.Next(4), Count = 1 + randomGenerator.Next(3) });
+				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(10) + 5, Range = randomGenerator.Next(10) + 1, Spread = randomGenerator.Next(3)+1, Ammo = 1 + randomGenerator.Next(3) });
 			}
-		}
-
-		int getRandomizedDamage(Random r, int baseDamage)
-		{
-			return (int)((baseDamage + 1) / 1.5 + r.Next(baseDamage + 2) / 1.5);
 		}
 	}
 }

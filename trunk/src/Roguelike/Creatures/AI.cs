@@ -113,7 +113,7 @@ namespace Roguelike
 					else
 					{
 						if (Sniper == false || ShootCommand.CanShoot(map, creature, player) == false
-							|| (Sniper == true && creature.RangedWeapon.Count == 0 ))
+							|| (Sniper == true && creature.RangedWeapon.Ammo == 0 ))
 						{
 							return new MoveCommand(creature, nearPlayerDirX, nearPlayerDirY, map, false);
 						}

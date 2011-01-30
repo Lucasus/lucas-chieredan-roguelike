@@ -54,7 +54,7 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 1 } };
+			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 1 }, RangedWeapon = new RangedWeapon() {Ammo = 1}, GrenadeWeapon = new GrenadeWeapon() { Ammo = 1 } };
 			map[0,0].putCreature(player);
 		}
 
@@ -62,12 +62,15 @@ namespace Roguelike.Tests
 		///A test for GameObject Constructor
 		///</summary>
 		[TestMethod()]
-		public void MoneyPickupTest()
+		public void AmmoPickupTest()
 		{
-			Money moneyPickup = new Money() { Worth = 10 };
+			Ammo moneyPickup = new Ammo() { Bullets = 4, Grenades = 1 };
 			map[0, 0].placeObject(moneyPickup);
+			int playerBullets = player.RangedWeapon.Ammo;
+			int playerGrenades = player.GrenadeWeapon.Ammo;
 			new PickupCommand(player).execute();
-			Assert.AreEqual(10, player.Money);
+			Assert.AreEqual(player.RangedWeapon.Ammo, playerBullets + 4);
+			Assert.AreEqual(player.GrenadeWeapon.Ammo, playerGrenades + 1);
 		}
 
 		[TestMethod()]
@@ -102,12 +105,15 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void MiltipleObjectPickupsTest()
 		{
-			Money moneyPickup = new Money() { Worth = 10 };
-			map[0, 0].placeObject(moneyPickup);
+			Ammo ammoPickup = new Ammo() { Bullets = 4, Grenades = 1 };
+			map[0, 0].placeObject(ammoPickup);
+			int playerBullets = player.RangedWeapon.Ammo;
+			int playerGrenades = player.GrenadeWeapon.Ammo;
 			Weapon weaponPickup = new Weapon() { Damage = 5 };
 			map[0, 0].placeObject(weaponPickup);
 			new PickupCommand(player).execute();
-			Assert.AreEqual(10, player.Money);
+			Assert.AreEqual(player.RangedWeapon.Ammo, playerBullets + 4);
+			Assert.AreEqual(player.GrenadeWeapon.Ammo, playerGrenades + 1);
 			Assert.AreEqual(weaponPickup, player.MeleeWeapon);
 		}
 

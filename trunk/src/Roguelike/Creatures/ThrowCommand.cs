@@ -22,7 +22,7 @@ namespace Roguelike
 
 		public bool isExecutable()
 		{
-			if(thrower.GrenadeWeapon != null && thrower.GrenadeWeapon.Count > 0 && map.getDistanceBetweenFields(thrower.Field, targetField) <= thrower.GrenadeWeapon.Range)
+			if(thrower.GrenadeWeapon != null && thrower.GrenadeWeapon.Ammo > 0 && map.getDistanceBetweenFields(thrower.Field, targetField) <= thrower.GrenadeWeapon.Range)
 				return true;
 			else
 				return false;
@@ -31,7 +31,7 @@ namespace Roguelike
 		{
 			if(this.isExecutable())
 			{
-				this.thrower.GrenadeWeapon.Count -= 1;
+				this.thrower.GrenadeWeapon.Ammo -= 1;
 				int enemyCount = 0;
 				int enemyKilledCount = 0;
 				for(int i=-thrower.GrenadeWeapon.Spread; i<thrower.GrenadeWeapon.Spread + 1; i++)

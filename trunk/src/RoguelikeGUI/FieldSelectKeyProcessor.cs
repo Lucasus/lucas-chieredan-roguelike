@@ -23,7 +23,9 @@ namespace RoguelikeGUI
 					manager.MapDrawer.Draw(manager.GameService.Player.Field);
 				}
 				this.targetField = value;
-				manager.MapDrawer[this.targetField].DrawOnField(ImageLoader.LoadImage("selectBorder.png"));
+				GuiMapField guiField = manager.MapDrawer[this.targetField];
+				if(guiField != null)
+					guiField.DrawOnField(ImageLoader.LoadImage("selectBorder.png"));
 			}
 		}
 
@@ -79,6 +81,10 @@ namespace RoguelikeGUI
 						this.manager.PlayerCommand(new ThrowCommand(manager.GameService.Player, this.targetField, manager.GameService.Map, new RandomNumberGenerator()));
 					break;
 			}
+		}
+		public String getProcessorComment()
+		{
+			return "Select Tile to throw granade to";
 		}
 	}
 }
