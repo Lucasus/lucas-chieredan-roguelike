@@ -26,6 +26,7 @@ namespace RoguelikeGUI
 			InitializeComponent();
 			this.gameModel = gameModel;
 			this.gameModel.HallOfFame.recordAdded += this.refreshList;
+			refreshList(this, new EventArgs());
 		}
 
 		private void refreshList(object sender, EventArgs e)
