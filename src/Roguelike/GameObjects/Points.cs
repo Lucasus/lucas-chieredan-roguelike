@@ -11,7 +11,7 @@ namespace Roguelike
 		public void objectPickedBy(Creature creature)
 		{
 			creature.Money += Value;
-			creature.PicketPointsCount++;
+			creature.PickedPointsCount++;
 			AbstractLogger.Current.Log(creature.MianownikName + " zebrał " + Value + " punktów.");
 		}
 	}

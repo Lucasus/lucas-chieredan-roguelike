@@ -16,15 +16,15 @@ namespace Roguelike
 
 		public MapGenerator()
 		{
-			SizeX = 16;
-			SizeY = 20;
+			SizeX = 40;
+			SizeY = 30;
 		}
 
 		public Map GenerateMap(Creature player)
 		{
-			int maxBuildingNumber = 10;
-			int maxBuildingCounter = 30;
-			PointObjectsCount = 4;
+			int maxBuildingNumber = SizeX * SizeY / 20;
+			int maxBuildingCounter = maxBuildingNumber + 50;
+			PointObjectsCount = maxBuildingNumber / 2;
 
 			mapTemplate = new char[SizeX, SizeY];
 
