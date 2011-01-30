@@ -17,7 +17,7 @@ namespace Roguelike
 				MianownikName = "Gangster",
 				BiernikName = "gangstera",
 				MeleeWeapon = new Weapon() { Damage = 1 + r.Next(2), BrokeChance = 0 },
-				RangedWeapon = new RangedWeapon() { Chance = (double)(10 + r.Next(80)) / 100, Damage = 1, Range = 2 + r.Next(7), Count = 5 + r.Next(15) }
+				RangedWeapon = new RangedWeapon() { Chance = (double)(10 + r.Next(80)) / 100, Damage = 1, Range = 2 + r.Next(7), Ammo = 5 + r.Next(15) }
 			};
 
 			return enemy;

@@ -9,5 +9,6 @@ namespace RoguelikeGUI
 	public interface IKeyProcessor
 	{
 		void processKey(Key key);
+		String getProcessorComment();
 	}
 }

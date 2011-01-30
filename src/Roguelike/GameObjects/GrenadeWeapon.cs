@@ -12,7 +12,6 @@ namespace Roguelike
 		public GrenadeWeapon()
 		{
 			Spread = 2;
-			Count = 1;
 		}
 
 		public override void objectPickedBy(Creature creature)

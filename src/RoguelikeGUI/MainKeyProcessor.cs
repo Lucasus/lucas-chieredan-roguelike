@@ -68,5 +68,9 @@ namespace RoguelikeGUI
 					break;
 			}
 		}
+		public String getProcessorComment()
+		{
+			return "Waiting for Action";
+		}
 	}
 }
