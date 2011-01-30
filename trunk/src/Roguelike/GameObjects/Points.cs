@@ -10,6 +10,8 @@ namespace Roguelike
 		public int Value { get; set; }
 		public void objectPickedBy(Creature creature)
 		{
+			creature.Money += Value;
+			creature.PicketPointsCount++;
 			AbstractLogger.Current.Log(creature.MianownikName + " zebrał " + Value + " punktów.");
 		}
 	}

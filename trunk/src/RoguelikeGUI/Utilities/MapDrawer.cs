@@ -46,7 +46,7 @@ namespace RoguelikeGUI
 					GuiMapField field = null;
 					if (map.IsWithinBounds(i, j))
 					{
-						field = new GuiMapField(map, map[j,i]);// map[i, j]);
+						field = new GuiMapField(map, map[i,j]);// map[i, j]);
 					}
 					else
 					{
@@ -99,7 +99,7 @@ namespace RoguelikeGUI
 				for (int j = 0; j < ColumnCount; ++j)
 				{
 					if (firstX + i < mapModel.MapWidth && firstY + j < mapModel.MapHeight)
-						fields[i, j].Field = mapModel[firstY + j, firstX + i];
+						fields[i, j].Field = mapModel[firstX + i,firstY + j];//mapModel[firstY + j, firstX + i];
 					else
 						fields[i, j].Field = null;
 				}
