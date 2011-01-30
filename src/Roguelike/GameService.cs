@@ -26,7 +26,7 @@ namespace Roguelike
 			Player = new Creature(40)
 			{
 				CreatureType = "Hero", 
-				MeleeWeapon = new Weapon(){Damage=3, BrokeChance=0.0}, 
+				MeleeWeapon = new Weapon(){Damage=3, BrokeChance=0.001}, 
 				RangedWeapon = new RangedWeapon(){Damage=2, Range=3, Chance=0.5, Ammo=15}, 
 				GrenadeWeapon = new GrenadeWeapon{Damage=5, Range=5, Spread=2, Ammo=2}
 			};
