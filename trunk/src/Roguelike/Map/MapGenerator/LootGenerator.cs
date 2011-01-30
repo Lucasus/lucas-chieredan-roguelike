@@ -44,7 +44,7 @@ namespace Roguelike
 			}
 			else
 			{
-				f.placeObject(new Points() {Value = randomGenerator.Next(10) + 5});
+				f.placeObject(new Points() {Value = randomGenerator.Next(10) + 5}); 
 			}
 		}
 
