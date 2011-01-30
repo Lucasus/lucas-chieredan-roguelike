@@ -5,13 +5,17 @@ using System.Text;
 
 namespace Roguelike
 {
-	public class GrenadeWeapon : RangedWeapon
+	public class GrenadeWeapon : Weapon
 	{
 		public int Spread { get; set; }
+		public int Range { get; set; }
+		public int Ammo { get; set; }
 	
 		public GrenadeWeapon()
 		{
 			Spread = 2;
+			Range = 1;
+			Ammo = 1;
 		}
 
 		public override void objectPickedBy(Creature creature)

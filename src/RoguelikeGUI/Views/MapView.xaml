@@ -64,34 +64,34 @@
 			<Label Content="0" Height="28" HorizontalAlignment="Left" Margin="79,69,0,0" Name="playerMoney" VerticalAlignment="Top" Width="93" />
 
             <Label Content="Inventory" Margin="-2,90,0,0" VerticalAlignment="Top" FontStyle="Normal" FontWeight="Bold" FontSize="20" HorizontalAlignment="Left" Width="172" FontFamily="MV Boli" />
-            <Image Height="30" Margin="0,128,0,0" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/gun.png" />
-            <Label Content="Damage:" HorizontalAlignment="Left" Margin="6,160,0,0" VerticalAlignment="Top" Padding="0" />
-			<Label Content="0" HorizontalAlignment="Left" Margin="89,160,0,0" Name="rangedDamage" VerticalAlignment="Top" Width="82" Padding="0" />
-			<Label Content="Range:" Margin="6,175,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" Padding="0" />
-			<Label Content="0" HorizontalAlignment="Left" Margin="89,175,0,0" Name="rangedRange" VerticalAlignment="Top" Width="82" Padding="0" />
-            <Label Content="Count:" HorizontalAlignment="Left" Margin="6,190,0,0" Name="label22" VerticalAlignment="Top" Padding="0" />
-            <Label Content="0" HorizontalAlignment="Left" Margin="89,190,0,0" Name="rangedAmmo" VerticalAlignment="Top" Width="82" Padding="0" />
-            <Label Content="Chance:" HorizontalAlignment="Left" Margin="6,205,0,0" Name="label2" VerticalAlignment="Top" Padding="0" />
-            <Label Content="0" HorizontalAlignment="Left" Margin="89,205,0,0" Name="rangedChance" VerticalAlignment="Top" Width="82" Padding="0" />
+            <Image Height="30" Margin="0,194,0,0" HorizontalAlignment="Left" Name="image1" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/gun.png" />
+            <Label Content="Damage:" HorizontalAlignment="Left" Margin="6,226,0,0" VerticalAlignment="Top" Padding="0" />
+			<Label Content="0" HorizontalAlignment="Left" Margin="89,226,0,0" Name="rangedDamage" VerticalAlignment="Top" Width="82" Padding="0" />
+			<Label Content="Range:" Margin="6,241,0,0" VerticalAlignment="Top" HorizontalAlignment="Left" Width="46" Padding="0" />
+			<Label Content="0" HorizontalAlignment="Left" Margin="89,241,0,0" Name="rangedRange" VerticalAlignment="Top" Width="82" Padding="0" />
+            <Label Content="Count:" HorizontalAlignment="Left" Margin="6,256,0,0" Name="label22" VerticalAlignment="Top" Padding="0" />
+            <Label Content="0" HorizontalAlignment="Left" Margin="89,256,0,0" Name="rangedAmmo" VerticalAlignment="Top" Width="82" Padding="0" />
+            <Label Content="Chance:" HorizontalAlignment="Left" Margin="6,271,0,0" Name="label2" VerticalAlignment="Top" Padding="0" />
+            <Label Content="0" HorizontalAlignment="Left" Margin="89,271,0,0" Name="rangedChance" VerticalAlignment="Top" Width="82" Padding="0" />
 
-            <Image Height="30" HorizontalAlignment="Left" Margin="0,232,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/knife.png" />
-			<Label Content="Damage:" Margin="6,260,0,0" VerticalAlignment="Top" Padding="0" HorizontalAlignment="Left" Width="57" />
-            <Label Content="0" HorizontalAlignment="Left" Margin="89,260,0,0" Name="MeleeDamage" VerticalAlignment="Top" Width="83" Padding="0" />
-            <Label Content="Broke Chance:" Margin="6,275,95,0" VerticalAlignment="Top" Padding="0" />
-            <Label Content="0" HorizontalAlignment="Left" Margin="89,275,0,0" Name="MeleeBrokeChance" VerticalAlignment="Top" Width="82" Padding="0" />
+            <Image Height="30" HorizontalAlignment="Left" Margin="0,129,0,0" Name="image2" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/knife.png" />
+			<Label Content="Damage:" Margin="6,157,0,0" VerticalAlignment="Top" Padding="0" HorizontalAlignment="Left" Width="57" />
+            <Label Content="0" HorizontalAlignment="Left" Margin="89,157,0,0" Name="MeleeDamage" VerticalAlignment="Top" Width="83" Padding="0" />
+            <Label Content="Broke Chance:" Margin="6,172,95,0" VerticalAlignment="Top" Padding="0" />
+            <Label Content="0" HorizontalAlignment="Left" Margin="89,172,0,0" Name="MeleeBrokeChance" VerticalAlignment="Top" Width="82" Padding="0" />
 
-            <Image Height="30" HorizontalAlignment="Left" Margin="0,300,0,0" Name="image5" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/grenade.png" />
-			<Label Content="Damage:" HorizontalAlignment="Left" Margin="5,335,0,0" VerticalAlignment="Top" Padding="0" />
-            <Label Content="0" HorizontalAlignment="Left" Margin="89,335,0,0" Name="grenadeDamage" VerticalAlignment="Top" Padding="0" Width="81" />
-            <Label Content="Spread:" HorizontalAlignment="Left" Margin="5,350,0,0" VerticalAlignment="Top" Padding="0" />
-            <Label Content="0" HorizontalAlignment="Left" Margin="89,350,0,0" Name="grenadeSpread" VerticalAlignment="Top" Padding="0" Width="81" />
-            <Label Content="Count:" HorizontalAlignment="Left" Margin="5,365,0,0" VerticalAlignment="Top" Padding="0" />
-			<Label Content="0" HorizontalAlignment="Left" Margin="89,365,0,0" Name="grenadeCount" VerticalAlignment="Top" Padding="0" Width="83" />
-			<Label Content="Range:" HorizontalAlignment="Left" Margin="5,380,0,0" VerticalAlignment="Top" Padding="0" />
-			<Label Content="0" HorizontalAlignment="Left" Margin="89,380,0,0" Name="grenadeRange" VerticalAlignment="Top" Padding="0" Width="83" />
-			<Label Content="Ranged Weapon" HorizontalAlignment="Left" Margin="30,128,0,0" Name="label3" VerticalAlignment="Top" FontWeight="Bold" Width="140" FontFamily="MV Boli" FontSize="16" />
-			<Label Content="Melee Weapon" HorizontalAlignment="Left" Margin="30,232,0,0" Name="label4" VerticalAlignment="Top" Width="140" FontWeight="Bold" FontFamily="MV Boli" FontSize="16" />
-			<Label Content="Throwing Weapon" HorizontalAlignment="Left" Margin="30,300,0,0" Name="label5" VerticalAlignment="Top" FontWeight="Bold" FontFamily="MV Boli" FontSize="16" />
+            <Image Height="30" HorizontalAlignment="Left" Margin="0,293,0,0" Name="image5" Stretch="Fill" VerticalAlignment="Top" Width="30" Source="/RoguelikeGUI;component/Images/grenade.png" />
+			<Label Content="Damage:" HorizontalAlignment="Left" Margin="5,328,0,0" VerticalAlignment="Top" Padding="0" />
+            <Label Content="0" HorizontalAlignment="Left" Margin="89,328,0,0" Name="grenadeDamage" VerticalAlignment="Top" Padding="0" Width="81" />
+            <Label Content="Spread:" HorizontalAlignment="Left" Margin="5,343,0,0" VerticalAlignment="Top" Padding="0" />
+            <Label Content="0" HorizontalAlignment="Left" Margin="89,343,0,0" Name="grenadeSpread" VerticalAlignment="Top" Padding="0" Width="81" />
+            <Label Content="Count:" HorizontalAlignment="Left" Margin="5,358,0,0" VerticalAlignment="Top" Padding="0" />
+			<Label Content="0" HorizontalAlignment="Left" Margin="89,358,0,0" Name="grenadeCount" VerticalAlignment="Top" Padding="0" Width="83" />
+			<Label Content="Range:" HorizontalAlignment="Left" Margin="5,373,0,0" VerticalAlignment="Top" Padding="0" />
+			<Label Content="0" HorizontalAlignment="Left" Margin="89,373,0,0" Name="grenadeRange" VerticalAlignment="Top" Padding="0" Width="83" />
+			<Label Content="Ranged Weapon" HorizontalAlignment="Left" Margin="30,194,0,0" Name="label3" VerticalAlignment="Top" FontWeight="Bold" Width="140" FontFamily="MV Boli" FontSize="16" />
+			<Label Content="Melee Weapon" HorizontalAlignment="Left" Margin="30,129,0,0" Name="label4" VerticalAlignment="Top" Width="140" FontWeight="Bold" FontFamily="MV Boli" FontSize="16" />
+			<Label Content="Throwing Weapon" HorizontalAlignment="Left" Margin="30,293,0,0" Name="label5" VerticalAlignment="Top" FontWeight="Bold" FontFamily="MV Boli" FontSize="16" />
 		</Grid>
 		<Grid Grid.Row="1" Height="20" HorizontalAlignment="Left" Name="grid1" VerticalAlignment="Top" Width="778" Grid.ColumnSpan="2" Background="White">
 			<Label Content="Label" Height="28" HorizontalAlignment="Left" Name="CurrentInputProcessor" VerticalAlignment="Top" Margin="0,-4,0,0" />
