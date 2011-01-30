@@ -28,19 +28,19 @@ namespace Roguelike
 			// wyznaczamy rozmiary budynku
 			if (r.Next(10) > 1)
 			{
-				b.SizeX = 3 + r.Next(8);
-				b.SizeY = 3 + r.Next(8);
+				b.SizeX = 3 + r.Next(Math.Min(8, maxX - 4));
+				b.SizeY = 3 + r.Next(Math.Min(8, maxY - 4));
 			}
 			else
 			{
 				if (r.Next(2) == 0)
 				{
 					b.SizeX = 1;
-					b.SizeY = 4 + r.Next(7);
+					b.SizeY = 4 + r.Next(Math.Min(7, maxX - 5));
 				}
 				else
 				{
-					b.SizeX = 4 + r.Next(7);
+					b.SizeX = 4 + r.Next(Math.Min(7, maxY - 5));
 					b.SizeY = 1;
 
 				}

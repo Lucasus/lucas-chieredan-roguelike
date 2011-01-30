@@ -22,7 +22,7 @@ namespace Roguelike
 			if (0 <= generatedValue && generatedValue <= 3)
 			{
 				int spread = randomGenerator.Next(4) + 1;
-				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(10) + 5, Range = randomGenerator.Next(10) + spread, Spread = spread, Ammo = 1 + randomGenerator.Next(3) });
+				f.placeObject(new GrenadeWeapon() { Damage = randomGenerator.Next(9) + 5, Range = randomGenerator.Next(10) + spread, Spread = spread, Ammo = 1 + randomGenerator.Next(3) });
 			}
 			else if (4 <= generatedValue && generatedValue <= 7)
 			{

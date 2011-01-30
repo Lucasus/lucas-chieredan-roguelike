@@ -16,8 +16,8 @@ namespace Roguelike
 
 		public MapGenerator()
 		{
-			SizeX = 40;
-			SizeY = 30;
+			SizeX = 8;
+			SizeY = 8;
 		}
 
 		public Map GenerateMap(Creature player)
