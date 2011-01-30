@@ -9,16 +9,17 @@ namespace Roguelike
 	{
 		public int SizeX { get; set; }
 		public int SizeY { get; set; }
+		public List<Creature> GeneratedCreatures = new List<Creature>();
 
 		private char[,] mapTemplate;
 
 		public MapGenerator()
 		{
-			SizeX = 120;
-			SizeY = 120;
+			SizeX = 100;
+			SizeY = 100;
 		}
 
-		public Map GenerateMap()
+		public Map GenerateMap(Creature player)
 		{
 			mapTemplate = new char[SizeX, SizeY];
 
@@ -31,13 +32,19 @@ namespace Roguelike
 						mapTemplate[i, j] = '.';
 
 			List<Building> buildings = new List<Building>();
-			for (int i = 0; i < 200;)
+			for (int i = 0; i < 500; ++i)
 			{
-				Building b = Building.NewRandomBuilding(0, 0, SizeX, SizeY);
-				if (!intersects(b, buildings))
+				bool success = false;
+				int counter = 0;
+				while (success == false && counter < 200)
 				{
-					buildings.Add(b);
-					++i;
+					Building b = Building.NewRandomBuilding(2, 2, SizeX - 2, SizeY - 2);
+					if (!intersects(b, buildings))
+					{
+						success = true;
+						buildings.Add(b);
+					}
+					++counter;
 				}
 			}
 
@@ -47,8 +54,34 @@ namespace Roguelike
 			foreach (Building b in buildings)
 				b.DrawDoors(mapTemplate);
 
+			Map map = new Map(mapTemplate);
 
-			return new Map(mapTemplate);
+			foreach (Building b in buildings)
+				b.GenerateLoot(map);
+
+			foreach (Building b in buildings)
+			{
+				//GeneratedCreatures.AddRange(b.GenerateCreatures(map, player));
+			}
+
+			return map;
+		}
+
+		public Creature GenerateRandomCreature(Map map, Creature player)
+		{
+			Random r = RandomNumberGenerator.GlobalRandom;
+			Creature enemy = new CreatureGenerator().GetRandomCreature();
+
+			bool success = false;
+
+			while(success == false)
+			{
+				success = map[r.Next(map.MapWidth), r.Next(map.MapHeight)].putCreature(enemy);
+			}
+			AI ai = new AI(map, player, enemy);
+			enemy.AI = ai;
+			return enemy;
+
 		}
 
 		private bool intersects(Building b, List<Building> buildings)

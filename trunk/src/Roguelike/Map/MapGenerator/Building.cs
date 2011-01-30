@@ -19,15 +19,33 @@ namespace Roguelike
 		public int SizeY { get; set; }
 
 		public Point Doors { get; set; }
+		private static Random r = RandomNumberGenerator.GlobalRandom;
 
 		public static Building NewRandomBuilding(int minX, int minY, int maxX, int maxY)
 		{
-			Random r = RandomNumberGenerator.GlobalRandom;
 			Building b = new Building();
 
 			// wyznaczamy rozmiary budynku
-			b.SizeX = 3 + r.Next(8);
-			b.SizeY = 3 + r.Next(8);
+			if (r.Next(10) > 1)
+			{
+				b.SizeX = 3 + r.Next(8);
+				b.SizeY = 3 + r.Next(8);
+			}
+			else
+			{
+				if (r.Next(2) == 0)
+				{
+					b.SizeX = 1;
+					b.SizeY = 4 + r.Next(7);
+				}
+				else
+				{
+					b.SizeX = 4 + r.Next(7);
+					b.SizeY = 1;
+
+				}
+
+			}
 
 			b.X = minX + r.Next(maxX + 1 - b.SizeX);
 			b.Y = minY + r.Next(maxY + 1 - b.SizeY);
@@ -36,7 +54,7 @@ namespace Roguelike
 			Point drzwi = new Point();
 			if (r.Next(2) == 0) // lewa/prawa
 			{
-				int shift = 1 + r.Next(b.SizeY - 2);
+				int shift = 1 + r.Next(Math.Max(1, b.SizeY - 2));
 				int x = 0;
 				if (b.X < 2) // budynek przy lewym obrzeżu planszy
 					x = b.X + b.SizeX - 1;
@@ -50,7 +68,7 @@ namespace Roguelike
 			}
 			else
 			{
-				int shift = 1 + r.Next(b.SizeX - 2);
+				int shift = 1 + r.Next(Math.Max(1, b.SizeX - 2));
 				int y = 0;
 				if (b.Y < 2) // budynek przy lewym obrzeżu planszy
 					y = b.Y + b.SizeY - 1;
@@ -86,7 +104,46 @@ namespace Roguelike
 
 		public void DrawDoors(char[,] m)
 		{
-			m[Doors.X, Doors.Y] = '.';
+			if(SizeX > 2 && SizeY > 2)
+				m[Doors.X, Doors.Y] = '.';
+		}
+
+		public void GenerateLoot(Map m)
+		{
+			if (SizeX > 2 && SizeY > 2)
+			{
+				int lootCount = r.Next(3);
+				for (int i = 0; i < lootCount; ++i)
+				{
+					int x = X + 1 + r.Next(SizeX - 2);
+					int y = Y + 1 + r.Next(SizeY - 2);
+					new LootGenerator().generateLoot(m[x, y]);
+				}
+			}
+		}
+
+		public List<Creature> GenerateCreatures(Map map, Creature player)
+		{
+			List<Creature> cList = new List<Creature>();
+			if (SizeX > 2 && SizeY > 2)
+			{
+				int creatureCount = Math.Min((SizeX - 2) * (SizeY - 2), 1 + r.Next(3));
+				for (int i = 0; i < creatureCount; ++i)
+				{
+					Creature enemy = new CreatureGenerator().GetRandomCreature();
+
+					bool success = false;
+					while (success == false)
+					{
+						success = map[X + 1 + r.Next(SizeX - 2), Y + 1 + r.Next(SizeY - 2)].putCreature(enemy);
+					}
+
+					AI ai = new AI(map, player, enemy);
+					enemy.AI = ai;
+					cList.Add(enemy);
+				}
+			}
+			return cList;
 		}
 
 		public bool intersects(Building building)
@@ -97,7 +154,7 @@ namespace Roguelike
 			Building top = this.Y < building.Y ? this : building;
 			Building down = this.Y >= building.Y ? this : building;
 
-			if (left.X + left.SizeX > right.X && top.Y + top.SizeY > down.Y)
+			if (left.X + left.SizeX >= right.X && top.Y + top.SizeY  >= down.Y)
 				return true;
 
 			return false;
