@@ -47,6 +47,11 @@ namespace Roguelike
 					throw new MapOutOfBoundException();
 				return fields[index1,index2];
 			}
+
+			set
+			{
+				fields[index1, index2] = value;
+			}
 		}
 
 		public bool IsWithinBounds(int index1, int index2)

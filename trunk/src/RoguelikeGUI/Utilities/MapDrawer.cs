@@ -21,7 +21,8 @@ namespace RoguelikeGUI
 
 		public GuiMapField this[Field field]
 		{
-			get {
+			get 
+			{
 				foreach(GuiMapField guiField in fields)
 				{
 					if(guiField != null && guiField.Field == field)
@@ -42,7 +43,15 @@ namespace RoguelikeGUI
 			{
 				for (int j = 0; j < ColumnCount; ++j)
 				{
-					GuiMapField field = new GuiMapField(map[i, j]);
+					GuiMapField field = null;
+					if (map.IsWithinBounds(i, j))
+					{
+						field = new GuiMapField(map, map[j,i]);// map[i, j]);
+					}
+					else
+					{
+						field = new GuiMapField(map, null);
+					}
 					fields[i,j] = field;
 
 					field.SetValue(Grid.RowProperty, i);
@@ -90,7 +99,7 @@ namespace RoguelikeGUI
 				for (int j = 0; j < ColumnCount; ++j)
 				{
 					if (firstX + i < mapModel.MapWidth && firstY + j < mapModel.MapHeight)
-						fields[i, j].Field = mapModel[firstX + i, firstY + j];
+						fields[i, j].Field = mapModel[firstY + j, firstX + i];
 					else
 						fields[i, j].Field = null;
 				}

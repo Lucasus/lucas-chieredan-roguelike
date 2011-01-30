@@ -91,6 +91,8 @@
     <Compile Include="GameService.cs" />
     <Compile Include="Map\Map.cs" />
     <Compile Include="Exceptions\MapOutOfBoundException.cs" />
+    <Compile Include="Map\MapGenerator\Building.cs" />
+    <Compile Include="Map\MapGenerator\MapGenerator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Creatures\Creature.cs" />
     <Compile Include="Map\Wall.cs" />

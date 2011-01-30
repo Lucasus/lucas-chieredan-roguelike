@@ -41,6 +41,11 @@ namespace Roguelike
 						if (map.IsWithinBounds(targetField.Y + j, targetField.X + i))
 						{
 							Field damagedField = map[targetField.Y + j, targetField.X + i];
+							if (i == 0 && j == 0 && damagedField.GetType() == typeof(Wall))
+							{
+								map[targetField.Y + j, targetField.X + i] = new Floor(damagedField.X, damagedField.Y);
+							}
+
 							if (damagedField.Creature != null)
 							{
 								damagedField.Creature.Health -= this.thrower.GrenadeWeapon.Damage;
