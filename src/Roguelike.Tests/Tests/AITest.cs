@@ -132,7 +132,7 @@ namespace Roguelike.Tests
 
 			// assert
 			Assert.IsTrue(d.GetMaxDirectionCount() < (n * 1.2) / 8, "d max = " + d.GetMaxDirectionCount() + ", max = " + ((n * 1.2) / 8));
-			Assert.IsTrue(d.GetMinDirectionCount() > (n * 0.7) / 8, "d min = " + d.GetMinDirectionCount() + ", min = " + ((n * 0.7) / 8));
+			Assert.IsTrue(d.GetMinDirectionCount() > (n * 0.65) / 8, "d min = " + d.GetMinDirectionCount() + ", min = " + ((n * 0.65) / 8));
 		}
 
 		[TestMethod()]

@@ -18,8 +18,8 @@ namespace Roguelike
 
 		public MapGenerator(int sizeX, int sizeY)
 		{
-			SizeX = Math.Max(sizeX, 4);
-			SizeY = Math.Max(sizeY, 4);
+			SizeX = Math.Max(sizeX, 5);
+			SizeY = Math.Max(sizeY, 5);
 			maxBuildingNumber = 2 + Math.Max(0, (SizeX-4)) * Math.Max(0, (SizeY-4)) / 16;
 			maxBuildingCounter = maxBuildingNumber + 50;
 			PointObjectsCount = (int)(Math.Ceiling((double)((SizeX-3) * (SizeY-3)) / 40));
@@ -27,10 +27,6 @@ namespace Roguelike
 
 		public Map GenerateMap(Creature player)
 		{
-			//int maxBuildingNumber = 10;
-			//int maxBuildingCounter = 30;
-			//PointObjectsCount = 4;
-
 			mapTemplate = new char[SizeX, SizeY];
 
 			// na początku wszystko jest terenem po którym można chodzić + obwódka ze ścian
@@ -92,9 +88,6 @@ namespace Roguelike
 			{
 				GeneratedCreatures.AddRange(b.GenerateCreatures(map, player));
 			}
-
-
-
 			return map;
 		}
 

@@ -28,27 +28,25 @@ namespace Roguelike
 			// wyznaczamy rozmiary budynku
 			if (r.Next(10) > 1)
 			{
-				b.SizeX = 3 + r.Next(Math.Max(Math.Min(8, maxX - 4),1));
-				b.SizeY = 3 + r.Next(Math.Max(Math.Min(8, maxY - 4),1));
+				b.SizeX = Math.Min(3, maxX - 2) + r.Next(Math.Max(Math.Min(8, maxX - 4), 1));
+				b.SizeY = Math.Min(3, maxY - 2) + r.Next(Math.Max(Math.Min(8, maxY - 4), 1));
 			}
 			else
 			{
 				if (r.Next(2) == 0)
 				{
 					b.SizeX = 1;
-					b.SizeY = 3 + r.Next(Math.Max(Math.Min(7, maxX - 5),1));
+					b.SizeY = Math.Min(3, maxY-2) + r.Next(Math.Max(Math.Min(7, maxX - 5),1));
 				}
 				else
 				{
-					b.SizeX = 3 + r.Next(Math.Max(Math.Min(7, maxY - 5),1));
+					b.SizeX = Math.Min(3, maxX-2) + r.Next(Math.Max(Math.Min(7, maxY - 5),1));
 					b.SizeY = 1;
-
 				}
-
 			}
 
-			b.X = minX + r.Next(maxX + 1 - b.SizeX);
-			b.Y = minY + r.Next(maxY + 1 - b.SizeY);
+			b.X = minX + r.Next(Math.Max(maxX + 1 - b.SizeX, 1));
+			b.Y = minY + r.Next(Math.Max(maxY + 1 - b.SizeY, 1));
 
 			// losujemy czy drzwi będą na ścianach lewa/prawa czy też dolna/górna
 			Point drzwi = new Point();

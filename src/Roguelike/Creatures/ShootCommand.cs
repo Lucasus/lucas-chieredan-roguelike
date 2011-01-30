@@ -49,7 +49,7 @@ namespace Roguelike
 					if (deffender.isDead)
 					{
 						LootGenerator lootGen = new LootGenerator();
-						attacker.Money += 1;
+						attacker.Money += 3;
 						lootGen.generateLoot(attacker, deffender);
 						deffender.Field.removeCreature();
 						AbstractLogger.Current.Log(attacker.MianownikName + " zabił " + deffender.BiernikName);

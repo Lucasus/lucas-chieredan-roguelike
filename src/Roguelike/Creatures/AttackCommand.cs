@@ -36,7 +36,7 @@ namespace Roguelike
 					LootGenerator lootGen = new LootGenerator();
 					lootGen.generateLoot(attacker, deffender);
 					deffender.Field.removeCreature();
-					attacker.Money += 1;
+					attacker.Money += 3;
 					AbstractLogger.Current.Log(attacker.MianownikName + " zabił " + deffender.BiernikName);
 				}
 				else
