@@ -26,7 +26,7 @@ namespace Roguelike
 			}
 			else if (4 <= generatedValue && generatedValue <= 7)
 			{
-				Weapon w = new Weapon() { Damage = randomGenerator.Next(10) + 1 };
+				MeleeWeapon w = new MeleeWeapon() { Damage = randomGenerator.Next(10) + 1 };
 				w.BrokeChance = (double)(1 + w.Damage/5 + r.Next(4)) / 100;
 				f.placeObject(w);
 			}

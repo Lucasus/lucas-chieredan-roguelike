@@ -49,7 +49,7 @@ namespace Roguelike.Tests
 		{
 			map = TestObjects.GetTestMap();
 			CreatureVisitor.map = map;
-			target = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 5 }, RangedWeapon = new RangedWeapon() { Damage = 5, Range = 5, Chance = 0.5} };
+			target = new Creature(10) { MeleeWeapon = new MeleeWeapon() { Damage = 5 }, RangedWeapon = new RangedWeapon() { Damage = 5, Range = 5, Chance = 0.5} };
 			map[0, 0].putCreature(target);
 		}
 

@@ -54,7 +54,7 @@ namespace Roguelike.Tests
 		public void MapTestInitialize()
 		{
             map = TestObjects.GetTestMap();
-			player = new Creature(10) { MeleeWeapon = new Weapon() { Damage = 1 }, RangedWeapon = new RangedWeapon() {Ammo = 1}, GrenadeWeapon = new GrenadeWeapon() { Ammo = 1 } };
+			player = new Creature(10) { MeleeWeapon = new MeleeWeapon() { Damage = 1 }, RangedWeapon = new RangedWeapon() {Ammo = 1}, GrenadeWeapon = new GrenadeWeapon() { Ammo = 1 } };
 			map[0,0].putCreature(player);
 		}
 
@@ -96,7 +96,7 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void WeaponPickupTest()
 		{
-			Weapon weaponPickup = new Weapon() { Damage = 10 };
+			MeleeWeapon weaponPickup = new MeleeWeapon() { Damage = 10 };
 			map[0, 0].placeObject(weaponPickup);
 			new PickupCommand(player).execute();
 			Assert.AreSame(weaponPickup, player.MeleeWeapon);
@@ -109,7 +109,7 @@ namespace Roguelike.Tests
 			map[0, 0].placeObject(ammoPickup);
 			int playerBullets = player.RangedWeapon.Ammo;
 			int playerGrenades = player.GrenadeWeapon.Ammo;
-			Weapon weaponPickup = new Weapon() { Damage = 5 };
+			MeleeWeapon weaponPickup = new MeleeWeapon() { Damage = 5 };
 			map[0, 0].placeObject(weaponPickup);
 			new PickupCommand(player).execute();
 			Assert.AreEqual(player.RangedWeapon.Ammo, playerBullets + 4);
@@ -120,9 +120,9 @@ namespace Roguelike.Tests
 		[TestMethod()]
 		public void MultipleWeaponsPickupTest()
 		{
-			Weapon weaponPickup = new Weapon() { Damage = 10 };
+			MeleeWeapon weaponPickup = new MeleeWeapon() { Damage = 10 };
 			map[0, 0].placeObject(weaponPickup);
-			Weapon newerWeapon = new Weapon() { Damage = 15 };
+			MeleeWeapon newerWeapon = new MeleeWeapon() { Damage = 15 };
 			map[0, 0].placeObject(newerWeapon);
 			new PickupCommand(player).execute();
 			Assert.AreSame(newerWeapon, player.MeleeWeapon);
